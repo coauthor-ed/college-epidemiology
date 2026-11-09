@@ -1,0 +1,30 @@
+{
+  "id": "blk-l02-s04",
+  "type": "poe-predict@1",
+  "promptRef": "blocks/L02/blk-l02-s04.md",
+  "options": [
+    {
+      "id": "a",
+      "text": "The link between smoking and heart attack shows up even more clearly"
+    },
+    {
+      "id": "b",
+      "text": "The link may be hidden by the way the controls were chosen"
+    },
+    {
+      "id": "c",
+      "text": "It makes no difference which hospital patients you use as controls"
+    },
+    {
+      "id": "d",
+      "text": "The link between smoking and heart attack is exaggerated"
+    }
+  ],
+  "correctOptionId": "b",
+  "deferVerdict": true,
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "q-l05-s05",
+  "type": "mcq-single@2",
+  "_comment": "Rare-disease approximation: OR sits close to RR only because the outcome is rare. Distractor c tests the size fallacy.",
+  "difficulty": "medium",
+  "bloomLevel": "understand",
+  "stem": {
+    "en": "Your cohort computes a relative risk of 12.0, and the ward's table in file 3 gave an odds ratio of 13.2. Why do the two numbers sit so close together?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "Because both studies read their exposure from the plant's personnel records rather than from interviews"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "Because matching on age removed whatever separated the two designs"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Because the cohort was hundreds of times larger than the ward's sample, and size forces agreement"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Because the tumour is very rare, and with a rare outcome the odds ratio estimates the relative risk closely"
+      },
+      "isCorrect": true
+    }
+  ],
+  "correctOptionId": "d",
+  "explanation": {
+    "en": "The odds ratio estimates the relative risk well under the rarity condition stated in file 3: when only a small share of people develop the outcome, the odds among non-cases barely differ from the risk, so ad/bc lands near the ratio of incidences. This tumour is exactly such a rare outcome, which is why 13.2 and 12.0 tell the same story from different designs. Neither the sample size nor the records behind the exposure changes that relationship."
+  },
+  "hints": [
+    {
+      "en": "File 3 listed three conditions under which an odds ratio travels as a relative risk. Which one does this tumour satisfy?"
+    }
+  ],
+  "tags": [
+    "odds-ratio",
+    "relative-risk",
+    "live-case",
+    "rare-disease"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

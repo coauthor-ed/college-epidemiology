@@ -1,0 +1,59 @@
+{
+  "id": "q-l01-s04",
+  "type": "mcq-single@2",
+  "_comment": "Counterfactual check after the thalidomide table: the same question asked forward in time is a cohort design.",
+  "difficulty": "medium",
+  "bloomLevel": "apply",
+  "stem": {
+    "en": "Suppose that in 1961 investigators had instead enrolled 300 pregnant women who had taken thalidomide and 300 who had not, then waited to see which babies were born with malformations (illustrative numbers). Which design is this, and which way does its inquiry run?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "A cohort study, with the inquiry running forward with time, from cause to effect"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "A case-control study, with the inquiry running back from the births to the drug"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "A cohort study, with the inquiry running back from the births to the drug"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "A case-control study, with the inquiry running forward from the drug to the births"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "a",
+  "explanation": {
+    "en": "The study starts from exposure (took the drug or not) in people who do not yet have the outcome, and follows them forward to see who develops it. That is a cohort design: the direction of inquiry runs with time. The real 1962 enquiry started from the affected babies and looked back, which is the case-control direction."
+  },
+  "hints": [
+    {
+      "en": "Ask where the study starts: from people with the outcome, or from people grouped by exposure?"
+    }
+  ],
+  "tags": [
+    "study-design",
+    "cohort",
+    "counterfactual"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

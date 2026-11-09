@@ -1,0 +1,60 @@
+{
+  "id": "q-l03-s05",
+  "type": "mcq-single@2",
+  "_comment": "The textbook's slip named correctly: the number is an odds ratio and estimates the relative risk only because the disease is rare.",
+  "difficulty": "medium",
+  "bloomLevel": "evaluate",
+  "stem": {
+    "en": "The textbook reports that smokers had a risk of lung cancer 8.1 times that of non-smokers. Which description of the number 8.1 is correct?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "It is an odds ratio, and it estimates the relative risk fairly here because lung cancer was rare"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "It is a relative risk, worked out directly from the two exposure rates in the table"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "It is an odds ratio, and an odds ratio can never be used to estimate a relative risk"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "It is the risk of lung cancer among smokers, 8.1 per cent, compared with the risk in non-smokers"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "a",
+  "explanation": {
+    "en": "The cross-product ad/bc builds an odds ratio, not a relative risk, because the study starts from people who already have the disease. When the disease is rare, the odds ratio sits close to the relative risk a cohort study would measure, so it is a fair estimate here. It is not a percentage and it is not a risk."
+  },
+  "hints": [
+    {
+      "en": "Ask what the two exposure rates can give, and what the cross-product actually divides."
+    }
+  ],
+  "tags": [
+    "odds-ratio",
+    "relative-risk",
+    "rare-disease",
+    "textbook-slip"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

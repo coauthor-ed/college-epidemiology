@@ -1,0 +1,100 @@
+{
+  "id": "q-l04-s05",
+  "type": "match-categorize@1",
+  "_comment": "Table 13 as a sort: four strengths and four limits, each tied to a case the learner has already seen.",
+  "difficulty": "medium",
+  "bloomLevel": "understand",
+  "stem": {
+    "en": "Sort each card: something a case-control study does well, or something it cannot do."
+  },
+  "categories": [
+    {
+      "id": "does-well",
+      "label": {
+        "en": "Does well"
+      }
+    },
+    {
+      "id": "cannot-do",
+      "label": {
+        "en": "Cannot do"
+      }
+    }
+  ],
+  "chips": [
+    {
+      "id": "chip-rare",
+      "text": {
+        "en": "Study a disease so rare that waiting for new cases would take years"
+      },
+      "correctCategoryId": "does-well"
+    },
+    {
+      "id": "chip-several",
+      "text": {
+        "en": "Examine several possible causes at once in the same cases"
+      },
+      "correctCategoryId": "does-well"
+    },
+    {
+      "id": "chip-fast",
+      "text": {
+        "en": "Run quickly and cheaply, with no follow-up years"
+      },
+      "correctCategoryId": "does-well"
+    },
+    {
+      "id": "chip-ethics",
+      "text": {
+        "en": "Leave participants almost untouched, so few ethical problems arise"
+      },
+      "correctCategoryId": "does-well"
+    },
+    {
+      "id": "chip-incidence",
+      "text": {
+        "en": "Measure the incidence of the disease in the exposed and the unexposed"
+      },
+      "correctCategoryId": "cannot-do"
+    },
+    {
+      "id": "chip-companions",
+      "text": {
+        "en": "Separate the true cause from the factors that travel with it"
+      },
+      "correctCategoryId": "cannot-do"
+    },
+    {
+      "id": "chip-treatment",
+      "text": {
+        "en": "Serve as the design for evaluating a treatment or a prevention programme"
+      },
+      "correctCategoryId": "cannot-do"
+    },
+    {
+      "id": "chip-represent",
+      "text": {
+        "en": "Guarantee that its cases and controls represent the populations they came from"
+      },
+      "correctCategoryId": "cannot-do"
+    }
+  ],
+  "explanation": {
+    "en": "The strengths made the design the first tool for rare outcomes: the DES file answered within months on eight cases, with four controls each and nothing done to anyone. The limits are the other side of the same design: the study begins at the disease, so it never follows a group forward and cannot measure incidence; the exposure arrives with companions it cannot be separated from; a treatment needs a group to allocate it to; and both groups arrive through doors that shape who they are."
+  },
+  "hints": [
+    {
+      "en": "Ask what the design never has: a group followed forward from exposure to outcome."
+    }
+  ],
+  "tags": [
+    "case-control",
+    "strengths-limits",
+    "cold-case"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

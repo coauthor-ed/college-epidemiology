@@ -1,0 +1,84 @@
+{
+  "id": "q-l01-s03",
+  "type": "match-categorize@1",
+  "_comment": "Case-file check after Fig. 8: sort study descriptions by design. Three of each.",
+  "difficulty": "easy",
+  "bloomLevel": "understand",
+  "stem": {
+    "en": "Sort each study description into the design it belongs to."
+  },
+  "categories": [
+    {
+      "id": "case-control",
+      "label": {
+        "en": "Case-control study"
+      }
+    },
+    {
+      "id": "cohort",
+      "label": {
+        "en": "Cohort study"
+      }
+    }
+  ],
+  "chips": [
+    {
+      "id": "chip-start-disease",
+      "text": {
+        "en": "Starts with people who have the disease and people who do not"
+      },
+      "correctCategoryId": "case-control"
+    },
+    {
+      "id": "chip-look-back",
+      "text": {
+        "en": "Looks back from the disease to find past exposure"
+      },
+      "correctCategoryId": "case-control"
+    },
+    {
+      "id": "chip-hospital-jobs",
+      "text": {
+        "en": "Asks patients with a rare cancer, and matched patients without it, about their past jobs"
+      },
+      "correctCategoryId": "case-control"
+    },
+    {
+      "id": "chip-start-free",
+      "text": {
+        "en": "Starts with people free of the disease, grouped by exposure"
+      },
+      "correctCategoryId": "cohort"
+    },
+    {
+      "id": "chip-follow",
+      "text": {
+        "en": "Follows people forward to count who becomes ill"
+      },
+      "correctCategoryId": "cohort"
+    },
+    {
+      "id": "chip-solvent",
+      "text": {
+        "en": "Records which factory workers handle a solvent, then checks their health every year for 15 years"
+      },
+      "correctCategoryId": "cohort"
+    }
+  ],
+  "explanation": {
+    "en": "A case-control study starts from the outcome (cases and controls) and asks backwards about exposure. A cohort study starts from exposure in people who do not yet have the outcome and follows them forward in time."
+  },
+  "hints": [
+    {
+      "en": "For each description, ask what the investigator knows on the first day: who is ill, or who is exposed?"
+    }
+  ],
+  "tags": [
+    "study-design"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

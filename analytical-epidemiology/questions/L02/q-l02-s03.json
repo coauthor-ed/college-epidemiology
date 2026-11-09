@@ -1,0 +1,112 @@
+{
+  "id": "q-l02-s03",
+  "type": "match-categorize@1",
+  "_comment": "Checks the four control sources against the weakness each one brings. Two chips per source.",
+  "difficulty": "medium",
+  "bloomLevel": "understand",
+  "stem": {
+    "en": "Sort each description into the source of controls it belongs to."
+  },
+  "categories": [
+    {
+      "id": "hospital",
+      "label": {
+        "en": "Hospital patients"
+      }
+    },
+    {
+      "id": "relatives",
+      "label": {
+        "en": "Relatives"
+      }
+    },
+    {
+      "id": "neighbours",
+      "label": {
+        "en": "Neighbours"
+      }
+    },
+    {
+      "id": "population",
+      "label": {
+        "en": "General population"
+      }
+    }
+  ],
+  "chips": [
+    {
+      "id": "chip-hospital-share",
+      "text": {
+        "en": "Convenient, but their other illnesses may share the exposure under study"
+      },
+      "correctCategoryId": "hospital"
+    },
+    {
+      "id": "chip-hospital-same",
+      "text": {
+        "en": "Drawn from the cases' own hospital, admitted for a different illness"
+      },
+      "correctCategoryId": "hospital"
+    },
+    {
+      "id": "chip-relative-genes",
+      "text": {
+        "en": "They share genes, so they cannot test a condition with a genetic part"
+      },
+      "correctCategoryId": "relatives"
+    },
+    {
+      "id": "chip-relative-who",
+      "text": {
+        "en": "Spouses, brothers and sisters of the cases"
+      },
+      "correctCategoryId": "relatives"
+    },
+    {
+      "id": "chip-neighbour-local",
+      "text": {
+        "en": "They share the same streets, water and air as the cases"
+      },
+      "correctCategoryId": "neighbours"
+    },
+    {
+      "id": "chip-neighbour-factory",
+      "text": {
+        "en": "Men from the same factory, or children from the same school, as the cases"
+      },
+      "correctCategoryId": "neighbours"
+    },
+    {
+      "id": "chip-population-random",
+      "text": {
+        "en": "A random sample of people free of the disease, from a defined area"
+      },
+      "correctCategoryId": "population"
+    },
+    {
+      "id": "chip-population-register",
+      "text": {
+        "en": "The cleanest source when a register of the whole population exists"
+      },
+      "correctCategoryId": "population"
+    }
+  ],
+  "explanation": {
+    "en": "Hospital controls are easy to reach but their other diseases may share the exposure. Relatives are convenient but share genes. Neighbours share the local environment, which is useful until the exposure is something the whole locality shares. A random sample of the general population is the cleanest source when a register exists, and the slowest to assemble."
+  },
+  "hints": [
+    {
+      "en": "For each chip, ask what the two groups would still have in common if you used that source."
+    }
+  ],
+  "tags": [
+    "controls",
+    "selection-bias",
+    "study-design"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

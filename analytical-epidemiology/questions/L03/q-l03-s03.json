@@ -1,0 +1,60 @@
+{
+  "id": "q-l03-s03",
+  "type": "mcq-single@2",
+  "_comment": "What a P value does and does not say: chance only, never the design and never causation.",
+  "difficulty": "medium",
+  "bloomLevel": "understand",
+  "stem": {
+    "en": "Table 12 reports P < 0.001 for the gap between the two exposure rates. Which reading of that value is correct?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "There is a 0.1 per cent chance that smoking caused the lung cancer in these men"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "A gap this big would be very unlikely if smoking and lung cancer had no link, and the value says nothing about how the men were chosen or asked"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "The result proves that smoking causes lung cancer in 99.9 per cent of smokers"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "The same gap would appear in any population, because a value this small cannot come from chance"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "b",
+  "explanation": {
+    "en": "P is the chance of a gap this large if smoking and lung cancer had no link, so a small value means chance is an unlikely explanation. It is not the chance that smoking caused the cancer, and it cannot detect a problem in the way the cases and controls were selected or questioned."
+  },
+  "hints": [
+    {
+      "en": "Ask what the shuffles in the scene can change and what they leave exactly as it was."
+    }
+  ],
+  "tags": [
+    "P-value",
+    "chance",
+    "cold-case",
+    "significance"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

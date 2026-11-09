@@ -1,0 +1,13 @@
+{
+  "id": "blk-l05-s07",
+  "type": "mini-game@1",
+  "src": "simulations/L05/BuildCohortGame.js",
+  "objective": {
+    "en": "Sort 12 personnel files into a study and a control cohort that pass all four entry checks."
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

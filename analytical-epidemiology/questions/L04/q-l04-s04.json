@@ -1,0 +1,59 @@
+{
+  "id": "q-l04-s04",
+  "type": "mcq-single@2",
+  "_comment": "Selection bias / Berkson: the hospital door can show an association the source population does not have; only the admission-rate explanation accounts for both findings.",
+  "difficulty": "medium",
+  "bloomLevel": "analyse",
+  "stem": {
+    "en": "A hospital-based case-control study finds that two diseases travel together. A survey of the whole town, hospital or not, finds no link between them. Which explanation accounts for both findings?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "Recall bias: the hospital's cases remembered their earlier illnesses more completely than the town's residents did"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "Different admission rates: because each disease raises the chance of entering hospital, the hospital's own patients show an association the town does not have"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Confounding by age: the hospital's patients are older, and age alone explains the printed association"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "A chance fluctuation that a larger hospital sample would remove"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "b",
+  "explanation": {
+    "en": "The two findings are exactly what Berkson's bias produces: with both diseases admitting people to hospital at their own rates, the hospital's patient mix can show an association that is absent in the population the patients came from. The town survey sees the true null, and the door manufactures the link. Recall and age confounding are different mechanisms, and a bigger sample re-prints a systematic effect rather than removing it."
+  },
+  "hints": [
+    {
+      "en": "Ask who never reached the hospital sample, and what the door that admitted the rest was doing."
+    }
+  ],
+  "tags": [
+    "selection-bias",
+    "Berkson",
+    "hospital"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

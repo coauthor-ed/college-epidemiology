@@ -1,0 +1,13 @@
+{
+  "id": "blk-l04-s07",
+  "type": "mini-game@1",
+  "src": "simulations/L04/RigTheStudyGame.js",
+  "objective": {
+    "en": "From a study whose exposure truly does nothing, print an odds ratio of 2.00 or more, then name the flaw behind each choice that built it."
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

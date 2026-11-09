@@ -1,0 +1,52 @@
+{
+  "id": "blk-l01-s02",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L01/blk-l01-s02.md",
+  "figure": {
+    "layout": "steps",
+    "caption": "The 1961 file at each stage of descriptive work. The hypothesis is where an analytical study takes over.",
+    "entryLabel": "In 1961",
+    "items": [
+      {
+        "id": "size",
+        "title": "Size of the problem",
+        "text": "Count cases by time, place and person.",
+        "entry": "Many more malformed births than before",
+        "step": 1
+      },
+      {
+        "id": "clues",
+        "title": "Clues",
+        "text": "Look at where and when the cases fall.",
+        "entry": "A new sleeping drug, on sale in Britain since 1958",
+        "step": 2
+      },
+      {
+        "id": "hyp",
+        "title": "Hypothesis",
+        "text": "Put the size and the clue together as a claim.",
+        "entry": "Thalidomide might be the cause",
+        "step": 3
+      }
+    ],
+    "after": {
+      "title": "Analytical study",
+      "text": "Tests the hypothesis",
+      "step": 3
+    },
+    "notes": [
+      {
+        "on": "hyp",
+        "label": "Hand-off",
+        "text": "Descriptive work ends here. An analytical study starts here.",
+        "step": 3
+      }
+    ],
+    "position": "right"
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

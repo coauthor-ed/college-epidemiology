@@ -1,0 +1,11 @@
+{
+  "bundleManifestId": "college-epidemiology",
+  "title": {
+    "en": "College Epidemiology"
+  },
+  "sources": [
+    {
+      "manifestUrl": "analytical-epidemiology/manifest.json"
+    }
+  ]
+}

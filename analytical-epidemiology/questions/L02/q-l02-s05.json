@@ -1,0 +1,60 @@
+{
+  "id": "q-l02-s05",
+  "type": "mcq-single@2",
+  "_comment": "Reads the DES result the way the study allows: an association when the other compared factors did not differ.",
+  "difficulty": "medium",
+  "bloomLevel": "evaluate",
+  "stem": {
+    "en": "In the Boston study, eight cases were compared with 32 controls matched on place and time of birth. Maternal age, maternal smoking and antenatal X-rays did not separate the two groups; seven of the eight cases' mothers had taken DES, and none of the control mothers had. What is the fairest reading?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "DES causes this cancer in every girl whose mother took it"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "DES exposure in the womb is associated with this rare cancer, because the other three factors did not differ"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Eight cases are too few for any association to be believed"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Maternal smoking must matter, because more controls smoked than cases"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "b",
+  "explanation": {
+    "en": "The controls were matched on birth time and hospital, and the four pregnancy factors were compared in the same way. Only DES separated the two groups, and the gap was very unlikely to be chance. That is an association, and later cases confirmed it; it does not say that every exposed daughter developed the cancer."
+  },
+  "hints": [
+    {
+      "en": "Ask which of the four factors separated the cases from the controls, and what the other three ruled out."
+    }
+  ],
+  "tags": [
+    "DES",
+    "association",
+    "controls",
+    "cold-case"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

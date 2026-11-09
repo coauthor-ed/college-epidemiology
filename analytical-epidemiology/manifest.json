@@ -1,0 +1,44 @@
+{
+  "bundleId": "analytical-epidemiology",
+  "title": {
+    "en": "Analytical Epidemiology"
+  },
+  "subject": "epidemiology",
+  "grade": "UG",
+  "simSetting": "casefile",
+  "accent": "blue",
+  "modules": [
+    "modules/analytical-epidemiology.json"
+  ],
+  "lessons": [
+    "lessons/les-01.json",
+    "lessons/les-02.json",
+    "lessons/les-03.json",
+    "lessons/les-04.json",
+    "lessons/les-05.json"
+  ],
+  "tests": [],
+  "banks": [],
+  "generatedAt": "2026-11-05T08:20:08.494Z",
+  "glossary": "glossary.json",
+  "schemaVersion": 1,
+  "audience": "college",
+  "subjects": [
+    "epidemiology"
+  ],
+  "languages": [
+    "en"
+  ],
+  "repository": {
+    "url": "https://github.com/coauthor-ed/college-epidemiology",
+    "issues": "https://github.com/coauthor-ed/college-epidemiology/issues"
+  },
+  "license": "CC-BY-4.0",
+  "version": "1.0.0",
+  "updatedAt": "2026-11-09",
+  "features": {
+    "story": false,
+    "games": true,
+    "practice": true
+  }
+}

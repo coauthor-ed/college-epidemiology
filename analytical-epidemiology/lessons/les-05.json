@@ -1,0 +1,61 @@
+{
+  "id": "les-05",
+  "lessonId": "les-05",
+  "type": "lesson",
+  "title": {
+    "en": "Follow them forward and measure the risk"
+  },
+  "blocks": [
+    {
+      "blockRef": "blocks/L05/blk-l05-s01.json"
+    },
+    {
+      "blockRef": "questions/L05/q-l05-s01.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s02.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s03.json"
+    },
+    {
+      "blockRef": "questions/L05/q-l05-s02.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s04.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s05.json"
+    },
+    {
+      "blockRef": "questions/L05/q-l05-s03.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s06.json"
+    },
+    {
+      "blockRef": "questions/L05/q-l05-s04.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s07.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s08.json"
+    },
+    {
+      "blockRef": "questions/L05/q-l05-s05.json"
+    },
+    {
+      "blockRef": "blocks/L05/blk-l05-s09.json"
+    },
+    {
+      "blockRef": "questions/L05/q-l05-s06.json"
+    }
+  ],
+  "flow": {},
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

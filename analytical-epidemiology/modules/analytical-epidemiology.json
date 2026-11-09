@@ -1,0 +1,156 @@
+{
+  "id": "analytical-epidemiology",
+  "moduleId": "analytical-epidemiology",
+  "type": "module",
+  "authorId": "analytical-epidemiology",
+  "title": {
+    "en": "Analytical Epidemiology"
+  },
+  "description": {
+    "en": "Case-control and cohort studies: hypothesis testing, study design, odds and risk ratios, bias, and measuring risk in a cohort. Postgraduate (UG/PG) level for MBBS, MPH and nursing students, using a live case-theory structure."
+  },
+  "curriculumAlignment": "core",
+  "pedagogicalProfile": {
+    "themeTags": [
+      "analytical-epidemiology",
+      "case-control-study",
+      "cohort-study",
+      "odds-ratio",
+      "risk-ratio",
+      "bias",
+      "confounding"
+    ]
+  },
+  "subject": "epidemiology",
+  "grade": "UG",
+  "look": "plain",
+  "gamification": false,
+  "keyNumbersLabel": {
+    "en": "Live case, illustrative"
+  },
+  "lessons": [
+    {
+      "lessonRef": "lessons/les-01.json",
+      "title": {
+        "en": "A hunch is not yet a claim"
+      },
+      "question": {
+        "en": "When does a hunch become a claim that a study can test?"
+      },
+      "misconception": {
+        "en": "Taking a hunch such as \"thalidomide causes birth defects\" for a finding. A study can test a claim only when it names the people, the cause, the outcome, the dose and the time."
+      },
+      "keyNumbers": [
+        {
+          "value": "14 / 20",
+          "label": {
+            "en": "cases who cleaned reactors"
+          }
+        }
+      ]
+    },
+    {
+      "lessonRef": "lessons/les-02.json",
+      "title": {
+        "en": "A comparison is only as fair as its controls"
+      },
+      "question": {
+        "en": "Whom do you compare the cases with, so that the comparison is fair?"
+      },
+      "misconception": {
+        "en": "Thinking that any group without the disease will do as controls. Controls taken from other hospital patients can share the exposure and hide a real effect; they must come from the same people the cases came from."
+      },
+      "keyNumbers": [
+        {
+          "value": "60",
+          "label": {
+            "en": "controls, matched on age"
+          }
+        },
+        {
+          "value": "9 / 60",
+          "label": {
+            "en": "controls who cleaned reactors"
+          }
+        }
+      ]
+    },
+    {
+      "lessonRef": "lessons/les-03.json",
+      "title": {
+        "en": "A case-control table gives odds, not risk"
+      },
+      "question": {
+        "en": "What does a case-control table measure, and how strongly?"
+      },
+      "misconception": {
+        "en": "Reading \"33 of 35 lung-cancer patients smoked\" (94 per cent) as a smoker's 94 per cent chance of lung cancer. A case-control table gives the odds of exposure, so it yields an odds ratio, never a risk."
+      },
+      "keyNumbers": [
+        {
+          "value": "13.2",
+          "label": {
+            "en": "odds ratio = (14 x 51) / (6 x 9)"
+          }
+        }
+      ]
+    },
+    {
+      "lessonRef": "lessons/les-04.json",
+      "title": {
+        "en": "A big ratio can be manufactured"
+      },
+      "question": {
+        "en": "Could the way the study was run have built that number?"
+      },
+      "misconception": {
+        "en": "Believing that a large ratio must be a real effect. The way cases and controls are chosen and asked, for example a hospital-only sample or an interviewer who knows who is ill, can build a large ratio on its own. Check for bias before trusting it."
+      },
+      "keyNumbers": [
+        {
+          "value": "4",
+          "label": {
+            "en": "bias checks passed"
+          }
+        },
+        {
+          "value": "13.2",
+          "label": {
+            "en": "odds ratio holds; no incidence"
+          }
+        }
+      ]
+    },
+    {
+      "lessonRef": "lessons/les-05.json",
+      "title": {
+        "en": "Follow them forward and measure the risk"
+      },
+      "question": {
+        "en": "How do you measure the risk itself, and does it agree with the odds ratio?"
+      },
+      "misconception": {
+        "en": "Treating the odds ratio and the relative risk as the same measure, or calling every \"retrospective\" study a case-control study. Only a cohort, which runs from exposure to disease, measures incidence and so gives the relative risk."
+      },
+      "keyNumbers": [
+        {
+          "value": "12 / 2,000",
+          "label": {
+            "en": "reactor workers with the tumour, vs 4 / 8,000"
+          }
+        },
+        {
+          "value": "12.0",
+          "label": {
+            "en": "relative risk, beside the odds ratio 13.2"
+          }
+        }
+      ]
+    }
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

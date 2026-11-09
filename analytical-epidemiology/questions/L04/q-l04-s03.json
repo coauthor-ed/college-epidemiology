@@ -1,0 +1,59 @@
+{
+  "id": "q-l04-s03",
+  "type": "mcq-single@2",
+  "_comment": "Interviewer bias: the direct check is a trace of the interviewing itself, not the interviewer's self-report and not a P value.",
+  "difficulty": "medium",
+  "bloomLevel": "apply",
+  "stem": {
+    "en": "In the live case's study plan, an interviewer who knows the hypothesis questions the 20 cases on the ward, while the 60 controls answer by post. Before the odds ratio is printed, what is the most direct check that the interviewing itself did not treat the two groups differently?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "Compare how long the ward interviews ran against how long the postal forms took, and who was present while they were completed"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "Increase the number of controls until the odds ratio falls below 2.00"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Ask the interviewer afterwards whether the cases were probed harder than the controls"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Recompute the P value and confirm that it stays below 0.001"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "a",
+  "explanation": {
+    "en": "Interviewer bias leaves a trace in the conduct of the interviews themselves: longer, more searching sessions with the cases than with the controls. Comparing the lengths and the settings is a direct check. Asking the interviewer relies on self-report, adding controls changes precision and not bias, and a P value reads chance, not conduct."
+  },
+  "hints": [
+    {
+      "en": "The bias lives in how the questions were asked, so look for a record the asking leaves behind."
+    }
+  ],
+  "tags": [
+    "interviewer-bias",
+    "bias",
+    "live-case"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

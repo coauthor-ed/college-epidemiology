@@ -1,0 +1,59 @@
+{
+  "id": "q-l02-s02",
+  "type": "mcq-single@2",
+  "_comment": "Checks the case-eligibility criterion: survivors are not a fair sample of all cases.",
+  "difficulty": "medium",
+  "bloomLevel": "analyse",
+  "stem": {
+    "en": "A surgeon offers a case-control study all the patients with a rare cancer who still attend his clinic, some of them diagnosed 12 years ago. Why is a series of newly diagnosed patients usually better?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "The old cases are the ones who survived, so they may differ from patients who died soon after diagnosis"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "The old cases are more likely to remember their past exposure accurately"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Newly diagnosed patients are always younger than long-term patients"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Patients diagnosed years ago cannot be matched to controls of the same age"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "a",
+  "explanation": {
+    "en": "A patient who is still attending years after diagnosis has survived, and survival may be related to the exposure being studied. Such old, prevalent cases are not a fair sample of everyone who develops the disease, so a fixed period of newly diagnosed cases is preferred."
+  },
+  "hints": [
+    {
+      "en": "Ask what had to happen to a patient for that patient to be in the clinic 12 years later."
+    }
+  ],
+  "tags": [
+    "case-selection",
+    "prevalent-cases",
+    "survivor"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

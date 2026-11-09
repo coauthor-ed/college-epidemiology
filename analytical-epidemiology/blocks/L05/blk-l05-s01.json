@@ -1,0 +1,53 @@
+{
+  "id": "blk-l05-s01",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L05/blk-l05-s01.md",
+  "figure": {
+    "layout": "timeline",
+    "caption": "Three cohorts from the chapter, drawn on each study's own clock (years since it began): each bar starts with well people and runs forward with no end date.",
+    "axis": {
+      "from": 0,
+      "to": 25,
+      "every": 5
+    },
+    "items": [
+      {
+        "id": "doctors",
+        "title": "Doll's doctors",
+        "text": "British doctors on the UK Medical Register, followed from 1951.",
+        "from": 0,
+        "open": true,
+        "tone": 1
+      },
+      {
+        "id": "framingham",
+        "title": "Framingham",
+        "text": "A town's residents, followed for heart disease.",
+        "from": 0,
+        "open": true,
+        "tone": 2
+      },
+      {
+        "id": "miners",
+        "title": "Uranium miners",
+        "text": "Miners and unexposed men, followed for lung cancer.",
+        "from": 0,
+        "open": true,
+        "tone": 3
+      }
+    ],
+    "notes": [
+      {
+        "on": "doctors",
+        "label": "Day one",
+        "text": "On the first day nobody in any of the three groups had the disease being counted.",
+        "step": 2
+      }
+    ]
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

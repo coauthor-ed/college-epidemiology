@@ -1,0 +1,30 @@
+{
+  "id": "blk-l04-s03",
+  "type": "poe-predict@1",
+  "promptRef": "blocks/L04/blk-l04-s03.md",
+  "options": [
+    {
+      "id": "a",
+      "text": "It does not move: errors in the two groups cancel out"
+    },
+    {
+      "id": "b",
+      "text": "It moves up: the cases are probed harder and remember more"
+    },
+    {
+      "id": "c",
+      "text": "It moves down: the controls overstate their reactor work"
+    },
+    {
+      "id": "d",
+      "text": "It becomes exactly 1, whatever the truth is"
+    }
+  ],
+  "correctOptionId": "b",
+  "deferVerdict": true,
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

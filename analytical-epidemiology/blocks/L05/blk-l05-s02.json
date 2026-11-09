@@ -1,0 +1,51 @@
+{
+  "id": "blk-l05-s02",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L05/blk-l05-s02.md",
+  "figure": {
+    "layout": "multiples",
+    "glyph": "cohort",
+    "caption": "Four cohorts from the chapter: each joins at one shared event, within one defined period, and is followed forward.",
+    "items": [
+      {
+        "id": "birth",
+        "title": "Birth cohort",
+        "event": "Born 2010",
+        "text": "Everyone born in the same period, usually one year."
+      },
+      {
+        "id": "exposure",
+        "title": "Exposure cohort",
+        "event": "Same drug",
+        "text": "People exposed to one drug, vaccine or infection within a defined period."
+      },
+      {
+        "id": "marriage",
+        "title": "Marriage cohort",
+        "event": "Married 2010",
+        "text": "Men or women married on the same day or within one period."
+      },
+      {
+        "id": "mi",
+        "title": "Post-heart-attack",
+        "event": "MI in one year",
+        "text": "Everyone who survived a myocardial infarction (a heart attack) in one particular year."
+      }
+    ],
+    "aside": {
+      "label": "Also called",
+      "tags": [
+        "prospective",
+        "longitudinal",
+        "incidence",
+        "forward-looking"
+      ],
+      "step": 2
+    }
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

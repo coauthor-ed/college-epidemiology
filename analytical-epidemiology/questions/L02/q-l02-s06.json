@@ -1,0 +1,32 @@
+{
+  "id": "q-l02-s06",
+  "type": "numeric-value@1",
+  "_comment": "Reads the filled 2x2 down the columns: compare shares, not counts, because the groups differ in size.",
+  "difficulty": "medium",
+  "bloomLevel": "apply",
+  "stem": {
+    "en": "Illustrative case. Of the 20 patients, 14 had cleaned the reactors; of the 60 controls, 9 had. By how many percentage points do the two shares differ? Give your answer to 1 decimal place."
+  },
+  "expectedValue": 55,
+  "tolerance": 0.05,
+  "unit": "percentage points",
+  "explanation": {
+    "en": "14 / 20 = 70.0 per cent and 9 / 60 = 15.0 per cent, so the shares differ by 55.0 percentage points. The shares are compared rather than the counts because the two groups are different sizes."
+  },
+  "hints": [
+    {
+      "en": "Work out each share with its own group total, then subtract one share from the other."
+    }
+  ],
+  "tags": [
+    "case-control",
+    "exposure-rate",
+    "live-case",
+    "percentages"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

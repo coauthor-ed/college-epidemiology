@@ -1,0 +1,58 @@
+{
+  "id": "q-l01-s01",
+  "type": "mcq-single@2",
+  "_comment": "Case-file check after the five-part hypothesis: spot the missing part in a new claim.",
+  "difficulty": "easy",
+  "bloomLevel": "analyse",
+  "stem": {
+    "en": "A colleague drafts this claim for a study in one district: \"Among men aged 40-60, smoking more than 10 bidis a day causes oral cancer in 5 per cent of them.\" Which of the five parts of a testable hypothesis is missing?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "The population: the claim does not say which people it is about"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "The dose-response: the claim does not say how much smoking"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "The outcome: the claim does not name the disease expected"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "The time-response: the claim does not say how long until disease"
+      },
+      "isCorrect": true
+    }
+  ],
+  "correctOptionId": "d",
+  "explanation": {
+    "en": "The claim names the population (men aged 40-60), the cause (bidi smoking), the outcome (oral cancer) and a dose with a stated incidence (more than 10 a day, 5 per cent). It never says how many years of smoking come before the cancer, so a study could not tell an early effect from a late one."
+  },
+  "hints": [
+    {
+      "en": "Go through the five parts one at a time and underline the words in the claim that state each one."
+    }
+  ],
+  "tags": [
+    "hypothesis",
+    "time-response"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

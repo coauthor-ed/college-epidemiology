@@ -1,0 +1,62 @@
+{
+  "id": "blk-l05-s06",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L05/blk-l05-s06.md",
+  "figure": {
+    "layout": "steps",
+    "caption": "The five elements of a cohort study in order, with the entry checks that gate the cohorts at selection. Live-case entries illustrative.",
+    "items": [
+      {
+        "id": "select",
+        "title": "Select subjects",
+        "text": "From the general population, or from special groups that can be studied readily.",
+        "entry": "The plant's own workforce, from its records"
+      },
+      {
+        "id": "exposure",
+        "title": "Record exposure",
+        "text": "Each member lands in the exposed or unexposed group for a stated reason.",
+        "entry": "5 or more years of reactor cleaning",
+        "step": 3
+      },
+      {
+        "id": "comparison",
+        "title": "Choose comparison",
+        "text": "Little or no exposure, but otherwise similar.",
+        "entry": "Other men at the same plant",
+        "step": 3
+      },
+      {
+        "id": "followup",
+        "title": "Follow up",
+        "text": "Both groups under the same identical conditions.",
+        "entry": "Twenty years, on record",
+        "step": 4
+      },
+      {
+        "id": "analysis",
+        "title": "Analyse",
+        "text": "Incidence in each group, then the relative risk.",
+        "entry": "6.0 vs 0.5 per 1,000",
+        "step": 5
+      }
+    ],
+    "entryLabel": "Your live case",
+    "gate": {
+      "after": "select",
+      "title": "Entry checks",
+      "items": [
+        "Free of the disease",
+        "Equally susceptible",
+        "Comparable on other variables",
+        "Criteria fixed beforehand"
+      ],
+      "step": 2
+    }
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

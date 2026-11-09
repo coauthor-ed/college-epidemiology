@@ -1,0 +1,59 @@
+{
+  "id": "q-l01-s06",
+  "type": "mcq-single@2",
+  "_comment": "Counterfactual check on the closing count: if men without the tumour were exposed just as often, the 14 of 20 is no evidence.",
+  "difficulty": "medium",
+  "bloomLevel": "evaluate",
+  "stem": {
+    "en": "Illustrative case. Suppose the investigators find that among men of the same ages at the plant who do not have the tumour, 14 of every 20 had also cleaned the reactors. What would the cases' 14 of 20 then tell you about reactor cleaning?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "That reactor cleaning roughly doubles a worker's risk of developing this tumour"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "No evidence for it yet, because the cases were exposed no more often than the others"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "That reactor cleaning causes this tumour in about 70 per cent of reactor cleaners"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Nothing at all, because 20 cases are always too few for any conclusion to be drawn"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "b",
+  "explanation": {
+    "en": "Seventy per cent of cases exposed means something only if it is higher than among comparable men without the disease. If those men were exposed just as often, the cases are not unusual and the count gives no support to the claim. Seventy per cent of cases exposed is also not the same as 70 per cent of cleaners falling ill."
+  },
+  "hints": [
+    {
+      "en": "Compare the share exposed among the cases with the share exposed among the men without the tumour."
+    }
+  ],
+  "tags": [
+    "comparison",
+    "live-case",
+    "counterfactual"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

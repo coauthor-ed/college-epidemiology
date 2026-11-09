@@ -1,0 +1,60 @@
+{
+  "id": "q-l03-s06",
+  "type": "mcq-single@2",
+  "_comment": "Synthesis for the closing slide: a strong association, chance ruled out, design still open. Sets up L04 without teaching its mechanisms.",
+  "difficulty": "medium",
+  "bloomLevel": "evaluate",
+  "stem": {
+    "en": "The live case (illustrative) gives an odds ratio of 13.2 with P < 0.001. Which statement is the fairest reading of that result?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "Reactor workers had 13.2 times the risk of the tumour, compared with the other men at the plant"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "A P value below 0.001 proves that reactor cleaning caused the tumour in these men"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "The association is strong and unlikely to be chance, but the way the study was run could still have built part of it"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "A case-control study produces no usable number, so the odds ratio should be ignored"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "c",
+  "explanation": {
+    "en": "13.2 is an odds ratio, not a risk, so it does not say that a reactor worker's risk was 13.2 times anyone else's. The P value rules out chance as an explanation for a gap this large. What it cannot rule out is a gap produced by the way the cases and controls were selected, interviewed or matched, so the design still has to be checked."
+  },
+  "hints": [
+    {
+      "en": "Separate the two questions the file has asked: could chance explain the gap, and could the way the study was run explain it?"
+    }
+  ],
+  "tags": [
+    "odds-ratio",
+    "P-value",
+    "live-case",
+    "study-design"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "q-l01-s02",
+  "type": "mcq-single@2",
+  "_comment": "Counterfactual check: drop the dose from the improved smoking claim and ask what the study no longer commits to measuring.",
+  "difficulty": "medium",
+  "bloomLevel": "analyse",
+  "stem": {
+    "en": "Suppose the improved claim lost its dose and read: \"Smoking causes lung cancer in 10 per cent of smokers after 20 years.\" Compared with the full claim, which measurement would the study no longer be committed to making?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "The number of years each person had smoked before diagnosis"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "The number of cigarettes each person smoked in a typical day"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Whether each person in the study had lung cancer at the end"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Whether each person in the study was a smoker or a non-smoker"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "b",
+  "explanation": {
+    "en": "The dose-response part (\"30-40 cigarettes a day\") is what commits the study to measuring cigarettes per day. Without it, smoking is only yes or no; years of smoking are still needed for the time-response, and lung cancer is still the outcome."
+  },
+  "hints": [
+    {
+      "en": "Each part of the claim commits the study to one measurement. Which part was removed?"
+    }
+  ],
+  "tags": [
+    "hypothesis",
+    "dose-response",
+    "counterfactual"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

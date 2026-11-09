@@ -1,0 +1,60 @@
+{
+  "id": "q-l03-s02",
+  "type": "mcq-single@2",
+  "_comment": "The classic misreading: a share built on a chosen number of controls is not a risk. Denominator, not arithmetic, is the point.",
+  "difficulty": "medium",
+  "bloomLevel": "analyse",
+  "stem": {
+    "en": "In a case-control study of smoking and lung cancer, 33 of the 88 smokers in the table were cases and 2 of the 29 non-smokers were cases. The investigator reports 33 of 88, or 37.5 per cent, as the risk of lung cancer among smokers. Why is that wrong?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "Because 88 smokers are too few for any percentage to be calculated from them"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "Because a risk of disease can be measured only in a randomised trial"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Because some of the men recorded as non-smokers had given up smoking years earlier"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Because the number of controls per case was the investigator's choice, so the share moves when that choice moves"
+      },
+      "isCorrect": true
+    }
+  ],
+  "correctOptionId": "d",
+  "explanation": {
+    "en": "The 88 is the exposed cases plus the exposed controls. The control count was fixed by the investigator, so the share of the exposed who were cases falls as more controls are taken, while the two exposure rates stay where they are. A risk needs a population at risk that was followed, and a case-control study has no such denominator."
+  },
+  "hints": [
+    {
+      "en": "Ask who decided how many controls there would be, and what happens to the 88 if that number changes."
+    }
+  ],
+  "tags": [
+    "case-control",
+    "denominator",
+    "risk",
+    "misconception"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

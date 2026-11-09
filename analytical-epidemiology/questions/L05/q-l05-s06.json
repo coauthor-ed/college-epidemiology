@@ -1,0 +1,60 @@
+{
+  "id": "q-l05-s06",
+  "type": "mcq-single@2",
+  "_comment": "Closes the arc: the question only a cohort can answer, asked at the lesson's close.",
+  "difficulty": "medium",
+  "bloomLevel": "evaluate",
+  "stem": {
+    "en": "The plant's medical officer asks you one question: how many of our men fall ill with this tumour each year? Which design answers it?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "A case-control study, because it starts from the men who fell ill"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "A cohort study, because a group followed forward gives the incidence rate the question asks for"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Either design, because in this case both produced the same association"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Neither design; the odds ratio of 13.2 read per year is the answer"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "b",
+  "explanation": {
+    "en": "A rate of new illness per year is an incidence, and incidence needs a counted group of people still well, followed over time: 12 cases among 2,000 reactor men over twenty years gives 6.0 per 1,000 over the follow-up. A case-control study assembles its groups after the outcomes are known and has no such followed group, so it can rank the exposure's strength but cannot produce a rate. The 13.2 is a ratio of odds with no time in it, and reading it per year would be inventing a denominator."
+  },
+  "hints": [
+    {
+      "en": "The question asks for a count of new illness per head per year. Which design held a group under observation while that count accumulated?"
+    }
+  ],
+  "tags": [
+    "incidence",
+    "cohort",
+    "study-design",
+    "live-case"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

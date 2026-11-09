@@ -1,0 +1,59 @@
+{
+  "id": "q-l05-s04",
+  "type": "mcq-single@2",
+  "_comment": "Entry rule (a) of the chapter: cohorts must be free of the disease under study when assembled.",
+  "difficulty": "medium",
+  "bloomLevel": "apply",
+  "stem": {
+    "en": "The plant's 1970 personnel records show that three of the reactor men already had the liver tumour when the cohort follow-up opens. What do the cohort's rules say about these three?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "They are excluded from both cohorts, because a cohort must be free of the disease under study when it begins"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "They stay in the study cohort, because their tumours make the outcome likelier to appear"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "They move to the control cohort, since their reactor days ended when they fell ill"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "They are kept, and their follow-up is counted from the date the tumour was diagnosed"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "a",
+  "explanation": {
+    "en": "The chapter's first condition on assembling cohorts is that they must be free from the disease under study: members are examined against the records, and anyone who already shows the disease is excluded. A man who already has the tumour is not a person at risk of developing it, so keeping him would inflate the cohort's case count with outcomes that pre-date the follow-up. The same rule is what your exercise demanded before any file could enter a bin."
+  },
+  "hints": [
+    {
+      "en": "The cohort measures new disease during follow-up. What does a man who arrived already ill do to that measure?"
+    }
+  ],
+  "tags": [
+    "cohort",
+    "entry-criteria",
+    "live-case"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

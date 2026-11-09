@@ -1,0 +1,41 @@
+{
+  "id": "blk-l04-s02",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L04/blk-l04-s02.md",
+  "figure": {
+    "layout": "compare",
+    "glyph": "target",
+    "caption": "Two studies of the same true effect: chance misses in all directions, bias misses in one direction every time.",
+    "position": "right",
+    "items": [
+      {
+        "id": "chance",
+        "title": "Chance",
+        "text": "Scatter around the truth. Repeat the study and the misses fall on all sides of it.",
+        "spread": 0.85,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "bias",
+        "title": "Bias",
+        "text": "One systematic pull. Repeat the study and the misses land in the same wrong place.",
+        "spread": 0.15,
+        "offset": [
+          0.5,
+          -0.35
+        ]
+      }
+    ],
+    "verdict": {
+      "text": "Repeats average chance away; they only re-print bias."
+    }
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

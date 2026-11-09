@@ -1,0 +1,14 @@
+{
+  "id": "blk-l05-s08",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L05/blk-l05-s08.md",
+  "simulation": {
+    "src": "simulations/L05/CohortFrameScene-live.js",
+    "position": "right"
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "blk-l05-s04",
+  "type": "poe-predict@1",
+  "promptRef": "blocks/L05/blk-l05-s04.md",
+  "options": [
+    {
+      "id": "a",
+      "text": "A case-control study: it starts from the deaths and looks back"
+    },
+    {
+      "id": "b",
+      "text": "A prospective cohort study"
+    },
+    {
+      "id": "c",
+      "text": "A retrospective cohort study"
+    },
+    {
+      "id": "d",
+      "text": "Not an analytical study, only a description of old records"
+    }
+  ],
+  "correctOptionId": "c",
+  "deferVerdict": true,
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

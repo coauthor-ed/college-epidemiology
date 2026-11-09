@@ -1,0 +1,30 @@
+{
+  "id": "blk-l01-s03",
+  "type": "poe-predict@1",
+  "promptRef": "blocks/L01/blk-l01-s03.md",
+  "options": [
+    {
+      "id": "a",
+      "text": "\"Smoking is dangerous to the health of smokers.\""
+    },
+    {
+      "id": "b",
+      "text": "\"Cigarette smoking causes lung cancer.\""
+    },
+    {
+      "id": "c",
+      "text": "\"Smoking 30-40 cigarettes a day causes lung cancer in 10 per cent of smokers after 20 years.\""
+    },
+    {
+      "id": "d",
+      "text": "\"People with lung cancer smoke more than other people do.\""
+    }
+  ],
+  "correctOptionId": "c",
+  "deferVerdict": true,
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

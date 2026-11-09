@@ -1,0 +1,60 @@
+{
+  "id": "q-l04-s01",
+  "type": "mcq-single@2",
+  "_comment": "The textbook's slip, applied to Table 15: the file prints 'relative risk 6.3:1' but the arithmetic of a case-control table computes an odds ratio.",
+  "difficulty": "medium",
+  "bloomLevel": "evaluate",
+  "stem": {
+    "en": "The investigators printed 'relative risk 6.3:1' under Table 15. What does the arithmetic of a hospital case-control table actually compute?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "The risk of clots among pill users divided by the risk among non-users, because the controls were matched to the cases"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "The incidence of clots among users and among non-users over the same years"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "The odds of exposure among the cases divided by the odds among the controls, an odds ratio, which is close to the relative risk only because the outcome is rare"
+      },
+      "isCorrect": true
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "The excess number of clot cases that the pill adds per 100 women per year"
+      },
+      "isCorrect": false
+    }
+  ],
+  "correctOptionId": "c",
+  "explanation": {
+    "en": "The table starts from 84 women who already have clots, so it never assembles a group of pill users followed forward, and there is no incidence or risk to divide. What it can compute are the odds of exposure in the two groups, 42 to 42 among the cases and 23 to 145 among the controls, and their ratio, 6.30. With an outcome as rare as these clots, that odds ratio sits close to the relative risk a cohort would report, which is why the printed label was tolerated."
+  },
+  "hints": [
+    {
+      "en": "Ask what the study never counted: a group of women still free of clots, followed from pill use to clots."
+    }
+  ],
+  "tags": [
+    "odds-ratio",
+    "relative-risk",
+    "cold-case",
+    "case-control"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

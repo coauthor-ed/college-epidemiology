@@ -1,0 +1,30 @@
+{
+  "id": "q-l05-s02",
+  "type": "numeric-value@1",
+  "_comment": "First relative risk computed from a cohort table: two incidences, then their ratio. Illustrative numbers.",
+  "difficulty": "medium",
+  "bloomLevel": "apply",
+  "stem": {
+    "en": "Illustrative cohort. Of 1,200 men exposed to a solvent, 60 develop the disease over ten years of follow-up; of 800 unexposed men, 16 develop it over the same ten years. Compute the relative risk, to 2 decimal places."
+  },
+  "expectedValue": 2.5,
+  "tolerance": 0.05,
+  "explanation": {
+    "en": "The incidence among the exposed is 60/1,200 = 0.05, or 50 per 1,000 over ten years; among the unexposed it is 16/800 = 0.02, or 20 per 1,000. The relative risk is the ratio of the two incidences, 0.05/0.02 = 2.50, so exposed men had 2.50 times the risk of unexposed men over the same period."
+  },
+  "hints": [
+    {
+      "en": "Divide the cases by their own cohort's total first; only then divide the exposed incidence by the unexposed incidence."
+    }
+  ],
+  "tags": [
+    "relative-risk",
+    "incidence",
+    "cohort"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

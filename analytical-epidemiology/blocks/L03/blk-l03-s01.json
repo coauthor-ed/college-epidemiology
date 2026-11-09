@@ -1,0 +1,30 @@
+{
+  "id": "blk-l03-s01",
+  "type": "poe-predict@1",
+  "promptRef": "blocks/L03/blk-l03-s01.md",
+  "options": [
+    {
+      "id": "a",
+      "text": "About 94 per cent of smokers get lung cancer"
+    },
+    {
+      "id": "b",
+      "text": "Smokers' risk of lung cancer is 94 per cent higher than non-smokers'"
+    },
+    {
+      "id": "c",
+      "text": "Smoking is more common among the men with lung cancer than among the men without it"
+    },
+    {
+      "id": "d",
+      "text": "Smoking causes lung cancer in 94 per cent of cases"
+    }
+  ],
+  "correctOptionId": "c",
+  "deferVerdict": true,
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

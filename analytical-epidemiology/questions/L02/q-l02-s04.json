@@ -1,0 +1,59 @@
+{
+  "id": "q-l02-s04",
+  "type": "mcq-single@2",
+  "_comment": "Confounding: a factor linked to both exposure and disease must be balanced by design, not ignored.",
+  "difficulty": "medium",
+  "bloomLevel": "apply",
+  "stem": {
+    "en": "In a case-control study of alcohol and oesophageal cancer, drinkers are more often smokers than non-drinkers, and smoking is itself a risk factor for oesophageal cancer. What is the best way to deal with smoking?"
+  },
+  "options": [
+    {
+      "id": "a",
+      "text": {
+        "en": "Ignore it, because smoking is not the exposure the study is testing"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": {
+        "en": "Match the cases and controls on alcohol use instead"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "c",
+      "text": {
+        "en": "Report the crude comparison and list smoking as a limitation"
+      },
+      "isCorrect": false
+    },
+    {
+      "id": "d",
+      "text": {
+        "en": "Match controls to cases on smoking, then compare drinkers within each smoking group"
+      },
+      "isCorrect": true
+    }
+  ],
+  "correctOptionId": "d",
+  "explanation": {
+    "en": "Smoking is associated with the exposure and is itself a risk factor, so it can make alcohol look harmful when it is not. Matching the controls to the cases on smoking, or splitting the analysis into smoking groups, holds smoking steady so the alcohol comparison is fair. Ignoring it leaves the comparison distorted, and matching on alcohol would remove the exposure being studied."
+  },
+  "hints": [
+    {
+      "en": "A confounder is linked to the exposure and to the disease. Which option holds it steady instead of removing the exposure?"
+    }
+  ],
+  "tags": [
+    "confounding",
+    "matching",
+    "oesophageal-cancer"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

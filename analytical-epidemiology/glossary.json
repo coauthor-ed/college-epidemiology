@@ -1,0 +1,250 @@
+{
+  "terms": [
+    {
+      "id": "exposure-rate",
+      "term": "exposure rate",
+      "match": ["exposure rates"],
+      "plain": {
+        "en": "the share of a group that had the exposure"
+      },
+      "means": {
+        "en": "In a case-control table, the share exposed among the cases, a/(a+c), or among the controls, b/(b+d). Each rate divides by its own column total."
+      },
+      "lesson": 3,
+      "group": "concept"
+    },
+    {
+      "id": "statistical-significance",
+      "term": "statistically significant",
+      "match": ["statistical significance", "not significant", "significance"],
+      "plain": {
+        "en": "unlikely to be chance"
+      },
+      "means": {
+        "en": "A result small enough that chance alone would rarely produce it. The usual cut-off is a P value below 0.05, and it says nothing about whether the comparison was fair."
+      },
+      "lesson": 3,
+      "group": "concept"
+    },
+    {
+      "id": "p-value",
+      "term": "P value",
+      "match": ["P values"],
+      "plain": {
+        "en": "the chance of a gap this big by luck"
+      },
+      "means": {
+        "en": "The chance of seeing a gap at least as large as the one observed if exposure and disease had no link. It measures chance only, never bias and never causation."
+      },
+      "lesson": 3,
+      "group": "concept"
+    },
+    {
+      "id": "odds-ratio",
+      "term": "odds ratio",
+      "match": ["odds ratios"],
+      "plain": {
+        "en": "a ratio of two odds"
+      },
+      "means": {
+        "en": "The odds of exposure among the cases divided by the odds among the controls, ad/bc. It estimates the relative risk fairly only when the disease is rare."
+      },
+      "lesson": 3,
+      "group": "concept"
+    },
+    {
+      "id": "relative-risk",
+      "term": "relative risk",
+      "match": ["risk ratio", "relative risks"],
+      "plain": {
+        "en": "risk in the exposed divided by risk in the unexposed"
+      },
+      "means": {
+        "en": "A ratio of two incidences, so it needs a cohort followed forward. A case-control study cannot measure it directly and reports an odds ratio instead."
+      },
+      "lesson": 3,
+      "group": "concept"
+    },
+    {
+      "id": "confounding",
+      "term": "confounding",
+      "match": ["confounder", "confounders", "confounded"],
+      "plain": {
+        "en": "a third feature travelling with the exposure"
+      },
+      "means": {
+        "en": "A feature that is linked to both the exposure and the disease and can create the whole apparent effect, as age does in many studies. Matching cases and controls on it removes the distortion."
+      },
+      "lesson": 2,
+      "group": "concept"
+    },
+    {
+      "id": "incidence",
+      "term": "incidence",
+      "match": ["incidences"],
+      "plain": {
+        "en": "new cases over a set time among people at risk"
+      },
+      "means": {
+        "en": "The number of new cases in a period divided by the population at risk. A case-control study cannot measure it, because it never follows a group forward."
+      },
+      "lesson": 3,
+      "group": "concept"
+    },
+    {
+      "id": "bias",
+      "term": "bias",
+      "match": ["biases"],
+      "plain": {
+        "en": "a systematic error built into the study"
+      },
+      "means": {
+        "en": "An error created by how the groups were chosen or questioned, not by chance. It pushes the estimate in one direction, and no sample size or P value repairs it."
+      },
+      "lesson": 4,
+      "group": "concept"
+    },
+    {
+      "id": "recall-bias",
+      "term": "recall bias",
+      "match": [],
+      "plain": {
+        "en": "cases remember their past harder"
+      },
+      "means": {
+        "en": "People with the disease search their memory for the exposure more carefully than people without it, so exposed cases are over-counted and the odds ratio climbs."
+      },
+      "lesson": 4,
+      "group": "concept"
+    },
+    {
+      "id": "interviewer-bias",
+      "term": "interviewer bias",
+      "match": [],
+      "plain": {
+        "en": "the questioner digs harder into one group"
+      },
+      "means": {
+        "en": "An interviewer who knows the hypothesis probes the cases' answers more searchingly than the controls' and records more exposure among the cases. Comparing interview lengths is a direct check."
+      },
+      "lesson": 4,
+      "group": "concept"
+    },
+    {
+      "id": "selection-bias",
+      "term": "selection bias",
+      "match": [],
+      "plain": {
+        "en": "the door into the study picks a tilted sample"
+      },
+      "means": {
+        "en": "The chosen cases and controls stop representing the populations they came from, because the door that let them in (hospital admission, employment records) admits different kinds of people at different rates."
+      },
+      "lesson": 4,
+      "group": "concept"
+    },
+    {
+      "id": "berkson-bias",
+      "term": "Berkson's bias",
+      "match": ["Berkson bias"],
+      "plain": {
+        "en": "the hospital door manufactures an association"
+      },
+      "means": {
+        "en": "When the exposure and the disease each raise the chance of hospital admission, the hospital's own patients can show an association that the population behind the hospital does not have. No matching removes it."
+      },
+      "lesson": 4,
+      "group": "concept"
+    },
+    {
+      "id": "cohort",
+      "term": "cohort",
+      "match": ["cohorts"],
+      "plain": {
+        "en": "a group that shares one experience in one period"
+      },
+      "means": {
+        "en": "A group of people who share one characteristic or experience within a defined time period - all born in 2010, all exposed to one drug, all married in the same year. A cohort study follows such a group forward to count who falls ill."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "prospective-cohort-study",
+      "term": "prospective cohort study",
+      "match": ["prospective study", "prospective cohort", "prospective studies", "current cohort study"],
+      "plain": {
+        "en": "a study that starts before the outcomes have happened"
+      },
+      "means": {
+        "en": "A cohort study whose investigation begins while the disease outcomes still lie ahead, so it watches them occur. The chapter also calls it a 'current' cohort study."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "retrospective-cohort-study",
+      "term": "retrospective cohort study",
+      "match": ["retrospective cohort", "historical cohort study", "retrospective cohort studies"],
+      "plain": {
+        "en": "a study that starts after the outcomes are already on record"
+      },
+      "means": {
+        "en": "A cohort study whose outcomes have all occurred before the investigation begins. The investigator goes back in time, sometimes 10 to 30 years, picks the groups from old employment, medical or other records, and traces them forward to the present; also called a 'historical' cohort study."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "attrition",
+      "term": "attrition",
+      "match": ["attrition of study population"],
+      "plain": {
+        "en": "people slipping out of a study while it runs"
+      },
+      "means": {
+        "en": "The loss of study members during follow-up, through death, moving away or refusal to continue. A cohort is practical when attrition can be minimised, because every loss thins the denominators the analysis needs."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "ankylosing-spondylitis",
+      "term": "ankylosing spondylitis",
+      "plain": {
+        "en": "a disease of the spine"
+      },
+      "means": {
+        "en": "A painful condition in which the joints of the spine stiffen. Between 1934 and 1954 it was often treated with large doses of radiation therapy, which is how the Court-Brown and Doll cohort could be picked out of treatment records years later."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "myocardial-infarction",
+      "term": "myocardial infarction",
+      "match": ["myocardial infarctions"],
+      "plain": {
+        "en": "a heart attack"
+      },
+      "means": {
+        "en": "A heart attack: a patch of heart muscle dies when its blood supply is cut off. Everyone who survived one in a particular year can form a cohort."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "neonatal-death",
+      "term": "neonatal death",
+      "match": ["neonatal deaths", "neonatal death rate"],
+      "plain": {
+        "en": "the death of a newborn baby"
+      },
+      "means": {
+        "en": "The death of a baby in the weeks around the birth. It was the outcome counted in the Boston foetal-monitoring study, and it follows each birth within days or weeks."
+      },
+      "lesson": 5,
+      "group": "concept"
+    }
+  ]
+}

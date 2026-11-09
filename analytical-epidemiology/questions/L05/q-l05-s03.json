@@ -1,0 +1,93 @@
+{
+  "id": "q-l05-s03",
+  "type": "match-categorize@1",
+  "_comment": "After the three cohort types: sort studies by where the investigation starts. Two of each category, mixing cold cases and the live case.",
+  "difficulty": "easy",
+  "bloomLevel": "understand",
+  "stem": {
+    "en": "Sort each study into the design its starting point gives it."
+  },
+  "categories": [
+    {
+      "id": "prospective-cohort",
+      "label": {
+        "en": "Prospective cohort"
+      }
+    },
+    {
+      "id": "retrospective-cohort",
+      "label": {
+        "en": "Retrospective cohort"
+      }
+    },
+    {
+      "id": "case-control",
+      "label": {
+        "en": "Case-control study"
+      }
+    }
+  ],
+  "chips": [
+    {
+      "id": "chip-doctors",
+      "text": {
+        "en": "British doctors, all well in 1951, followed for years to count who develops lung cancer"
+      },
+      "correctCategoryId": "prospective-cohort"
+    },
+    {
+      "id": "chip-miners",
+      "text": {
+        "en": "Uranium miners and men who never mined, identified while well and watched for lung cancer"
+      },
+      "correctCategoryId": "prospective-cohort"
+    },
+    {
+      "id": "chip-boston",
+      "text": {
+        "en": "In 1978, the birth records of one Boston hospital for 1969-1975 traced forward to neonatal deaths"
+      },
+      "correctCategoryId": "retrospective-cohort"
+    },
+    {
+      "id": "chip-records",
+      "text": {
+        "en": "Personnel records from 1970 sorted into reactor cleaners and others, traced forward to the tumour"
+      },
+      "correctCategoryId": "retrospective-cohort"
+    },
+    {
+      "id": "chip-ward",
+      "text": {
+        "en": "20 men with a rare liver tumour and 60 men without it, asked about past reactor work"
+      },
+      "correctCategoryId": "case-control"
+    },
+    {
+      "id": "chip-clots",
+      "text": {
+        "en": "Women with clots and matched women without them, asked about past use of oral contraceptives"
+      },
+      "correctCategoryId": "case-control"
+    }
+  ],
+  "explanation": {
+    "en": "In both cohort types the groups are formed by exposure and followed from cause to effect; what differs is where the investigation starts. The doctors' study and the miners' study began while the outcomes still lay ahead. The Boston and personnel-record studies began after the outcomes were already on paper, and only went back far enough to pick up the story. A case-control study instead starts from people who already have the disease and comparable people who do not."
+  },
+  "hints": [
+    {
+      "en": "Ask on the first day of each study what the investigators already hold: a group sorted by exposure, or a group sorted by disease."
+    }
+  ],
+  "tags": [
+    "study-design",
+    "cohort",
+    "cold-case",
+    "live-case"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}

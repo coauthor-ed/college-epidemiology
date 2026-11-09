@@ -1,0 +1,30 @@
+{
+  "id": "q-l03-s04",
+  "type": "numeric-value@1",
+  "_comment": "Builds the odds ratio from the cross-product ad/bc on Table 12; the answer is unitless.",
+  "difficulty": "medium",
+  "bloomLevel": "apply",
+  "stem": {
+    "en": "From Table 12, the four cells are 33 exposed cases, 55 exposed controls, 2 unexposed cases and 27 unexposed controls. Use the cross-product ad/bc to calculate the odds ratio. Give the answer as a number to 2 decimal places."
+  },
+  "expectedValue": 8.1,
+  "tolerance": 0.05,
+  "explanation": {
+    "en": "ad = 33 x 27 = 891 and bc = 55 x 2 = 110, so the odds ratio is 891 / 110 = 8.10. A ratio has no unit: it says the odds of smoking were 8.10 times as high among the men with lung cancer."
+  },
+  "hints": [
+    {
+      "en": "Multiply the two diagonal cells first: exposed cases with unexposed controls, and exposed controls with unexposed cases."
+    }
+  ],
+  "tags": [
+    "odds-ratio",
+    "cross-product",
+    "cold-case"
+  ],
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-06T08:58:18.596Z"
+  }
+}
