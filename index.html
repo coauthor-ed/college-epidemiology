@@ -81,12 +81,15 @@ section.block{padding:40px 0}
 .mod details[open] summary::before{transform:rotate(45deg)}
 .mod ol{margin:8px 0 0;padding:0 0 0 22px;color:var(--ink-soft);font-size:.95rem}
 .mod ol li{padding:3px 0}
-.shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;margin:0;list-style:none}
-.shots li{flex:0 0 86%;scroll-snap-align:start}
-@media (min-width:860px){.shots li{flex-basis:46%}}
-.shots img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
-.cast{margin-top:18px}
-.cast video{width:100%;height:auto}
+.shots{--tile-h:min(520px,calc(100vh - 220px));display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;margin:0;list-style:none}
+@supports (height:100svh){.shots{--tile-h:min(520px,calc(100svh - 220px))}}
+@media (min-width:860px){.shots{--tile-h:min(560px,calc(100vh - 200px))}@supports (height:100svh){.shots{--tile-h:min(560px,calc(100svh - 200px))}}}
+.shots li{flex:none;scroll-snap-align:start;height:max(320px,var(--tile-h));aspect-ratio:var(--ar,16/9);max-width:86vw;overflow:hidden;background:var(--surface)}
+.shots img,.shots video{width:100%;height:100%;object-fit:cover}
+.shots .cast video{object-fit:contain}
+.cast-wide{width:min(100%,880px);margin:0 auto 18px;overflow:hidden;background:var(--surface)}
+.cast-wide video{width:100%;height:auto;aspect-ratio:var(--ar,16/9)}
+.cast video:fullscreen{border:0;border-radius:0;background:transparent;object-fit:contain}
 .hl-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
 @media (min-width:700px){.hl-list{grid-template-columns:1fr 1fr}}
 @media (min-width:1000px){.hl-list{grid-template-columns:1fr 1fr 1fr}}
@@ -167,8 +170,7 @@ h3{font-family:var(--font-body);font-weight:600}
 .mod ol li::before{content:counter(l,decimal-leading-zero);font-family:var(--font-display);color:var(--brass-ink);font-size:1.2rem;line-height:1.3}
 .mod ol li:last-child{border-bottom:0}
 .mod-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
-.shots img{border-radius:8px;border:1px solid var(--rule)}
-.cast video{border-radius:8px;border:1px solid var(--rule)}
+.shots li,.cast-wide{border-radius:8px;border:1px solid var(--rule)}
 .hl-list li{border-top:2px solid var(--sig);padding:14px 0 0;background:none}
 .hl-list svg{color:var(--sig)}
 .steps li{border-top:1px solid var(--rule-strong);padding:14px 0 0}
@@ -204,8 +206,8 @@ h3{font-family:var(--font-body);font-weight:600}
 </div></section>
 <section class="block" aria-labelledby="sh-h"><div class="wrap">
 <div class="sec-head"><h2 id="sh-h">A look inside</h2></div>
-<ul class="shots"><li><img src="analytical-epidemiology/showcase/shot-1.jpg" alt="Screen 1 from College Epidemiology" width="1344" height="768" loading="lazy" decoding="async"></li><li><img src="analytical-epidemiology/showcase/shot-2.jpg" alt="Screen 2 from College Epidemiology" width="1344" height="768" loading="lazy" decoding="async"></li><li><img src="analytical-epidemiology/showcase/shot-3.jpg" alt="Screen 3 from College Epidemiology" width="1344" height="768" loading="lazy" decoding="async"></li><li><img src="analytical-epidemiology/showcase/shot-4.jpg" alt="Screen 4 from College Epidemiology" width="1344" height="768" loading="lazy" decoding="async"></li><li><img src="analytical-epidemiology/showcase/shot-5.jpg" alt="Screen 5 from College Epidemiology" width="1344" height="768" loading="lazy" decoding="async"></li></ul>
-<div class="cast"><video controls preload="none" playsinline poster="analytical-epidemiology/showcase/shot-1.jpg"><source src="analytical-epidemiology/showcase/clip.webm" type="video/webm">Your browser cannot play this video.</video></div>
+
+<ul class="shots"><li class="cast" style="--ar:390/844"><video controls preload="none" playsinline poster="analytical-epidemiology/showcase/clip-poster.jpg" width="390" height="844" aria-label="A short clip from College Epidemiology"><source src="analytical-epidemiology/showcase/clip.webm" type="video/webm">Your browser cannot play this video.</video></li><li style="--ar:585/1266"><img src="analytical-epidemiology/showcase/shot-1.jpg" alt="Screen 1 from College Epidemiology" width="585" height="1266" loading="lazy" decoding="async"></li><li style="--ar:585/1266"><img src="analytical-epidemiology/showcase/shot-2.jpg" alt="Screen 2 from College Epidemiology" width="585" height="1266" loading="lazy" decoding="async"></li><li style="--ar:585/1266"><img src="analytical-epidemiology/showcase/shot-3.jpg" alt="Screen 3 from College Epidemiology" width="585" height="1266" loading="lazy" decoding="async"></li><li style="--ar:585/1266"><img src="analytical-epidemiology/showcase/shot-4.jpg" alt="Screen 4 from College Epidemiology" width="585" height="1266" loading="lazy" decoding="async"></li><li style="--ar:585/1266"><img src="analytical-epidemiology/showcase/shot-5.jpg" alt="Screen 5 from College Epidemiology" width="585" height="1266" loading="lazy" decoding="async"></li></ul>
 </div></section>
 <section class="block" id="modules" aria-labelledby="mod-h"><div class="wrap">
 <div class="sec-head"><h2 id="mod-h">What you will learn</h2><p>1 module &middot; 6 lessons</p></div>
