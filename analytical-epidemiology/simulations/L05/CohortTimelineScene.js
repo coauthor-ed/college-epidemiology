@@ -18,6 +18,8 @@ import { DomSimulation } from 'simulations/base/DomSimulation.js';
 import { withBeats } from 'simulations/base/DomBeats.js';
 import { esc } from 'simulations/base/SimUi.js';
 import { SIM_PANEL_CSS, chipsHtml, datedAxisHtml, setAxisScrub, promptHtml, bindPanel } from 'simulations/base/kit/SimPanel.js';
+import { withNarrationCues } from '../L01/NarrationCues.js';
+import { na, tagFirst } from '../L03/NarrTags.js';
 
 const MAP = [0, 1, 2, 3].map((i) => [{ idx: i, dwellMs: null }]);
 
@@ -67,6 +69,7 @@ function kindAt(t, year) {
 
 const CSS = SIM_PANEL_CSS + `
 .ct { gap: var(--sim-space-3); }
+.ct .spn-axis__ticks { pointer-events: none; }
 .ct-cap { margin: 0; font-size: var(--sim-text-sm); color: var(--sim-label-muted); }
 .ct-name { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--sim-label); padding-top: var(--sim-space-3); }
 .ct-name__n { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--sim-space-3); font-family: var(--sim-font-numeral, var(--sim-font-display)); font-size: 34px; line-height: 1.15; color: var(--sim-annot); }
@@ -84,7 +87,12 @@ const CSS = SIM_PANEL_CSS + `
 
 const ARROW = '<svg width="44" height="12" viewBox="0 0 44 12" aria-hidden="true"><line x1="1" y1="6" x2="36" y2="6"/><path d="M34 1 L43 6 L34 11 Z"/></svg>';
 
-export class CohortTimelineScene extends withBeats(DomSimulation) {
+export class CohortTimelineScene extends withNarrationCues(withBeats(DomSimulation)) {
+  // Narration focus (spec W1 D29n): data-narr ids chips, cap, exposure / outcome (the two axis lanes), flag (the
+  // investigation-starts marker), name, dir; the prompt line (repeats the narration) hidden while narrated.
+  // Cues pros / retro (beat 2): the narration slides the Boston flag to 1968, then back to 1978, as it says so
+  // (never counted as the learner's).
+  static CUES = ['pros', 'retro'];
   static WIDTH = 480;
   static HEIGHT = 470;
   static PORTRAIT_WIDTH = 360;
@@ -114,6 +122,23 @@ export class CohortTimelineScene extends withBeats(DomSimulation) {
     this.paint();
   }
 
+  applyCue(id) {
+    if (this.stepIndex !== 1 || this.tab !== 'boston') return;
+    if (id === 'pros') this.setYear(1968);
+    else if (id === 'retro') this.setYear(1978);
+  }
+
+  cueBase() { return null; }
+  cueReset() { const t = TABS[TAB_OF_BEAT[this.stepIndex ?? 0] ?? 'boston']; this.tab = TAB_OF_BEAT[this.stepIndex ?? 0] ?? 'boston'; this.year = t.rest; this.paint(); }
+
+  /** The flag to year y, as a drag would put it (marker, input, name). */
+  setYear(y) {
+    const t = TABS[this.tab];
+    this.year = y;
+    setAxisScrub(this.root, 'ct', y, { aria: this.aria(t, y) });
+    if (kindAt(t, y) !== this._kind) this.paintName(true);
+  }
+
   aria(t, y) { return `Investigation starts ${y}: ${NAME[kindAt(t, y)].name}`; }
 
   onYear(v) {
@@ -127,7 +152,7 @@ export class CohortTimelineScene extends withBeats(DomSimulation) {
   nameHtml(fresh) {
     const k = kindAt(TABS[this.tab], this.year), n = NAME[k];
     this._kind = k;
-    return `<div class="ct-name${fresh ? ' is-new' : ''}" data-ct-name aria-live="polite"><p class="ct-name__n">${esc(n.name)} <span class="ct-name__also">${esc(n.also)}</span></p><p class="ct-name__why">${esc(n.why)}</p></div>`;
+    return `<div class="ct-name${fresh ? ' is-new' : ''}"${na('name')} data-ct-name aria-live="polite"><p class="ct-name__n">${esc(n.name)} <span class="ct-name__also">${esc(n.also)}</span></p><p class="ct-name__why">${esc(n.why)}</p></div>`;
   }
 
   paintName(fresh) {
@@ -137,6 +162,8 @@ export class CohortTimelineScene extends withBeats(DomSimulation) {
 
   axisHtml() {
     const t = TABS[this.tab], e = t.exposure, o = t.outcome;
+    let lane = 0;
+    const lanes = ['exposure', 'outcome'];
     return datedAxisHtml({
       key: 'ct', from: t.from, to: t.to, ticks: t.ticks,
       lanes: [
@@ -144,15 +171,16 @@ export class CohortTimelineScene extends withBeats(DomSimulation) {
         { label: o.label, spans: [{ from: o.from, to: o.to, kind: 'band' }] },
       ],
       scrub: { action: 'start', value: this.year, step: 1, label: 'Investigation starts', aria: this.aria(t, this.year) },
-    });
+    }).replace(/<div class="spn-axis__lane">/g, (m) => `<div class="spn-axis__lane"${na(lanes[lane++])}>`)
+      .replace('<span class="spn-axis__mark spn-axis__mark--scrub"', `<span class="spn-axis__mark spn-axis__mark--scrub"${na('flag')}`);
   }
 
   paint() {
     if (!this.root) return;
     const s = this.stepIndex ?? 0, t = TABS[this.tab];
     const chips = chipsHtml(Object.entries(TABS).map(([k, x]) => ({ label: x.short, action: 'tab', value: k, pressed: k === this.tab })), { label: 'Pick a study' });
-    const dir = `<p class="ct-dir">Direction of inquiry ${ARROW} cause to effect <span>at every start</span></p>`;
-    this.render({ html: `<div class="spn ct">${promptHtml(PROMPT_OF_BEAT[s] ?? PROMPT_OF_BEAT[0])}${chips}<p class="ct-cap">${esc(t.cap)}</p>${this.axisHtml()}${this.nameHtml(false)}${dir}</div>` });
+    const dir = `<p class="ct-dir"${na('dir')}>Direction of inquiry ${ARROW} cause to effect <span>at every start</span></p>`;
+    this.render({ html: `<div class="spn ct">${tagFirst(promptHtml(PROMPT_OF_BEAT[s] ?? PROMPT_OF_BEAT[0]), '-')}${tagFirst(chips, 'chips')}<p class="ct-cap"${na('cap')}>${esc(t.cap)}</p>${this.axisHtml()}${this.nameHtml(false)}${dir}</div>` });
   }
 
   testState() {

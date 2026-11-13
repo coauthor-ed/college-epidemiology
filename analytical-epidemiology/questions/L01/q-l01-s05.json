@@ -5,13 +5,13 @@
   "difficulty": "medium",
   "bloomLevel": "apply",
   "stem": {
-    "en": "Illustrative case. The claim is: \"Among men who worked at the plant, at least 5 years of reactor cleaning causes this liver tumour, with more years giving more risk, appearing 10 or more years after first exposure.\" Which record must the investigation collect for each man?"
+    "en": "Illustrative case. The claim is: \"Among men who worked at the plant, at least 5 years of tank cleaning causes this liver tumour, with more years giving more risk, appearing 10 or more years after first exposure.\" Which record must the investigation collect for each man?"
   },
   "options": [
     {
       "id": "a",
       "text": {
-        "en": "Only whether he ever cleaned a reactor, recorded as a simple yes or no"
+        "en": "Only whether he ever cleaned a tank, recorded as a simple yes or no"
       },
       "isCorrect": false
     },
@@ -25,14 +25,14 @@
     {
       "id": "c",
       "text": {
-        "en": "His years of reactor cleaning, the year cleaning began, and his diagnosis date"
+        "en": "His years of tank cleaning, the year cleaning began, and his diagnosis date"
       },
       "isCorrect": true
     },
     {
       "id": "d",
       "text": {
-        "en": "His years of reactor cleaning, but not the year in which the cleaning began"
+        "en": "His years of tank cleaning, but not the year in which the cleaning began"
       },
       "isCorrect": false
     }

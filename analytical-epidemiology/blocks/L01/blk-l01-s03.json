@@ -22,6 +22,31 @@
   ],
   "correctOptionId": "c",
   "deferVerdict": true,
+  "narrationCover": {
+    "prompt": {
+      "src": "media/01-desk.jpg",
+      "alt": "An investigator's desk: a stack of five closed case files under a lamp, an open file with a clipped note, a magnifying glass, a pencil, a cup of tea and a rubber stamp.",
+      "frames": [
+        {},
+        {
+          "x": 0.32,
+          "y": 0.38,
+          "w": 0.58,
+          "h": 0.58,
+          "ms": 1800,
+          "t": 200
+        },
+        {
+          "x": 0.6,
+          "y": 0.38,
+          "w": 0.26,
+          "h": 0.26,
+          "ms": 2500,
+          "t": 2600
+        }
+      ]
+    }
+  },
   "authoring": {
     "status": "human-approved",
     "flags": [],

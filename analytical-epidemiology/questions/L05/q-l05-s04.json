@@ -5,7 +5,7 @@
   "difficulty": "medium",
   "bloomLevel": "apply",
   "stem": {
-    "en": "The plant's 1970 personnel records show that three of the reactor men already had the liver tumour when the cohort follow-up opens. What do the cohort's rules say about these three?"
+    "en": "The plant's 1970 personnel records show that three of the tank cleaners already had the liver tumour when the cohort follow-up opens. What do the cohort's rules say about these three?"
   },
   "options": [
     {
@@ -25,7 +25,7 @@
     {
       "id": "c",
       "text": {
-        "en": "They move to the control cohort, since their reactor days ended when they fell ill"
+        "en": "They move to the control cohort, since their tank-cleaning days ended when they fell ill"
       },
       "isCorrect": false
     },

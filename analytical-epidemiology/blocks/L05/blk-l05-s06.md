@@ -14,11 +14,6 @@ Assembling the cohorts is gated by four conditions. The cohorts must be free of 
 The second element is obtaining data on exposure, from records or examination, so that each member lands in the exposed or unexposed group for a stated reason. The third is the comparison group: the general population the cohort was drawn from, or another cohort thought to have had little or no exposure but otherwise similar. Both choices belong to the planning page, not to the day the results arrive.
 
 <!-- STEP -->
-## Follow-up, the expensive element
+## Follow-up and analysis
 
-The groups are then followed under the same identical conditions over a period of time, and the outcome is recorded: onset of disease, disability, or death. This is the element that makes cohorts costly, because in chronic diseases such as cancer the time required for follow-up may be very long. It is also the element that gives the study its denominators, since the group that entered still has to be countable at the end.
-
-<!-- STEP -->
-## Analysis, and then your own desk
-
-At the end of the follow-up the incidence of the disease is determined in both groups. If the incidence in the exposed, a/(a+b), is clearly higher than in the non-exposed, c/(c+d), then exposure and disease are associated. A well-designed cohort study is considered the most reliable means of showing such an association, because it removes many of the problems of the case-control study. The next file hands you the plant's personnel records, and you will assemble the cohort yourself, under these rules.
+The groups are then followed under the same identical conditions over a period of time, and the outcome is recorded: onset of disease, disability, or death. This is the element that makes cohorts costly, because in chronic diseases such as cancer the follow-up may last decades, and it is also the element that gives the study its denominators. At the end, the incidence is worked out in both groups. If the incidence in the exposed, a/(a+b), is clearly higher than in the unexposed, c/(c+d), exposure and disease are associated. A well-designed cohort study is considered the most reliable way of showing such an association, and the exercise after the next question hands you the plant's personnel records to assemble one yourself.

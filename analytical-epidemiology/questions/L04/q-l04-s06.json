@@ -5,7 +5,7 @@
   "difficulty": "medium",
   "bloomLevel": "evaluate",
   "stem": {
-    "en": "On the live case, all four bias checks pass and the odds ratio stands at 13.2. Which question about reactor cleaning does this study still have no way to answer?"
+    "en": "On the live case, all four bias checks pass and the odds ratio stands at 13.2. Which question about tank cleaning does this study still have no way to answer?"
   },
   "options": [
     {
@@ -18,7 +18,7 @@
     {
       "id": "b",
       "text": {
-        "en": "Whether the men with the tumour cleaned reactors more often than the comparison men did"
+        "en": "Whether the men with the tumour cleaned tanks more often than the comparison men did"
       },
       "isCorrect": false
     },
@@ -32,14 +32,14 @@
     {
       "id": "d",
       "text": {
-        "en": "How many of all the plant's reactor workers develop the tumour each year"
+        "en": "How many of all the plant's tank cleaners develop the tumour each year"
       },
       "isCorrect": true
     }
   ],
   "correctOptionId": "d",
   "explanation": {
-    "en": "The table answers the first two: the exposure rates, 70 per cent among the cases and 15 per cent among the controls, differ far beyond chance. Matching on age answered the third before the table was drawn. But incidence needs all the plant's reactor workers counted and followed forward, and a case-control study assembles no such group; that is the limit stamped on the odds-ratio card, and the door into the next file."
+    "en": "The table answers the first two: the exposure rates, 70 per cent among the cases and 15 per cent among the controls, differ far beyond chance. Matching on age answered the third before the table was drawn. But incidence needs all the plant's tank cleaners counted and followed forward, and a case-control study assembles no such group; that is the limit stamped on the odds-ratio card, and the door into the next file."
   },
   "hints": [
     {

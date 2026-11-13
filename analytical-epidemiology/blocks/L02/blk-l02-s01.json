@@ -2,116 +2,14 @@
   "id": "blk-l02-s01",
   "type": "content-block@1",
   "markdownRef": "blocks/L02/blk-l02-s01.md",
-  "graph": {
-    "xLabel": "Age at diagnosis (years)",
-    "yLabel": "New cases per 100,000 women per year (illustrative shape)",
-    "xDomain": [
-      0,
-      90
-    ],
-    "yDomain": [
-      0,
-      40
-    ],
-    "xStep": 10,
-    "yStep": 5,
-    "position": "right",
-    "a11yCaption": "A line labelled usual pattern rises steeply after age 50. Eight dots sit between ages 15 and 22 at the far left, labelled 8 cases, ages 15-22.",
-    "functions": [
-      {
-        "points": [
-          [
-            0,
-            0
-          ],
-          [
-            10,
-            0
-          ],
-          [
-            20,
-            0.3
-          ],
-          [
-            30,
-            0.7
-          ],
-          [
-            40,
-            2
-          ],
-          [
-            50,
-            7
-          ],
-          [
-            60,
-            18
-          ],
-          [
-            70,
-            30
-          ],
-          [
-            80,
-            36
-          ],
-          [
-            90,
-            38
-          ]
-        ],
-        "label": "Usual pattern (illustrative shape)",
-        "color": "muted"
-      }
-    ],
-    "points": [
-      {
-        "x": 15,
-        "y": 0.3,
-        "revealAt": 1
-      },
-      {
-        "x": 16,
-        "y": 0.3,
-        "revealAt": 1
-      },
-      {
-        "x": 17,
-        "y": 0.3,
-        "revealAt": 1
-      },
-      {
-        "x": 18,
-        "y": 0.3,
-        "revealAt": 1
-      },
-      {
-        "x": 19,
-        "y": 0.3,
-        "revealAt": 1
-      },
-      {
-        "x": 20,
-        "y": 0.3,
-        "revealAt": 1
-      },
-      {
-        "x": 21,
-        "y": 0.3,
-        "revealAt": 1
-      },
-      {
-        "x": 22,
-        "y": 0.3,
-        "label": "8 cases, ages 15-22",
-        "revealAt": 1
-      }
-    ]
+  "simulation": {
+    "src": "simulations/L02/AgeCurveScene.js",
+    "position": "right"
   },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

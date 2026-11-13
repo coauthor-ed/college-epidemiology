@@ -34,13 +34,13 @@ const FILES = [
 ];
 const KEY = { '01': 'study', '02': 'study', '07': 'study', '10': 'study', '12': 'study', '05': 'control', '06': 'control', '11': 'control', '03': 'out', '04': 'out', '08': 'out', '09': 'out' };
 const BINS = [
-  { id: 'study', tone: 'annot', label: 'Study cohort', chip: 'Study', short: 'Study', prule: 'Study: 5+ yr reactor cleaning, well at entry, own staff.', rule: 'Study cohort: 5 or more years of reactor cleaning, free of the tumour at entry, from the plant\'s own workforce.' },
-  { id: 'control', tone: 'label', label: 'Control cohort', chip: 'Control', short: 'Control', prule: 'Control: no reactor work, well at entry, own staff.', rule: 'Control cohort: no reactor work, free of the tumour at entry, from the plant\'s own workforce.' },
+  { id: 'study', tone: 'annot', label: 'Study cohort', chip: 'Study', short: 'Study', prule: 'Study: 5+ yr tank cleaning, well at entry, own staff.', rule: 'Study cohort: 5 or more years of tank cleaning, free of the tumour at entry, from the plant\'s own workforce.' },
+  { id: 'control', tone: 'label', label: 'Control cohort', chip: 'Control', short: 'Control', prule: 'Control: no tank cleaning, well at entry, own staff.', rule: 'Control cohort: no tank cleaning, free of the tumour at entry, from the plant\'s own workforce.' },
   { id: 'out', tone: 'muted', label: 'Leave out', chip: 'Leave out', short: 'Out', prule: 'Leave out: any file that fits neither cohort.', rule: 'Leave out: any file that fits neither cohort\'s criteria.' },
 ];
 const binOf = (id) => BINS.find((b) => b.id === id);
 const lines = (f) => [
-  f.years != null ? `Reactor cleaning ${f.years} yr` : 'No reactor work',
+  f.years != null ? `Tank cleaning ${f.years} yr` : 'No tank cleaning',
   f.tumour ? 'Tumour at entry' : f.contractor ? 'Outside contractor' : f.own ? 'Plant\'s own staff' : '',
 ].filter(Boolean);
 const fileAria = (f, place) => `File ${f.no}, ${f.job}, ${lines(f).join(', ')}. ${place ? `Placed: ${binOf(place).label}.` : 'Not placed.'}`;
@@ -136,8 +136,8 @@ export class BuildCohortGame extends withChallenge(DomSimulation) {
     const f = t.bad, where = binOf(this._place[f.no]).label.toLowerCase();
     if (t.label === 'Disease-free at entry') return `File ${f.no} already had the tumour on file at entry, so it cannot sit in the ${where}: a cohort counts only new cases.`;
     if (t.label === 'Same workforce') return `File ${f.no} is a contractor from an outside agency; both cohorts must come from the plant's own workforce.`;
-    if (this._place[f.no] === 'study') return f.years == null ? `File ${f.no} has no reactor work, so it cannot be in the study cohort: the study cohort needs 5 or more years of reactor cleaning.` : `File ${f.no} has ${f.years} years of reactor cleaning, under the 5 the study cohort requires.`;
-    return `File ${f.no} has reactor-cleaning years, so it cannot be a control: controls have no reactor work.`;
+    if (this._place[f.no] === 'study') return f.years == null ? `File ${f.no} has done no tank cleaning, so it cannot be in the study cohort: the study cohort needs 5 or more years of tank cleaning.` : `File ${f.no} has ${f.years} years of tank cleaning, under the 5 the study cohort requires.`;
+    return `File ${f.no} has tank-cleaning years, so it cannot be a control: controls have done no tank cleaning.`;
   }
 
   _onCheck() {
@@ -153,7 +153,7 @@ export class BuildCohortGame extends withChallenge(DomSimulation) {
       return;
     }
     this._won = true;
-    this._setFb('<b>Correct.</b> <span class="spn-land">Five reactor men and three other men enter, all well at entry and all the plant\'s own. Files 03 and 09 already had the tumour, 04 has only 2 years of cleaning, 08 is a contractor. The full records hold about 2,000 such reactor men and 8,000 other men (illustrative).</span><span class="spn-port">Five reactor men and three others enter. 03 and 09 had the tumour, 04 has 2 years, 08 is a contractor.</span>', 'ok');
+    this._setFb('<b>Correct.</b> <span class="spn-land">Five tank cleaners and three other men enter, all well at entry and all the plant\'s own. Files 03 and 09 already had the tumour, 04 has only 2 years of cleaning, 08 is a contractor. The full records hold about 2,000 such tank cleaners and 8,000 other men (illustrative).</span><span class="spn-port">Five tank cleaners and three others enter. 03 and 09 had the tumour, 04 has 2 years, 08 is a contractor.</span>', 'ok');
     this.requestCheck?.();
   }
 
@@ -173,7 +173,7 @@ export class BuildCohortGame extends withChallenge(DomSimulation) {
         id: f.no, title: `File ${f.no}`, aria: fileAria(f, p), bin: p ? binOf(p) : null,
         fields: [
           { text: `${f.job}${f.years != null ? `, ${f.years} yr` : ''}`, short: f.years != null ? `Cleaner, ${f.years} yr` : `${f.sj}, 0 yr` },
-          { text: f.years != null ? 'reactor cleaning' : l[0], short: '', muted: f.years != null },
+          { text: f.years != null ? 'tank cleaning' : l[0], short: '', muted: f.years != null },
           l[1] ? { text: l[1], short: f.tumour ? 'Tumour' : f.contractor ? 'Contractor' : 'Own staff', strong: true } : null,
         ],
       }, { action: 'file', bins: ids });

@@ -11,7 +11,9 @@ import { withNarrationCues } from './NarrationCues.js';
  * Narrated (spec W1 D15): cues claim-1..claim-5 light the parts in PARTS order as the teacher names them
  * (population, cause, outcome, dose-response, time-response); replay and scrub re-derive the lit part from
  * the beat time (NarrationCues.js). Beat 2 sends scene-interact-done once all five parts are in; beat 3 once
- * a part has been taken back out.
+ * a part has been taken back out. Beat 3 (Q-41): cue drop-time takes the time-response out in sync, so its data
+ * line strikes as the teacher says it; cue restore-time puts it back before the hand-over. Cue moves never send
+ * scene-interact-done; a jump back restores the beat's start picture (cueBase / cueReset).
  */
 export class HypothesisBuilderScene extends withNarrationCues(withHypothesisBoard(withBeats(DomSimulation))) {
   static WIDTH = 580;
@@ -41,14 +43,33 @@ export class HypothesisBuilderScene extends withNarrationCues(withHypothesisBoar
     { start: { population: true, cause: true, outcome: true, dose: true, time: true }, live: true, ring: ['time'], prompt: 'Tap a part to take it back out' },
   ];
 
-  static CUES = ['claim-1', 'claim-2', 'claim-3', 'claim-4', 'claim-5'];
+  static CUES = ['claim-1', 'claim-2', 'claim-3', 'claim-4', 'claim-5', 'drop-time', 'restore-time'];
 
   applyCue(id) {
+    if (id === 'drop-time' || id === 'restore-time') {
+      if ((this.stepIndex ?? 0) !== 2) return;
+      this._cueMove = true;
+      this.setPart('time', id === 'restore-time');
+      this._cueMove = false;
+      this.cuePart('time');
+      return;
+    }
     const part = this.constructor.PARTS[Number(String(id).slice(6)) - 1];
     if (part) this.cuePart(part.id);
   }
 
-  cueReset() { this.cuePart(null); }
+  cueBase() {
+    const hb = this._hb;
+    return hb ? { sel: { ...hb.sel }, gone: [...hb.gone], ring: [...hb.ring], touched: hb.touched } : null;
+  }
+
+  cueReset(base) {
+    const hb = this._hb;
+    if (base && hb) { hb.sel = { ...base.sel }; hb.gone = new Set(base.gone); hb.ring = [...base.ring]; hb.touched = base.touched; hb.fresh = null; }
+    if (!hb) return;
+    hb.cue = null;
+    this._paint();
+  }
 
   onStep(step) {
     this._ncSent = false;
@@ -58,7 +79,7 @@ export class HypothesisBuilderScene extends withNarrationCues(withHypothesisBoar
   setPart(id, value) {
     super.setPart(id, value);
     const step = this.stepIndex ?? 0, t = this.testState();
-    if (this._ncSent) return;
+    if (this._ncSent || this._cueMove) return;
     if ((step === 1 && t.onCount === this.constructor.PARTS.length) || (step === 2 && t.gone.length > 0)) {
       this._ncSent = true;
       this.interactDone(`b${step + 1}`);

@@ -7,9 +7,10 @@
     "en": "Analytical Epidemiology"
   },
   "description": {
-    "en": "Case-control and cohort studies: hypothesis testing, study design, odds and risk ratios, bias, and measuring risk in a cohort. Postgraduate (UG/PG) level for MBBS, MPH and nursing students, using a live case-theory structure."
+    "en": "Five lessons on case-control and cohort studies: forming a hypothesis, choosing a design, odds and risk ratios, bias, and measuring risk over time."
   },
   "curriculumAlignment": "core",
+  "chapterId": "analytical-epidemiology/ch1",
   "pedagogicalProfile": {
     "themeTags": [
       "analytical-epidemiology",
@@ -30,6 +31,15 @@
   },
   "lessons": [
     {
+      "lessonRef": "lessons/les-00.json",
+      "title": {
+        "en": "Prologue: the case room"
+      },
+      "question": {
+        "en": "Who are you in this course, and what case will you work on?"
+      }
+    },
+    {
       "lessonRef": "lessons/les-01.json",
       "title": {
         "en": "A hunch is not yet a claim"
@@ -44,7 +54,7 @@
         {
           "value": "14 / 20",
           "label": {
-            "en": "cases who cleaned reactors"
+            "en": "cases who cleaned tanks"
           }
         }
       ]
@@ -70,7 +80,7 @@
         {
           "value": "9 / 60",
           "label": {
-            "en": "controls who cleaned reactors"
+            "en": "controls who cleaned tanks"
           }
         }
       ]
@@ -136,7 +146,7 @@
         {
           "value": "12 / 2,000",
           "label": {
-            "en": "reactor workers with the tumour, vs 4 / 8,000"
+            "en": "tank cleaners with the tumour, vs 4 / 8,000"
           }
         },
         {

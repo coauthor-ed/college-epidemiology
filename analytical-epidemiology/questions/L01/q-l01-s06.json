@@ -5,13 +5,13 @@
   "difficulty": "medium",
   "bloomLevel": "evaluate",
   "stem": {
-    "en": "Illustrative case. Suppose the investigators find that among men of the same ages at the plant who do not have the tumour, 14 of every 20 had also cleaned the reactors. What would the cases' 14 of 20 then tell you about reactor cleaning?"
+    "en": "Illustrative case. Suppose the investigators find that among men of the same ages at the plant who do not have the tumour, 14 of every 20 had also cleaned the tanks. What would the cases' 14 of 20 then tell you about tank cleaning?"
   },
   "options": [
     {
       "id": "a",
       "text": {
-        "en": "That reactor cleaning roughly doubles a worker's risk of developing this tumour"
+        "en": "That tank cleaning roughly doubles a worker's risk of developing this tumour"
       },
       "isCorrect": false
     },
@@ -25,7 +25,7 @@
     {
       "id": "c",
       "text": {
-        "en": "That reactor cleaning causes this tumour in about 70 per cent of reactor cleaners"
+        "en": "That tank cleaning causes this tumour in about 70 per cent of tank cleaners"
       },
       "isCorrect": false
     },

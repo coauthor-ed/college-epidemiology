@@ -11,8 +11,13 @@ import { SIM_PANEL_CSS, ruleTableHtml, sliderHtml, barsHtml, setBar, buttonsHtml
  * for "within 10 per cent of the relative risk". The scene owns its Check (SELF_CHECKING): the
  * feedback line gives the worked comparison (OR, RR, the gap in per cent) and, when correct, why
  * the two agree - cases are a small share of each row, so odds and risks almost match.
- * Plain look: rules, no burst, no timer, no score. Desk 900 x 420; portrait 360 x 470 (caption, totals
- * row and the scale line drop in portrait), so neither viewport scrolls the page.
+ * "How this table is built" panel (owner Q-90): the fixed setup (a town of 1,00,000; 30,000 exposed and
+ * 70,000 not, fixed so only the disease frequency changes), risk in the unexposed = the slider's
+ * frequency p, risk in the exposed = p x 3 (the true relative risk), then each cell as a calculation
+ * line tagged with its cell letter: a = 30,000 x 3p, b = 30,000 - a, c = 70,000 x p, d = 70,000 - c.
+ * The lines update with the slider; the table's cells carry the same letters.
+ * Plain look: rules, no burst, no timer, no score. Desk 900 x 540; portrait 360 x 680 (caption, totals
+ * row and the scale line drop in portrait).
  * Built on the editorial panel parts (kit/SimPanel.js): prompt, slider, rule table, bars, buttons.
  */
 const TOTAL = 100000;
@@ -45,10 +50,34 @@ const cellsOf = (p) => {
   return { a, b: EXPOSED - a, c, d: UNEXPOSED - c };
 };
 const gapPct = (or) => ((or - RR) / RR) * 100;
+const r3 = (v) => v.toFixed(3);
+
+/** The derivation, line by line, for frequency p (per cent). */
+function buildLines(pPct) {
+  const p = pPct / 100, k = cellsOf(p);
+  return [
+    { t: '', html: `Risk in the unexposed = disease frequency = <b>${r3(p)}</b>` },
+    { t: '', html: `Risk in the exposed = ${r3(p)} × 3 (true relative risk) = <b>${r3(3 * p)}</b>` },
+    { t: 'a', html: `30,000 × ${r3(3 * p)} = <b>${people(k.a)}</b> exposed cases` },
+    { t: 'b', html: `30,000 - ${people(k.a)} = <b>${people(k.b)}</b> exposed, not cases` },
+    { t: 'c', html: `70,000 × ${r3(p)} = <b>${people(k.c)}</b> unexposed cases` },
+    { t: 'd', html: `70,000 - ${people(k.c)} = <b>${people(k.d)}</b> unexposed, not cases` },
+  ];
+}
 
 const CSS = SIM_PANEL_CSS + `
 .rdg { gap: var(--sim-space-3); }
 .rdg .spn-split { gap: var(--sim-space-5); align-items: start; }
+.rdg-build { margin: 0; padding: var(--sim-space-2) var(--sim-space-3); border-left: 3px solid var(--sim-annot); background: var(--sim-annot-tint); }
+.rdg-build h4 { margin: 0 0 2px; font: 700 15px/1.3 var(--sim-font); color: var(--sim-label); }
+.rdg-build p { margin: 0 0 4px; font: 500 15px/1.35 var(--sim-font); color: var(--sim-label); }
+.rdg-build ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font: 500 15px/1.35 var(--sim-font); color: var(--sim-label); font-variant-numeric: tabular-nums; }
+.rdg-build li { display: grid; grid-template-columns: 1.4em minmax(0, 1fr); }
+.rdg-build li i { font-style: normal; font-weight: 700; color: var(--sim-annot); }
+.rdg-build b { font-weight: 700; }
+.rdg .spn-table sup { font-size: 14px; font-weight: 700; color: var(--sim-annot); margin-left: 3px; }
+.sim-dom-root--portrait .rdg-build { padding: var(--sim-space-1) var(--sim-space-2); }
+.sim-dom-root--portrait .rdg-build p, .sim-dom-root--portrait .rdg-build ol { font-size: 14px; line-height: 1.3; }
 .rdg-col { display: flex; flex-direction: column; gap: var(--sim-space-3); }
 .rdg .spn-table tbody th, .rdg .spn-table tfoot th { white-space: nowrap; }
 [data-sim-look="plain"] .rdg .spn-table th, [data-sim-look="plain"] .rdg .spn-table td { padding-top: 8px; padding-bottom: 8px; }
@@ -71,13 +100,14 @@ const CSS = SIM_PANEL_CSS + `
 .sim-dom-root--portrait .rdg-fb { font-size: var(--sim-text-sm); min-height: 3.9em; }
 .sim-dom-root--portrait .rdg .spn-slider__val { font-size: 26px; }
 .sim-dom-root--portrait .rdg .spn-slider__ticks { display: none; }
+.rdg .spn-slider input[type="range"] { height: 44px; margin: -6px 0; }
 `;
 
 export class RareDiseaseGame extends withChallenge(DomSimulation) {
   static WIDTH = 900;
-  static HEIGHT = 420;
+  static HEIGHT = 540;
   static PORTRAIT_WIDTH = 360;
-  static PORTRAIT_HEIGHT = 470;
+  static PORTRAIT_HEIGHT = 680;
   static LAYOUT = 'fit';
   static SETTING = 'none';
   static SELF_CHECKING = true;
@@ -103,16 +133,22 @@ export class RareDiseaseGame extends withChallenge(DomSimulation) {
   tableHtml() {
     const k = cellsOf(this._p / 100);
     return ruleTableHtml({
-      caption: 'Whole population, illustrative',
+      caption: 'Whole town, illustrative',
       cols: [{ label: 'Cases' }, { label: 'Not cases' }, { label: 'Total' }],
       rows: [
-        { label: 'Exposed', cells: [people(k.a), people(k.b), people(EXPOSED)] },
-        { label: 'Unexposed', cells: [people(k.c), people(k.d), people(UNEXPOSED)] },
+        { label: 'Exposed', cells: [{ v: people(k.a), tag: 'a' }, { v: people(k.b), tag: 'b' }, people(EXPOSED)] },
+        { label: 'Unexposed', cells: [{ v: people(k.c), tag: 'c' }, { v: people(k.d), tag: 'd' }, people(UNEXPOSED)] },
       ],
       total: { label: 'Total', cells: [people(k.a + k.c), people(k.b + k.d), people(TOTAL)] },
       band: { col: 0 },
       label: 'Cases and non-cases by exposure, whole population',
     });
+  }
+
+  buildHtml() {
+    return '<h4>How this table is built</h4>'
+      + '<p>A town of 1,00,000 people: 30,000 exposed and 70,000 not. These stay fixed, so only the disease frequency changes.</p>'
+      + `<ol>${buildLines(this._p).map((l) => `<li><i>${l.t}</i><span>${l.html}</span></li>`).join('')}</ol>`;
   }
 
   html() {
@@ -130,7 +166,8 @@ export class RareDiseaseGame extends withChallenge(DomSimulation) {
       + '<p class="rdg-band"><i></i>Shaded: within 10 per cent of 3.00 (2.70 to 3.30)</p>'
       + `<div class="rdg-check">${buttonsHtml([{ label: 'Check', action: 'check', primary: true }])}<p class="rdg-fb${this._ok ? ' rdg-fb--ok' : ''}" data-rdg-fb aria-live="polite">${this._fb}</p></div>`
       + '</div>';
-    return `<div class="spn rdg">${prompt}<div class="spn-split">${left}${right}</div></div>`;
+    const build = `<div class="rdg-build" data-rdg-build aria-live="polite">${this.buildHtml()}</div>`;
+    return `<div class="spn rdg">${prompt}<div class="spn-split">${left}<div class="rdg-col">${build}${right}</div></div></div>`;
   }
 
   _insideBand() {
@@ -176,6 +213,8 @@ export class RareDiseaseGame extends withChallenge(DomSimulation) {
     const p = this._p, or = orOf(p / 100);
     const t = this.root?.querySelector('[data-rdg-table]');
     if (t) t.innerHTML = this.tableHtml();
+    const bl = this.root?.querySelector('[data-rdg-build]');
+    if (bl) bl.innerHTML = this.buildHtml();
     setText(this.root, 'freq-val', `${p.toFixed(1)}%`);
     setBar(this.root, 'or', frac(or), or.toFixed(2));
     this.root?.querySelector('input[type="range"]')?.setAttribute('aria-valuetext', `${p.toFixed(1)} per cent, odds ratio ${or.toFixed(2)}`);

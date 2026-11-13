@@ -1,0 +1,9 @@
+{
+  "_note": "Respellings for the neerja voice only (en-IN-NeerjaExpressiveNeural), merged over lexicon.json. Q-06 2026-11-11: owner word list (colleague, born, rare, bare, sixty-one); best guesses without ears, alternatives at untracked/november-impl/Q-06/neerja-words/index.html. '61' lets the service read the number as one unit.",
+  "colleague": "kolleeg",
+  "colleagues": "kolleegs",
+  "born": "bawn",
+  "rare": "rair",
+  "bare": "bair",
+  "sixty-one": "61"
+}

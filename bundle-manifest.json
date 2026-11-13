@@ -3,6 +3,24 @@
   "title": {
     "en": "College Epidemiology"
   },
+  "description": {
+    "en": "Learn how case-control and cohort studies find the causes of disease: odds and risk ratios, bias and confounding, worked through step by step. For MBBS, nursing and public health students."
+  },
+  "blurb": {
+    "en": "How case-control and cohort studies find the causes of disease."
+  },
+  "highlights": [
+    {
+      "en": "Worked examples with real tables and numbers"
+    },
+    {
+      "en": "Bias and confounding shown, not only named"
+    },
+    {
+      "en": "For MBBS, nursing and public health students"
+    }
+  ],
+  "cover": "analytical-epidemiology/showcase/cover.jpg",
   "sources": [
     {
       "manifestUrl": "analytical-epidemiology/manifest.json"

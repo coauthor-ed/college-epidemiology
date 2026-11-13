@@ -3,7 +3,7 @@
 
 If you said a retrospective cohort, the file agrees, and the name is worth unpacking, because retrospective here does not mean case-control. The study began in 1978, yet it ran from cause to effect like any cohort: it took the babies born at one hospital, split them by monitoring, and counted deaths. About 16,000 live births entered the published analysis, and the neonatal death rate came out 1.7 times higher in the unmonitored infants. The 1.7 is the crude ratio, computed straight from the counts.
 
-> Senior's note: "The paper's own adjusted figure is 1.4 (95% CI 0.85 to 2.45), once the babies' own risk at birth is accounted for. A crude ratio can mislead; you watched one shrink in file 2."
+> Senior's note: "The paper's own adjusted figure is 1.4 (95% CI 0.85 to 2.45), once the babies' own risk at birth is accounted for. A crude ratio can mislead; in lesson 2 you watched a crude gap vanish once the groups were split."
 
 <!-- STEP -->
 ## Move the start, keep the direction

@@ -1,0 +1,56 @@
+{
+  "format": "coauthor-narration-script@1",
+  "voices": [
+    {
+      "id": "andrew",
+      "label": "Andrew",
+      "name": "en-US-AndrewMultilingualNeural",
+      "rate": "-2%",
+      "pitch": "-2Hz"
+    },
+    {
+      "id": "neerja",
+      "label": "Neerja",
+      "name": "en-IN-NeerjaExpressiveNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz"
+    }
+  ],
+  "segments": [
+    {
+      "block": "blk-l00-s01",
+      "step": "b1",
+      "say": "[[focus.you]] You are joining a unit of investigators who study the causes of disease, a field called epidemiology. Your work is to find out whether something people do, take or breathe causes an illness, and to show it with numbers that other people can check."
+    },
+    {
+      "block": "blk-l00-s01",
+      "step": "b2",
+      "say": "[[focus.senior]] A senior investigator in the unit is your mentor. You will not see this person on screen; their advice reaches you as short notes on the case files. They teach you in two ways. [[show.files]] First, they hand you old files that are already closed, so that you can learn from how real investigators worked. [[show.live]] Second, they give you one live case of your own."
+    },
+    {
+      "block": "blk-l00-s01",
+      "step": "b3",
+      "say": "[[focus.live]] A hospital in an Indian city has seen a number of men with a rare liver tumour. All of them worked at the same plastics plant, and many of them cleaned the large tanks where the plastic is made. Over the five files, your job is to find out whether cleaning the tanks could cause this tumour."
+    },
+    {
+      "block": "blk-l00-s02",
+      "step": "b1",
+      "say": "The course has five lessons, and each one opens an old file that teaches you one tool. [[focus.f1]] File one, on the drug thalidomide, shows how to turn a hunch into a claim that a study can test. [[focus.f2]] File two, on a hormone drug called diethylstilbestrol, or D E S, and a rare cancer, shows how to choose a fair group to compare the cases with. [[focus.f3]] File three, on smoking and lung cancer, shows how to read a two by two table and its odds ratio. [[focus.f4]] File four, on the contraceptive pill and blood clots, shows how the way a study is run can build a large ratio by itself, which is called bias. [[focus.f5]] File five follows doctors and miners for years, and shows how a cohort study follows people forward and measures the risk itself."
+    },
+    {
+      "block": "blk-l00-s02",
+      "step": "b2",
+      "say": "[[focus.live]] After each old file, you use its tool on the plastics plant case. By the end of file five, you can close that case with an answer that the numbers support. So every lesson works the same way: you learn a tool on a real file, and then you use it on your own case."
+    },
+    {
+      "block": "blk-l00-s03",
+      "step": "b1",
+      "say": "Every file, old or live, is worked through the same six steps. [[focus.claim]] You start with a precise claim, which says who, what exposure, what disease, how much and how long. [[focus.design]] Then you choose a study design that can test that claim, [[focus.table]] and you sort the people into a table of counts. [[focus.ratio]] From the table you work out a ratio, one number for how strongly the exposure and the disease go together. [[focus.bias]] Next you check for bias, by asking whether the way the study was run could have made that number. [[focus.verdict]] Only then do you write the verdict, your answer on the claim, together with what the study cannot tell you."
+    },
+    {
+      "block": "blk-l00-s03",
+      "step": "b2",
+      "say": "[[focus.real]] The old files are real studies, and their numbers are the ones the investigators published. [[focus.invented]] The plastics plant case is invented for practice. The plant, the city and every number in it are made up, and each slide that shows its numbers says so. It is modelled on a real finding, which you will meet at the end of file five. [[focus.none]] The old files teach the method, and your own case is where you use it."
+    }
+  ]
+}

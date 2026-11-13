@@ -5,7 +5,7 @@
   "difficulty": "medium",
   "bloomLevel": "apply",
   "stem": {
-    "en": "Illustrative case. Of the 20 patients, 14 had cleaned the reactors; of the 60 controls, 9 had. By how many percentage points do the two shares differ? Give your answer to 1 decimal place."
+    "en": "Illustrative case. Of the 20 patients, 14 had cleaned the tanks; of the 60 controls, 9 had. By how many percentage points do the two shares differ? Give your answer to 1 decimal place."
   },
   "expectedValue": 55,
   "tolerance": 0.05,

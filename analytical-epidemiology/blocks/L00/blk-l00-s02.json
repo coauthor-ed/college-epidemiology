@@ -1,0 +1,14 @@
+{
+  "id": "blk-l00-s02",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L00/blk-l00-s02.md",
+  "simulation": {
+    "src": "simulations/L00/CaseRoomScene-files.js",
+    "position": "right"
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-12T13:22:32.917Z"
+  }
+}

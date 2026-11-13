@@ -52,14 +52,14 @@
     {
       "id": "chip-records",
       "text": {
-        "en": "Personnel records from 1970 sorted into reactor cleaners and others, traced forward to the tumour"
+        "en": "Personnel records from 1970 sorted into tank cleaners and others, traced forward to the tumour"
       },
       "correctCategoryId": "retrospective-cohort"
     },
     {
       "id": "chip-ward",
       "text": {
-        "en": "20 men with a rare liver tumour and 60 men without it, asked about past reactor work"
+        "en": "20 men with a rare liver tumour and 60 men without it, asked about past tank cleaning"
       },
       "correctCategoryId": "case-control"
     },

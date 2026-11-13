@@ -1,0 +1,216 @@
+{
+  "format": "coauthor-narration-script@1",
+  "voices": [
+    {
+      "id": "andrew",
+      "label": "Andrew",
+      "name": "en-US-AndrewMultilingualNeural",
+      "rate": "-2%",
+      "pitch": "-2Hz"
+    },
+    {
+      "id": "neerja",
+      "label": "Neerja",
+      "name": "en-IN-NeerjaExpressiveNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz"
+    }
+  ],
+  "segments": [
+    {
+      "block": "blk-l03-s01",
+      "step": "prompt",
+      "say": "The third file is a famous one, and it opens on the patients. In nineteen fifty, a London doctor published the answers he had collected from thirty-five men with lung cancer and eighty-two men without it. Thirty-three of the thirty-five men with lung cancer had smoked, and two had never smoked. In nineteen fifty, doctors could rarely treat that cancer successfully. [[show.card]] The table records what the two groups said about their smoking, and the controls were hospital patients with other diseases. So, what does this table let you say? Make your prediction.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l03-s02",
+      "step": "b1",
+      "say": "The answer is the last one: smoking is more common among the men with lung cancer than among the men without it. [[columns]] [[show.cases+controls]] Here are the men, in two columns. [[focus.cases]] Thirty-three of the thirty-five patients had smoked, [[focus.controls]] against fifty-five of the eighty-two controls. [[focus.cases+controls]] The table compares two groups of men, and that comparison is what it can support."
+    },
+    {
+      "block": "blk-l03-s02",
+      "step": "b2",
+      "say": "[[focus.cases+controls]] Each column holds its own group of men. The exposure rate of a group is the share of its men who were exposed, and here that means the share who smoked. [[focus.totals]] So each exposure rate divides by its own column total. [[read]] [[show.rate-cases]] [[focus.rate-cases+cases]] Among the cases, thirty-three of thirty-five smoked: ninety-four point two per cent. [[show.rate-controls]] [[focus.rate-controls+controls]] Among the controls, fifty-five of eighty-two smoked: sixty-seven per cent. [[show.gap]] The gap between them is twenty-seven point two percentage points. [[focus.all]] Now tap a column header yourself, and see its numerator and its denominator light together.",
+      "await": "interact",
+      "hint": "Tap a column header."
+    },
+    {
+      "block": "blk-l03-s02",
+      "step": "b3",
+      "say": "[[focus.source]] [[source]] Your textbook's Table twelve is Table five of Doll and Hill's paper of nineteen fifty. [[focus.smokers]] The men in the smokers row smoked fewer than five cigarettes a day, which is why the row is labelled that way. [[focus.ctlsrc]] The controls were patients in the same hospitals, admitted for other diseases, not healthy men from the street. That choice of controls matters, and a later file comes back to it."
+    },
+    {
+      "block": "blk-l03-s02",
+      "step": "b4",
+      "say": "[[focus.claim-no]] The textbook sums up this table by saying that lung cancer was higher among the smokers. But the table shows something else: [[turn]] [[show.claim-yes]] smoking was more common among the men who had lung cancer. [[focus.claim-no]] One sentence claims that smokers get cancer more often. [[focus.claim-yes]] The other says that cancer patients smoked more often. Only the second is in these counts. [[focus.gap]] A table of patients and controls can compare exposure. [[focus.claim-no]] It cannot say how many smokers will get cancer."
+    },
+    {
+      "block": "q-l03-s01",
+      "step": "prompt",
+      "say": "In Table twelve, thirty-three of the thirty-five men with lung cancer had smoked, and fifty-five of the eighty-two controls had smoked. By how many percentage points do the two exposure rates differ? Give your answer to one decimal place.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l03-s03",
+      "step": "b1",
+      "say": "[[focus.table]] The table offers a second sum that looks even better. Of the eighty-eight smokers in it, thirty-three were cases, [[show.share]] and thirty-three of eighty-eight is thirty-seven point five per cent. That reads like the share of smokers who got lung cancer, which is the number everyone wants. It is not that number. Let us see why.",
+      "noScreenRef": "beat-synced picture: the scene shows the printed table and its 37.5 per cent share from this beat's start; the scene has no cues"
+    },
+    {
+      "block": "blk-l03-s03",
+      "step": "b2",
+      "say": "[[focus.table]] Here is a smaller study, with illustrative numbers: twenty men with lung cancer. [[focus.rate-cases]] Remember, the exposure rate of a group is the share of the people in it who were exposed. Fourteen of the twenty cases smoked, so the exposure rate in the cases is seventy per cent. [[show.slider]] The investigator decides how many controls to take for each case. [[focus.rate-controls]] With one control per case there are twenty controls, and eight of them smoked: an exposure rate of forty per cent. [[focus.gap]] The difference between the two rates is thirty percentage points. [[focus.share]] The tempting sum, the share of the smokers who were cases, is fourteen of twenty-two: sixty-three point six per cent. [[k4]] [[focus.slider]] With four controls per case, [[focus.share]] it falls to fourteen of forty-six: thirty point four per cent. [[k1]] [[focus.all]] Now move the controls per case yourself, from one to four, and watch which numbers change and which stay the same.",
+      "await": "interact",
+      "free": true,
+      "hint": "Move the controls-per-case slider."
+    },
+    {
+      "block": "blk-l03-s03",
+      "step": "b3",
+      "say": "[[focus.rates]] At every setting, the exposure rate stays at seventy per cent in the cases and forty per cent in the controls, [[focus.gap]] so their difference stays at thirty points. [[focus.table]] Each rate divides by its own column total, so when the investigator takes more controls, the smokers among them and their total grow together. [[focus.share]] In a case-control study the investigator decides how many controls to take, so the share of the smokers who were cases is set by the design, not by smoking. [[focus.rates]] The exposure rates do not depend on that choice, so comparing them is the fair test. [[focus.rest]] The odds ratio, which a later slide builds, uses the same column-by-column comparison, so it does not move with this choice either."
+    },
+    {
+      "block": "blk-l03-s03",
+      "step": "b4",
+      "say": "A risk needs the number of people who were at risk, and who were then followed to see who became ill. In a case-control study, nobody counts that group. [[focus.table]] The cases are collected because they are already ill, and the controls are chosen for comparison. [[focus.rest]] So a case-control study gives a comparison of odds, and a later slide builds that number."
+    },
+    {
+      "block": "q-l03-s02",
+      "step": "prompt",
+      "say": "In a case-control study of smoking and lung cancer, thirty-three of the eighty-eight smokers in the table were cases, and two of the twenty-nine non-smokers were cases. The investigator reports thirty-three of eighty-eight, or thirty-seven point five per cent, as the risk of lung cancer among smokers. Why is that wrong?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l03-s04",
+      "step": "b1",
+      "say": "[[focus.people]] These numbers are illustrative: the small study from the controls-per-case slide, with two controls per case. [[focus.cases]] Each dot is a person. A filled dot smoked, and a hollow dot did not. Fourteen of the twenty cases smoked, an exposure rate of seventy per cent. [[focus.controls]] Sixteen of the forty controls smoked, which is forty per cent. [[focus.real]] So the gap is seventy minus forty: thirty percentage points. With only sixty people, a gap could still appear by luck. [[show.plot]] So the question is: how often does chance alone make a gap this big?"
+    },
+    {
+      "block": "blk-l03-s04",
+      "step": "b2",
+      "say": "[[focus.buttons]] A shuffle keeps all sixty people and their smoking, and deals them at random into a group of twenty and a group of forty. [[shuf]] [[focus.people]] Watch the dots move. Each person keeps their fill, but now sits in a new group. [[focus.shuf]] In this shuffle, eleven of the twenty smoked, fifty-five per cent, and nineteen of the forty smoked, forty-seven point five per cent. That is a gap of seven point five points, worked out the same way as the real one. [[focus.plot]] The gap drops as one dot onto the number line. In a shuffle, being placed among the cases has nothing to do with smoking, so this gap comes from chance alone. [[focus.all]] Press Shuffle once a few times yourself, and watch where each new dot lands.",
+      "await": "interact",
+      "free": true,
+      "hint": "Press Shuffle once a few times."
+    },
+    {
+      "block": "blk-l03-s04",
+      "step": "b3",
+      "say": "[[focus.plot]] Here are a hundred shuffles. Most of the gaps sit near zero, [[focus.line]] and only three of the hundred dots reach the red line at thirty points. [[focus.count]] So if chance alone were at work, a gap this big would turn up about three times in a hundred. [[show.pvalue]] That share, zero point zero three, is called the P value. A small P value means chance alone is a poor explanation. The usual cut-off is zero point zero five, so this gap is called statistically significant. A gap the shuffles produce easily is marked not significant, N S, which is what the D E S file's other factors were. [[focus.rest]] Doll and Hill's own table has a hundred and seventeen men and a gap of twenty-seven point two points. The source prints a P value below zero point zero zero one for it: chance alone would make a gap that big less than once in a thousand times."
+    },
+    {
+      "block": "blk-l03-s04",
+      "step": "b4",
+      "say": "[[focus.pvalue]] A P value answers one question: is a gap this big unlikely to come from chance? [[focus.rest]] It does not say that smoking caused the cancer, and it cannot see how the men were chosen, or how they were asked. [[focus.pvalue]] A small P value rules out luck, not a faulty comparison. [[focus.rest]] So the case still has to face the question a P value cannot answer: was the comparison itself fair?"
+    },
+    {
+      "block": "q-l03-s03",
+      "step": "prompt",
+      "say": "Table twelve reports a P value below zero point zero zero one for the gap between the two exposure rates. Which reading of that value is correct?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l03-s05",
+      "step": "b1",
+      "say": "[[focus.rr]] Now the measure everyone wants: the relative risk, also called the risk ratio. It divides the incidence among the exposed by the incidence among the non-exposed. Incidence here means new cases in a period, divided by the number of people at risk. Both incidences need a group that was followed from exposure to disease. [[focus.table]] This table has no such group. [[focus.controls]] Its eighty-two controls were chosen because they were well, not followed to see whether they stayed well.",
+      "noScreenRef": "beat-synced picture: from this beat's start the scene shows the table with its relative-risk line, 'needs a group followed forward'; the scene has no cues"
+    },
+    {
+      "block": "blk-l03-s05",
+      "step": "b2",
+      "say": "[[focus.steps]] So we build what the table can give: odds. An odds compares the number of men with a feature to the number without it. [[focus.cases]] Among the cases, thirty-three men had smoked and two had not, [[focus.odds-cases]] so the odds of smoking among the cases are thirty-three to two, or sixteen point five. [[focus.all]] Select the Cases column yourself, and build this first odds.",
+      "await": "interact",
+      "free": true,
+      "hint": "Select the Cases column."
+    },
+    {
+      "block": "blk-l03-s05",
+      "step": "b3",
+      "say": "[[focus.controls]] Among the controls, fifty-five had smoked and twenty-seven had not, [[focus.odds-controls]] so their odds are fifty-five to twenty-seven, or two point zero four. [[focus.or]] Divide one odds by the other: sixteen point five over two point zero four is eight point one. The cross-product gives the same answer: [[focus.ad]] thirty-three times twenty-seven, over [[focus.bc]] fifty-five times two, [[focus.or]] is eight hundred and ninety-one over a hundred and ten, which is eight point one. The odds of smoking were eight point one times as high among the men with lung cancer, and that number is an odds ratio. [[focus.all]] Select the Controls column, and watch the working build.",
+      "await": "interact",
+      "free": true,
+      "hint": "Select the Controls column."
+    },
+    {
+      "block": "blk-l03-s05",
+      "step": "b4",
+      "say": "[[focus.or]] An odds ratio estimates the relative risk fairly [[show.take]] only when three conditions hold. The disease must be rare. The cases must represent all the cases in the population. And the controls must represent the population that produced them. [[focus.or]] The first condition decides how close eight point one sits to a true relative risk, and an exercise later in this lesson tests it."
+    },
+    {
+      "block": "q-l03-s04",
+      "step": "prompt",
+      "say": "From Table twelve, the four cells are thirty-three exposed cases, fifty-five exposed controls, two unexposed cases, and twenty-seven unexposed controls. Use the cross-product, a times d over b times c, to calculate the odds ratio. Give the answer to two decimal places.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l03-s06",
+      "step": "b1",
+      "say": "[[focus.sentence]] The textbook reports that smokers had a risk of lung cancer eight point one times that of non-smokers. [[focus.num]] The number eight point one is right, [[focus.sentence]] but one word in that sentence is wrong. [[focus.all]] Tap the word you would change.",
+      "await": "interact",
+      "free": true,
+      "hint": "Tap the word you would change."
+    },
+    {
+      "block": "blk-l03-s06",
+      "step": "b2",
+      "say": "[[focus.risk]] The word is risk. [[show.quote]] The number is an odds ratio: [[show.why1]] the odds of smoking among the cases, divided by the odds among the controls. [[focus.rest]] A relative risk of eight point one would compare two risks directly. If non-smokers had a risk of one in a thousand, smokers would have eight point one in a thousand. Doll and Hill's counts cannot show either of those risks, [[show.why2]] because nobody counted the groups they would need."
+    },
+    {
+      "block": "blk-l03-s06",
+      "step": "b3",
+      "say": "[[focus.why2]] Because lung cancer was rare in the men studied, the odds ratio sits close to the relative risk a cohort would have found. [[focus.quote]] An odds ratio is not a risk, but when the disease is rare, it is a fair estimate of the relative risk. [[focus.rest]] So how rare does rare have to be? That is the next exercise."
+    },
+    {
+      "block": "q-l03-s05",
+      "step": "prompt",
+      "say": "Back to the textbook's sentence: smokers had a risk of lung cancer eight point one times that of non-smokers. Which description of the number eight point one is correct?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l03-s08",
+      "step": "b1",
+      "say": "Time to test how rare rare must be. [[show.card]] The table counts a whole town of a hundred thousand people. Thirty thousand of them are exposed and seventy thousand are not, and these numbers stay fixed, so only the disease frequency changes. The risk in the unexposed is the disease frequency on the slider. The true relative risk is three, so the risk in the exposed is three times that. Each case cell is a group size times its risk, and the other cell in that row is the rest of the group. At twelve per cent, the risk in the exposed is zero point three six, so thirty thousand times zero point three six gives ten thousand eight hundred exposed cases, and the other nineteen thousand two hundred exposed people do not get the disease. The unexposed row is built the same way, with a risk of zero point one two. Find a disease frequency at which the odds ratio comes within ten per cent of the relative risk, then press Check.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l03-s09",
+      "step": "b1",
+      "say": "[[focus.table]] These numbers are illustrative: the plant, the city and every count are invented for this course. [[show.pools]] Twenty men with the tumour and sixty controls from the same plant have been interviewed. Fourteen of the twenty had cleaned the tanks, against nine of the sixty controls. [[show.cells]] The men sort into the cells: [[focus.cell-a]] fourteen, [[focus.cell-b]] nine, [[focus.cell-c]] six and [[focus.cell-d]] fifty-one, [[show.margins]] with margins of [[focus.mar-ac]] twenty and [[focus.mar-bd]] sixty."
+    },
+    {
+      "block": "blk-l03-s09",
+      "step": "b2",
+      "say": "[[focus.cells]] The odds ratio multiplies the two diagonal cells, and divides one product by the other. [[focus.ad]] Work out fourteen times fifty-one, [[focus.bc]] and nine times six, on paper first. [[focus.ad]] The larger product belongs on top. [[show.entry]] Then enter both products, [[focus.all]] and press Check.",
+      "await": "interact",
+      "free": true,
+      "hint": "Enter both products, then press Check."
+    },
+    {
+      "block": "blk-l03-s09",
+      "step": "b3",
+      "say": "[[focus.entry]] Fourteen times fifty-one is seven hundred and fourteen, and nine times six is fifty-four, [[show.or2]] so the odds ratio is seven hundred and fourteen over fifty-four: thirteen point two. The odds of tank cleaning were thirteen point two times as high among the men with the tumour. [[focus.rest]] Whether that number can be trusted is the question this file closes on."
+    },
+    {
+      "block": "blk-l03-s10",
+      "step": "b1",
+      "say": "[[focus.illus]] These numbers are illustrative. [[filed]] [[focus.strip-or]] The case file now holds a third finding: [[show.card]] an odds ratio of thirteen point two, from your own study. [[focus.table]] It comes from the cross-product of the table you just filled: [[focus.formula]] fourteen times fifty-one, over six times nine, which is seven hundred and fourteen over fifty-four. [[focus.card]] The odds of exposure among the patients are more than thirteen times the odds among the controls."
+    },
+    {
+      "block": "blk-l03-s10",
+      "step": "b2",
+      "say": "[[focus.card]] [[rare]] An odds ratio this large [[show.strength]] is a strong association. [[show.rare-note]] And if the disease is rare, as the last exercise showed, it is also a fair estimate of the relative risk. [[show.open]] What it does not yet say is how the association came about. A number can only be as good as the way the people behind it were chosen and asked."
+    },
+    {
+      "block": "blk-l03-s10",
+      "step": "b3",
+      "say": "[[focus.why]] A ratio this large can be built by the way the data were collected. That is not a reason to doubt the count; it is a question about the design. [[doors]] [[show.ward]] The patients were interviewed on the ward, [[show.home]] and the controls were asked at home, [[focus.ward+home]] and the two groups were chosen in different ways. [[focus.strip-believe]] Before the number can be believed, the way the study was run has to be checked. [[focus.card]] So ask yourself: what, in the way you ran the study, could have made it?"
+    },
+    {
+      "block": "q-l03-s06",
+      "step": "prompt",
+      "say": "The live case, still illustrative, gives an odds ratio of thirteen point two, with a P value below zero point zero zero one. Which statement is the fairest reading of that result?",
+      "await": "answer"
+    }
+  ]
+}

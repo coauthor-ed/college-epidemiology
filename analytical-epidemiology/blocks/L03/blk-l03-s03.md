@@ -8,14 +8,20 @@ It is not that number, and the next beat shows why.
 <!-- STEP -->
 ## Move the dial and watch the number fall
 
-*Illustrative numbers: the same comparison with the counts scaled to 100 cases, so the patients' exposure rate rounds to 94.0 per cent.*
+*Illustrative numbers: a small study of 20 men with lung cancer.*
 
-The investigator decides how many controls to take for each case. Set one control per case and the exposed group holds 94 cases and 67 controls: the share who were cases is 94 of 161, or 58.4 per cent. Set four controls per case and it is 94 of 362, or 26.0 per cent. Nothing about smoking has changed.
+Remember, the exposure rate of a group is the share of the people in it who were exposed. Here, 14 of the 20 cases smoked, so the exposure rate in the cases is 70 per cent. The investigator decides how many controls to take for each case. At every setting 40 per cent of the controls smoked: 8 of 20 with one control per case, and 32 of 80 with four.
+
+The tempting sum is the share of the smokers who were cases. With one control per case it is 14 of 22, or 63.6 per cent. With four controls per case it is 14 of 46, or 30.4 per cent, although nothing about smoking has changed.
 
 <!-- STEP -->
-## The column rates never move
+## The exposure rates never move
 
-The two exposure rates stay at 94.0 and 67.0 per cent at every setting, because each one divides by its own column total. **A number that moves when the investigator changes the design is not a property of smoking.**
+The two exposure rates stay at 70 and 40 per cent at every setting, and their difference stays at 30 percentage points. Each rate divides by its own column total, so when the investigator takes more controls, the smokers among them and their total grow together.
+
+In a case-control study the investigator decides how many controls to take, so the share of the smokers who were cases is set by the design, not by smoking. The odds ratio on a later slide is built from the same column-by-column comparison, so it does not move with this choice either.
+
+**The exposure rates do not depend on the design, so comparing them is the fair test.**
 
 <!-- STEP -->
 ## No denominator, no incidence

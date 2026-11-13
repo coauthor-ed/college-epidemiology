@@ -9,7 +9,8 @@
   },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

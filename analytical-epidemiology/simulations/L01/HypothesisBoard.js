@@ -24,6 +24,12 @@ import { esc } from 'simulations/base/SimUi.js';
 import { SIM_PANEL_CSS, promptHtml, bindPanel } from 'simulations/base/kit/SimPanel.js';
 import { mulberry32 } from 'simulations/base/kit/SimLook.js';
 
+// Narration focus (spec W1 D29n): n = a data-narr id, '-' = data-narr-hide; inert with narration off.
+// Ids: kicker, claim (the sentence), parts / data (the two columns), colhead, rows (choose mode),
+// one id per part (chip or line + its data).
+const na = (n) => (!n ? '' : n === '-' ? ' data-narr-hide=""' : ` data-narr="${n}"`);
+const hideTag = (html) => html.replace(/^<(\w+)/, '<$1 data-narr-hide=""');
+
 const TICK = '<svg class="cp-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>';
 const CROSS = '<svg class="cp-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
 
@@ -108,6 +114,13 @@ function optionOrder(parts, seed) {
   return out;
 }
 
+// Narration focus: a held part hides its chip and data line (engine); its row rule and the column-head rule
+// are the row's own borders, so they go with it. The root carries the held ids while narrated (narrationFocus).
+// Narration off: no attribute, no rule matches (no pixel changes).
+const heldRowsCss = (parts) => `${parts.map((p) => `[data-narr-held~="${p.id}"] .cp-row:has(> [data-narr~="${p.id}"])`).join(',\n')},
+[data-narr-held~="colhead"] .cp-colhead { border-bottom-color: transparent; }
+`;
+
 export function withHypothesisBoard(Base) {
   return class HypothesisBoardScene extends Base {
     static LAYOUT = 'fit';
@@ -120,9 +133,17 @@ export function withHypothesisBoard(Base) {
       this._order = optionOrder(this._parts, C.SEED ?? 7);
       this._hb = { sel: {}, gone: new Set(), live: false, ring: [], open: null, fresh: null, touched: false, cue: null };
       await super.setup();
-      this.render({ css: CSS, rootClass: 'spn-page', html: '' });
+      this.render({ css: CSS + heldRowsCss(this._parts), rootClass: 'spn-page', html: '' });
       bindPanel(this.root, { action: (name, v) => this._act(name, v) });
       this._paint();
+    }
+
+    /** Narration focus contract (content-block): the held ids go on the root, for heldRowsCss. */
+    narrationFocus(f) {
+      const r = this.root;
+      if (!r) return;
+      if (f?.narrated && f.held?.length) r.setAttribute('data-narr-held', f.held.join(' '));
+      else r.removeAttribute('data-narr-held');
     }
 
     // withBeats calls this on every beat; the beat's start state is fixed (a resumed lesson may land here).
@@ -229,15 +250,16 @@ export function withHypothesisBoard(Base) {
         const on = !!hb.sel[p.id];
         const ring = hb.ring.includes(p.id) ? ' cp-ring' : '';
         const words = on ? `<span class="cp-words">${esc(p.field)}</span>` : `<span class="cp-words cp-ask">add: ${esc(p.ask)}</span>`;
-        const chip = `<button type="button" class="spn-act cp-chip${ring}" data-sflow-action="part" data-sflow-value="${esc(p.id)}" aria-pressed="${on}"${hb.live ? '' : ' disabled'}`
+        const chip = `<button type="button" class="spn-act cp-chip${ring}" data-sflow-action="part" data-sflow-value="${esc(p.id)}"${na(`parts ${p.id}`)} aria-pressed="${on}"${hb.live ? '' : ' disabled'}`
           + ` aria-label="${esc(p.name)}: ${esc(on ? p.field : 'not in the claim')}"><span class="cp-chip__t"><span class="cp-lab">${esc(p.name)}</span>${words}</span></button>`;
         let rec;
-        if (on) rec = `<p class="cp-rec${hb.fresh === p.id ? ' is-new' : ''}">${esc(p.record)}</p>`;
-        else if (hb.gone.has(p.id)) rec = `<p class="cp-rec cp-rec--gone"><s>${esc(p.record)}</s><small>${CROSS} no longer measured</small></p>`;
-        else rec = '<p class="cp-rec cp-rec--none">-</p>';
+        const dn = na(`data ${p.id}`);
+        if (on) rec = `<p class="cp-rec${hb.fresh === p.id ? ' is-new' : ''}"${dn}>${esc(p.record)}</p>`;
+        else if (hb.gone.has(p.id)) rec = `<p class="cp-rec cp-rec--gone"${dn}><s>${esc(p.record)}</s><small>${CROSS} no longer measured</small></p>`;
+        else rec = `<p class="cp-rec cp-rec--none"${dn}>-</p>`;
         return `<li class="cp-row${hb.cue === p.id ? ' cp-row--cue' : ''}">${chip}${rec}</li>`;
       }).join('');
-      return `<div class="cp-colhead" aria-hidden="true"><span>Part of the claim</span><span>Data you now need</span></div><ul class="cp-rows" style="border-top:0">${rows}</ul>`;
+      return `<div class="cp-colhead"${na('colhead')} aria-hidden="true"><span${na('parts')}>Part of the claim</span><span${na('data')}>Data you now need</span></div><ul class="cp-rows" style="border-top:0">${rows}</ul>`;
     }
 
     _chooseRows() {
@@ -254,7 +276,7 @@ export function withHypothesisBoard(Base) {
             : `<p class="cp-opt-rec cp-opt-rec--ok"><b>${TICK} Record:</b> ${esc(opt.record)}</p>`)
             : '<p class="cp-opt-rec">Choose the wording a record could confirm.</p>';
           const ring = hb.ring.includes(p.id) ? ' cp-ring' : '';
-          return `<li class="cp-row cp-row--choose cp-row--open${ring}" role="group" aria-label="${esc(p.name)}"><div class="cp-open-head"><span class="cp-lab">${esc(p.name)}</span><span>${esc(p.ask)}</span></div>`
+          return `<li class="cp-row cp-row--choose cp-row--open${ring}"${na(`rows ${p.id}`)} role="group" aria-label="${esc(p.name)}"><div class="cp-open-head"><span class="cp-lab">${esc(p.name)}</span><span>${esc(p.ask)}</span></div>`
             + `<div class="cp-opts">${cards}</div>${rec}</li>`;
         }
         const ring = hb.ring.includes(p.id) ? ' cp-ring' : '';
@@ -262,11 +284,11 @@ export function withHypothesisBoard(Base) {
         if (!opt) { sub = `<span class="cp-sub cp-sub--wait">${hb.live ? 'not chosen yet' : esc(p.ask)}</span>`; mark = hb.live ? '<span class="cp-mark cp-mark--open">Choose</span>' : ''; }
         else if (opt.vague) { sub = `<span class="cp-sub cp-sub--bad">Cannot be measured</span>`; mark = `<span class="cp-mark cp-mark--bad">${CROSS}</span>`; }
         else { sub = `<span class="cp-sub">${esc(opt.record)}</span>`; mark = `<span class="cp-mark cp-mark--ok">${TICK}</span>`; }
-        return `<li class="cp-row cp-row--choose"><button type="button" class="cp-line${ring}" data-sflow-action="open" data-sflow-value="${esc(p.id)}"${hb.live ? '' : ' disabled'} aria-expanded="false"`
+        return `<li class="cp-row cp-row--choose"${na(`rows ${p.id}`)}><button type="button" class="cp-line${ring}" data-sflow-action="open" data-sflow-value="${esc(p.id)}"${hb.live ? '' : ' disabled'} aria-expanded="false"`
           + ` aria-label="${esc(p.name)}: ${esc(opt ? opt.label : 'not chosen yet')}. ${esc(opt ? (opt.vague ? 'Cannot be measured' : opt.record) : '')}">`
           + `<span class="cp-lab">${esc(p.name)}</span>${sub}${mark}</button></li>`;
       }).join('');
-      return `<div class="cp-colhead cp-colhead--choose" aria-hidden="true"><span>Part</span><span>Record that could confirm it</span></div><ul class="cp-rows" style="border-top:0">${rows}</ul>`;
+      return `<div class="cp-colhead cp-colhead--choose"${na('rows')} aria-hidden="true"><span>Part</span><span>Record that could confirm it</span></div><ul class="cp-rows" style="border-top:0">${rows}</ul>`;
     }
 
     _paint() {
@@ -276,9 +298,9 @@ export function withHypothesisBoard(Base) {
       const n = this._mode === 'choose' ? this.measured() : this._parts.filter((p) => hb.sel[p.id]).length;
       const allDone = n === this._parts.length;
       const promptText = hb.touched && st.promptAfter ? st.promptAfter : st.prompt;
-      const prompt = promptText ? promptHtml(allDone && st.promptDone ? st.promptDone : promptText, { done: !hb.live || (allDone && !!st.promptDone) }) : '';
-      const head = `<div class="cp-head"><p class="spn-kicker">${esc(C.CASE.kicker)}</p><p class="cp-count"><b>${n}</b> of ${this._parts.length} ${esc(C.CASE.count)}</p></div>`;
-      const claim = `<p class="cp-claim" aria-live="polite">${this._claimHtml()}</p>${C.CASE.caption ? `<p class="spn-cap cp-cap">${esc(C.CASE.caption)}</p>` : ''}`;
+      const prompt = promptText ? hideTag(promptHtml(allDone && st.promptDone ? st.promptDone : promptText, { done: !hb.live || (allDone && !!st.promptDone) })) : '';
+      const head = `<div class="cp-head"><p class="spn-kicker"${na('kicker')}>${esc(C.CASE.kicker)}</p><p class="cp-count"${na('-')}><b>${n}</b> of ${this._parts.length} ${esc(C.CASE.count)}</p></div>`;
+      const claim = `<p class="cp-claim"${na('claim')} aria-live="polite">${this._claimHtml()}</p>${C.CASE.caption ? `<p class="spn-cap cp-cap"${na('-')}>${esc(C.CASE.caption)}</p>` : ''}`;
       const rows = this._mode === 'choose' ? this._chooseRows() : this._toggleRows();
       this.render({ html: `<div class="spn cp cp--${this._mode}${hb.cue ? ' cp--cued' : ''}">${head}${claim}${prompt}${rows}</div>` });
       hb.fresh = null;

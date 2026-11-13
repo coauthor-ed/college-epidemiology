@@ -22,6 +22,43 @@
   ],
   "correctOptionId": "c",
   "deferVerdict": true,
+  "narrationCover": {
+    "prompt": {
+      "src": "media/03-records-room.jpg",
+      "alt": "A hospital records room: tall shelves of files and an open folder on the reading table.",
+      "frames": [
+        {},
+        {
+          "x": 0,
+          "y": 0,
+          "w": 0.55,
+          "h": 0.55,
+          "t": 2950,
+          "ms": 2500
+        },
+        {
+          "x": 0.2,
+          "y": 0.4,
+          "w": 0.6,
+          "h": 0.6,
+          "t": 5510,
+          "ms": 2500
+        },
+        {
+          "x": 0.45,
+          "y": 0.45,
+          "w": 0.45,
+          "h": 0.45,
+          "t": 12560,
+          "ms": 3000
+        },
+        {
+          "t": 28770,
+          "ms": 2000
+        }
+      ]
+    }
+  },
   "authoring": {
     "status": "human-approved",
     "flags": [],

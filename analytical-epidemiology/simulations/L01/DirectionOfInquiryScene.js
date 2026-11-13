@@ -16,13 +16,21 @@
  * cohort and sweeps the time handle forward; case-control switches and sweeps it back; compare runs the
  * cohort sweep and then the case-control sweep, so the two directions are seen one after the other. A sweep
  * is the same pure function of the handle the learner drags; a drag takes over at once. Replay and scrub
- * re-derive the picture from the beat time (NarrationCues.js). Beats 2-3 send scene-interact-done the first
- * time the learner drags a design to its far end.
+ * re-derive the picture from the beat time (NarrationCues.js). Beats 2-3 send scene-interact-done once a beat,
+ * when the learner LETS GO of the handle (the range's change event, not input) at the far end, having moved it
+ * themselves: the task is finished and the dots have arrived. The narration then dwells on "Got it" (spec W1 Q-41). Cue dots (any beat, Q-41) rings every dot in the signature colour
+ * as the teacher says the dots are people; it stays until the beat ends or the time goes back.
  */
 import { DomSimulation } from 'simulations/base/DomSimulation.js';
 import { esc } from 'simulations/base/SimUi.js';
 import { SIM_PANEL_CSS, chipsHtml, promptHtml, bindPanel } from 'simulations/base/kit/SimPanel.js';
 import { withNarrationCues } from './NarrationCues.js';
+
+// Narration focus (spec W1 D29n): n = a data-narr id, '-' = data-narr-hide; inert with narration off.
+// Ids: design (chips), dots, exposure (left boxes + head), disease (right boxes + head), guides, start,
+// inquiry (arrow), time (handle + time arrow), questions (beat 3 lines).
+const na = (n) => (!n ? '' : n === '-' ? ' data-narr-hide=""' : ` data-narr="${n}"`);
+const hideTag = (html) => html.replace(/^<(\w+)/, '<$1 data-narr-hide=""');
 
 /** One narrated sweep of the time handle, ms; the pause between the two sweeps of compare. */
 const SWEEP_MS = 2400;
@@ -59,6 +67,8 @@ const CSS = SIM_PANEL_CSS + `
 .doi-guide { stroke: var(--sim-track); stroke-width: 1; stroke-dasharray: 2 5; }
 .doi-dot { fill: var(--sim-series-8); stroke: var(--sim-bg-deep); stroke-width: 1.5; transition: fill 0.25s ease; }
 .doi-dot.is-ill { fill: var(--sim-annot); }
+.doi-dot { transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.25s ease; }
+.doi-svg.is-cue .doi-dot { stroke: var(--sim-annot); stroke-width: 3.5; }
 .doi-ring { fill: none; stroke: var(--sim-annot); stroke-width: 2; }
 .doi-arrow { stroke: var(--sim-annot); stroke-width: 3; fill: none; stroke-linecap: round; }
 .doi-head { fill: var(--sim-annot); }
@@ -105,23 +115,28 @@ export class DirectionOfInquiryScene extends withNarrationCues(DomSimulation) {
     await super.setup();
     this.render({ css: CSS, rootClass: 'spn-page', html: '' });
     bindPanel(this.root, { action: (n, v) => this._act(n, v), input: (n, v) => this._onTime(v) });
+    // end of the gesture: the handle was let go (pointer up, or a key step)
+    this.root.addEventListener('change', (e) => { if (e.target?.matches?.('input[data-spn-input="time"]')) this._onTimeEnd(); });
     this._paint();
   }
 
   onStep(step) {
     this._stopSweep();
+    this._dotCue = false;
     this._ncSent = false;
+    this._moved = false;
     if (step === 0) { this._design = 'cohort'; this._p = 0; this._reached = false; }
     this._paint();
   }
 
   // ---- narration cues ----
-  static CUES = ['cohort', 'case-control', 'compare'];
+  static CUES = ['cohort', 'case-control', 'compare', 'dots'];
 
   cueBase() { return { design: this._design, p: this._p, reached: this._reached }; }
 
   cueReset(base) {
     this._stopSweep();
+    if (this._dotCue) { this._dotCue = false; this._dotsFocus(); }
     if (!base) return;
     const repaint = base.design !== this._design;
     this._design = base.design; this._p = base.p; this._reached = base.reached;
@@ -130,6 +145,7 @@ export class DirectionOfInquiryScene extends withNarrationCues(DomSimulation) {
 
   /** ms: how long ago the cue was due, so a re-applied cue lands where the sweep would be by now. */
   applyCue(id, ms = 0) {
+    if (id === 'dots') { this._dotCue = true; this._dotsFocus(); return; }
     if (!this._live()) return;
     const plan = id === 'cohort' ? [['cohort', 0]] : id === 'case-control' ? [['cc', 0]]
       : id === 'compare' ? [['cohort', 0], ['cc', SWEEP_MS + GAP_MS]] : null;
@@ -153,6 +169,8 @@ export class DirectionOfInquiryScene extends withNarrationCues(DomSimulation) {
     };
     frame();
   }
+
+  _dotsFocus() { this.root?.querySelector('.doi-svg[role="img"]')?.classList.toggle('is-cue', !!this._dotCue); }
 
   destroy() {
     this._stopSweep();
@@ -195,11 +213,22 @@ export class DirectionOfInquiryScene extends withNarrationCues(DomSimulation) {
   _onTime(v) {
     if (!this._live()) return;
     this._stopSweep();
-    this._p = Math.max(0, Math.min(100, Number(v) || 0));
+    const p = Math.max(0, Math.min(100, Number(v) || 0));
+    if (p !== this._p) this._moved = true;
+    this._p = p;
     const D = DESIGNS[this._design];
     if ((D.start === 'left' && this._p >= 98) || (D.start === 'right' && this._p <= 2)) this._reached = true;
     this._moveDots();
-    if (this._reached && !this._ncSent) { this._ncSent = true; this.interactDone(`b${(this.stepIndex ?? 0) + 1}`); }
+  }
+
+  /** The learner let go: finished only if they moved it and it rests at the far end (dots arrived). */
+  _onTimeEnd() {
+    if (!this._live() || this._ncSent || !this._moved) return;
+    const D = DESIGNS[this._design];
+    const atEnd = (D.start === 'left' && this._p >= 98) || (D.start === 'right' && this._p <= 2);
+    if (!atEnd) return;
+    this._ncSent = true;
+    this.interactDone(`b${(this.stepIndex ?? 0) + 1}`);
   }
 
   // Geometry in SVG units: landscape 520 wide, portrait 330 wide.
@@ -265,53 +294,54 @@ export class DirectionOfInquiryScene extends withNarrationCues(DomSimulation) {
     // faint guides between the two ends of time
     for (const a of ['L0', 'L1']) for (const b of ['R0', 'R1']) {
       const A = g.boxes[a], B = g.boxes[b];
-      out += `<line class="doi-guide" x1="${A.x + A.w}" y1="${A.y + A.h / 2}" x2="${B.x}" y2="${B.y + B.h / 2}"/>`;
+      out += `<line class="doi-guide"${na('guides')} x1="${A.x + A.w}" y1="${A.y + A.h / 2}" x2="${B.x}" y2="${B.y + B.h / 2}"/>`;
     }
     for (const k of ['L0', 'L1', 'R0', 'R1']) {
       const b = g.boxes[k], side = k[0];
       const st = side === 'L' ? bs.L : bs.R;
       const known = side === 'L' ? bs.leftKnown : bs.rightKnown;
-      out += `<rect class="doi-box ${st}" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="4"/>`;
-      out += `<text class="doi-t-b" x="${b.x + 10}" y="${b.y + 21}">${esc(labels[k])}${known ? '' : ' ?'}</text>`;
+      const nk = na(side === 'L' ? 'exposure' : 'disease');
+      out += `<rect class="doi-box ${st}"${nk} x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="4"/>`;
+      out += `<text class="doi-t-b"${nk} x="${b.x + 10}" y="${b.y + 21}">${esc(labels[k])}${known ? '' : ' ?'}</text>`;
       const sub = side === 'R' ? D.sub[Number(k[1])] : '';
-      if (sub) out += `<text class="doi-t-sm" x="${b.x + 10}" y="${b.y + 39}">${esc(sub)}</text>`;
+      if (sub) out += `<text class="doi-t-sm"${nk} x="${b.x + 10}" y="${b.y + 39}">${esc(sub)}</text>`;
     }
     // column heads: what each end of time holds, and where the study starts
     const startX = D.start === 'left' ? g.boxes.L0.x : g.boxes.R0.x;
-    out += `<text class="doi-t-sm" x="0" y="12">Earlier: exposure</text>`;
-    out += `<text class="doi-t-sm" x="${g.W}" y="12" text-anchor="end">Later: disease</text>`;
-    if (s >= 1) out += `<text class="doi-t-annot" x="${startX + g.bw / 2}" y="${g.boxes.L1.y + g.bh + 20}" text-anchor="middle">Study starts here</text>`;
+    out += `<text class="doi-t-sm"${na('exposure')} x="0" y="12">Earlier: exposure</text>`;
+    out += `<text class="doi-t-sm"${na('disease')} x="${g.W}" y="12" text-anchor="end">Later: disease</text>`;
+    if (s >= 1) out += `<text class="doi-t-annot"${na('start')} x="${startX + g.bw / 2}" y="${g.boxes.L1.y + g.bh + 20}" text-anchor="middle">Study starts here</text>`;
     const ppl = this._people(g);
     ppl.forEach((q) => {
       const p = this._pos(q, ppl.length);
-      out += `<circle class="doi-dot${this._ill(q, p.t) ? ' is-ill' : ''}" data-i="${q.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6.5"/>`;
+      out += `<circle class="doi-dot${this._ill(q, p.t) ? ' is-ill' : ''}"${na('dots')} data-i="${q.i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6.5"/>`;
     });
     if (s === 0) {
       const p = this._pos(ppl[0], ppl.length);
-      out += `<circle class="doi-ring" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="11"/>`;
+      out += `<circle class="doi-ring"${na('dots')} cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="11"/>`;
     }
     const H = g.H + 24;
-    return `<svg class="doi-svg" viewBox="0 0 ${g.W} ${H}" role="img" aria-label="${esc(D.label)} study: ${D.start === 'left' ? 'starts from exposure' : 'starts from cases and controls'}">${out}</svg>`;
+    return `<svg class="doi-svg${this._dotCue ? ' is-cue' : ''}" viewBox="0 0 ${g.W} ${H}" role="img" aria-label="${esc(D.label)} study: ${D.start === 'left' ? 'starts from exposure' : 'starts from cases and controls'}">${out}</svg>`;
   }
 
   _inquirySvg() {
     const g = this._geo(), D = DESIGNS[this._design];
     const fwd = D.start === 'left';
     const x1 = fwd ? 8 : g.W - 8, x2 = fwd ? g.W - 8 : 8;
-    return `<svg class="doi-svg" viewBox="0 0 ${g.W} 40" aria-hidden="true"><text class="doi-t-annot" x="${fwd ? 0 : g.W}" y="14" text-anchor="${fwd ? 'start' : 'end'}">${esc(D.inquiry)}</text>${this._arrow(x1, x2, 30, '')}</svg>`;
+    return `<svg class="doi-svg"${na('inquiry')} viewBox="0 0 ${g.W} 40" aria-hidden="true"><text class="doi-t-annot" x="${fwd ? 0 : g.W}" y="14" text-anchor="${fwd ? 'start' : 'end'}">${esc(D.inquiry)}</text>${this._arrow(x1, x2, 30, '')}</svg>`;
   }
 
   _timeHtml() {
     const g = this._geo(), live = this._live();
     const arrow = `<svg class="doi-svg" viewBox="0 0 ${g.W} 26" aria-hidden="true">${this._arrow(2, g.W - 2, 6, 'doi-arrow--time')}<text class="doi-t-b" x="0" y="24">Time</text><text class="doi-t-sm" x="${g.W}" y="24" text-anchor="end">always runs this way</text></svg>`;
-    return `<div class="doi-time"><input type="range" data-spn-input="time" min="0" max="100" step="1" value="${this._p}" aria-label="Time handle"${live ? '' : ' disabled'}>${arrow}</div>`;
+    return `<div class="doi-time"${na('time')}><input type="range" data-spn-input="time" min="0" max="100" step="1" value="${this._p}" aria-label="Time handle"${live ? '' : ' disabled'}>${arrow}</div>`;
   }
 
   _promptHtml() {
     const s = this.stepIndex ?? 0, D = DESIGNS[this._design];
-    if (s >= 3) return '<p class="doi-q"><b>Both designs ask</b><span>Is there an association?</span><span>If so, how strong?</span></p>';
-    if (s === 0) return '<p class="doi-note">Each dot is one person, studied one at a time. The conclusion is about the population they were drawn from.</p>';
-    return promptHtml(this._reached ? D.done : D.go, { done: this._reached, key: 'doi-prompt' });
+    if (s >= 3) return '<p class="doi-q" data-narr="questions"><b>Both designs ask</b><span>Is there an association?</span><span>If so, how strong?</span></p>';
+    if (s === 0) return '<p class="doi-note" data-narr-hide="">Each dot is one person, studied one at a time. The conclusion is about the population they were drawn from.</p>';
+    return hideTag(promptHtml(this._reached ? D.done : D.go, { done: this._reached, key: 'doi-prompt' }));
   }
 
   _moveDots() {
@@ -338,7 +368,7 @@ export class DirectionOfInquiryScene extends withNarrationCues(DomSimulation) {
       if (texts[k]) texts[k].textContent = labels[k] + (known ? '' : ' ?');
     });
     const pr = this.root.querySelector('[data-spn="doi-prompt"]');
-    if (pr && this._reached && !pr.classList.contains('spn-prompt--done')) pr.outerHTML = promptHtml(D.done, { done: true, key: 'doi-prompt' });
+    if (pr && this._reached && !pr.classList.contains('spn-prompt--done')) pr.outerHTML = hideTag(promptHtml(D.done, { done: true, key: 'doi-prompt' }));
   }
 
   _paint() {
@@ -347,7 +377,8 @@ export class DirectionOfInquiryScene extends withNarrationCues(DomSimulation) {
     const chips = s >= 1
       ? chipsHtml(Object.entries(DESIGNS).map(([k, d]) => ({ label: d.label, action: 'design', value: k, pressed: k === this._design })), { label: 'Study design' })
       : '<span class="spn-label">Cohort study</span>';
-    const top = `<div class="doi-top"><span class="spn-label">Design</span>${chips}</div>`;
+    // Beat 0 names no design on screen: the top row steps aside until the chips go live.
+    const top = `<div class="doi-top"${na(s >= 1 ? 'design' : '-')}><span class="spn-label">Design</span>${chips}</div>`;
     const inquiry = s >= 2 ? this._inquirySvg() : '';
     this.render({ html: `<div class="spn doi">${top}${this._promptHtml()}${inquiry}${this._stageSvg()}${this._timeHtml()}</div>` });
   }

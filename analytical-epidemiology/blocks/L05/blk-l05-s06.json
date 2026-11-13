@@ -16,7 +16,7 @@
         "id": "exposure",
         "title": "Record exposure",
         "text": "Each member lands in the exposed or unexposed group for a stated reason.",
-        "entry": "5 or more years of reactor cleaning",
+        "entry": "5 or more years of tank cleaning",
         "step": 3
       },
       {
@@ -38,7 +38,7 @@
         "title": "Analyse",
         "text": "Incidence in each group, then the relative risk.",
         "entry": "6.0 vs 0.5 per 1,000",
-        "step": 5
+        "step": 4
       }
     ],
     "entryLabel": "Your live case",
@@ -52,11 +52,41 @@
         "Criteria fixed beforehand"
       ],
       "step": 2
-    }
+    },
+    "focus": [
+      {
+        "step": 1,
+        "on": [
+          "select"
+        ]
+      },
+      {
+        "step": 2,
+        "on": [
+          "gate"
+        ]
+      },
+      {
+        "step": 3,
+        "on": [
+          "exposure",
+          "comparison"
+        ]
+      },
+      {
+        "step": 4,
+        "on": [
+          "followup",
+          "analysis"
+        ]
+      }
+    ],
+    "position": "flow"
   },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

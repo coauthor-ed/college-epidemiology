@@ -1,0 +1,60 @@
+{
+  "id": "blk-l00-s01",
+  "type": "content-block@1",
+  "markdownRef": "blocks/L00/blk-l00-s01.md",
+  "simulation": {
+    "src": "simulations/L00/CaseRoomScene-desk.js",
+    "position": "right"
+  },
+  "narrationCover": {
+    "b1": {
+      "src": "media/01-desk.jpg",
+      "alt": "An investigator's desk: a stack of five closed case files under a lamp, an open file with a clipped note, a magnifying glass, a pencil, a cup of tea and a rubber stamp.",
+      "frames": [
+        {},
+        {
+          "x": 0.08,
+          "y": 0.12,
+          "w": 0.84,
+          "h": 0.84,
+          "t": 200,
+          "ms": 15000
+        }
+      ]
+    },
+    "b2": {
+      "src": "media/01-desk.jpg",
+      "alt": "An investigator's desk: a stack of five closed case files under a lamp, an open file with a clipped note, a magnifying glass, a pencil, a cup of tea and a rubber stamp.",
+      "frames": [
+        {
+          "x": 0.08,
+          "y": 0.12,
+          "w": 0.84,
+          "h": 0.84
+        },
+        {
+          "x": 0.6,
+          "y": 0.38,
+          "w": 0.26,
+          "h": 0.26,
+          "ms": 1500,
+          "t": 500
+        },
+        {
+          "x": 0.08,
+          "y": 0.15,
+          "w": 0.44,
+          "h": 0.5,
+          "ms": 1500,
+          "cue": "show.files"
+        }
+      ],
+      "until": "show.live"
+    }
+  },
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-12T13:22:32.917Z"
+  }
+}

@@ -2,52 +2,37 @@
   "id": "blk-l05-s01",
   "type": "content-block@1",
   "markdownRef": "blocks/L05/blk-l05-s01.md",
-  "figure": {
-    "layout": "timeline",
-    "caption": "Three cohorts from the chapter, drawn on each study's own clock (years since it began): each bar starts with well people and runs forward with no end date.",
-    "axis": {
-      "from": 0,
-      "to": 25,
-      "every": 5
-    },
-    "items": [
-      {
-        "id": "doctors",
-        "title": "Doll's doctors",
-        "text": "British doctors on the UK Medical Register, followed from 1951.",
-        "from": 0,
-        "open": true,
-        "tone": 1
-      },
-      {
-        "id": "framingham",
-        "title": "Framingham",
-        "text": "A town's residents, followed for heart disease.",
-        "from": 0,
-        "open": true,
-        "tone": 2
-      },
-      {
-        "id": "miners",
-        "title": "Uranium miners",
-        "text": "Miners and unexposed men, followed for lung cancer.",
-        "from": 0,
-        "open": true,
-        "tone": 3
-      }
-    ],
-    "notes": [
-      {
-        "on": "doctors",
-        "label": "Day one",
-        "text": "On the first day nobody in any of the three groups had the disease being counted.",
-        "step": 2
-      }
-    ]
+  "simulation": {
+    "src": "simulations/L05/LongStudiesScene.js",
+    "position": "right"
+  },
+  "narrationCover": {
+    "b1": {
+      "src": "media/06-long-follow-up.jpg",
+      "alt": "A long shelf of bound volumes, old and worn at one end and newer at the other: records kept for many years.",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0.04,
+          "w": 0.62,
+          "h": 0.62
+        },
+        {
+          "x": 0.38,
+          "y": 0.04,
+          "w": 0.62,
+          "h": 0.62,
+          "t": 150,
+          "ms": 4200
+        }
+      ],
+      "until": "focus.doctors"
+    }
   },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

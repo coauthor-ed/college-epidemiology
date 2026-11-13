@@ -11,14 +11,14 @@
     {
       "id": "a",
       "text": {
-        "en": "Reactor workers had 13.2 times the risk of the tumour, compared with the other men at the plant"
+        "en": "Tank cleaners had 13.2 times the risk of the tumour, compared with the other men at the plant"
       },
       "isCorrect": false
     },
     {
       "id": "b",
       "text": {
-        "en": "A P value below 0.001 proves that reactor cleaning caused the tumour in these men"
+        "en": "A P value below 0.001 proves that tank cleaning caused the tumour in these men"
       },
       "isCorrect": false
     },
@@ -39,7 +39,7 @@
   ],
   "correctOptionId": "c",
   "explanation": {
-    "en": "13.2 is an odds ratio, not a risk, so it does not say that a reactor worker's risk was 13.2 times anyone else's. The P value rules out chance as an explanation for a gap this large. What it cannot rule out is a gap produced by the way the cases and controls were selected, interviewed or matched, so the design still has to be checked."
+    "en": "13.2 is an odds ratio, not a risk, so it does not say that a tank cleaner's risk was 13.2 times anyone else's. The P value rules out chance as an explanation for a gap this large. What it cannot rule out is a gap produced by the way the cases and controls were selected, interviewed or matched, so the design still has to be checked."
   },
   "hints": [
     {

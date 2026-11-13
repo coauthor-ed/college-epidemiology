@@ -1,8 +1,13 @@
 {
-  "_note": "Course respellings for TTS input only (captions keep the original word). Merged over tools/narration/lexicon.default.json. Q-15 2026-11-09.",
+  "_note": "Course respellings for TTS input only (captions keep the original word). Merged over tools/narration/lexicon.default.json. Q-15 2026-11-09. Q-06B 2026-11-11: British spellings -> US spellings for les-02..05 (TTS only).",
   "bidis": "beedees",
   "Widukind": "Veedoo-kint",
   "Weicker": "Vye-ker",
   "Lenz's": "Lents's",
-  "gynaecologists": "gynecologists"
+  "gynaecologists": "gynecologists",
+  "oesophageal": "esophageal",
+  "oestrogen": "estrogen",
+  "foetal": "fetal",
+  "leukaemia": "leukemia",
+  "anaemia": "anemia"
 }

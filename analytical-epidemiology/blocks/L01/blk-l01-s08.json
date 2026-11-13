@@ -2,9 +2,14 @@
   "id": "blk-l01-s08",
   "type": "content-block@1",
   "markdownRef": "blocks/L01/blk-l01-s08.md",
+  "simulation": {
+    "src": "simulations/L01/EmptyColumnScene.js",
+    "position": "right"
+  },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

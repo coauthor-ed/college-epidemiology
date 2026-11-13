@@ -1,19 +1,18 @@
 {
   "id": "les-02",
+  "narrationRef": "narration/les-02.narration.json",
   "lessonId": "les-02",
   "type": "lesson",
   "title": {
     "en": "A comparison is only as fair as its controls"
   },
+  "chapterId": "analytical-epidemiology/ch1",
   "blocks": [
     {
       "blockRef": "blocks/L02/blk-l02-s01.json"
     },
     {
       "blockRef": "blocks/L02/blk-l02-s02.json"
-    },
-    {
-      "blockRef": "questions/L02/q-l02-s01.json"
     },
     {
       "blockRef": "blocks/L02/blk-l02-s03.json"
@@ -43,9 +42,6 @@
       "blockRef": "questions/L02/q-l02-s05.json"
     },
     {
-      "blockRef": "blocks/L02/blk-l02-s08.json"
-    },
-    {
       "blockRef": "blocks/L02/blk-l02-s09.json"
     },
     {
@@ -58,7 +54,8 @@
   "flow": {},
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

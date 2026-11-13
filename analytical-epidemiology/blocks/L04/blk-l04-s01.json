@@ -6,9 +6,28 @@
     "src": "simulations/L04/OddsRatioBuildScene-file4.js",
     "position": "right"
   },
+  "narrationCover": {
+    "b1": {
+      "src": "media/01-desk.jpg",
+      "alt": "An investigator's desk: a stack of five closed case files under a lamp, an open file with a clipped note, a magnifying glass, a pencil, a cup of tea and a rubber stamp.",
+      "frames": [
+        {},
+        {
+          "x": 0.32,
+          "y": 0.38,
+          "w": 0.58,
+          "h": 0.58,
+          "ms": 2800,
+          "t": 150
+        }
+      ],
+      "until": "patients"
+    }
+  },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

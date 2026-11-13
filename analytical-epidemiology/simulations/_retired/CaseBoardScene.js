@@ -2,7 +2,7 @@
  * CaseBoardScene - the live case's evidence board (casefile setting, plain look).
  * ONE file for the whole course: the closing slide of each of L01-L05 mounts it with
  * data.stage 1-5; every mount is memory-less and draws its stage's board from scratch.
- *   Stage 1: the cluster card (20 men, 14 cleaned reactors) and an empty dashed frame
+ *   Stage 1: the cluster card (20 men, 14 cleaned tanks) and an empty dashed frame
  *            where a comparison group should be; the senior's note opens on a tap.
  *   Stage 2: + the controls card and the filled 2x2 (cells 14, 9, 6, 51; margins 20, 60).
  *   Stage 3: + the odds-ratio card: 13.2, from (14 x 51) / (6 x 9).
@@ -44,8 +44,8 @@ const THUMBS_OF = {
   5: [{ id: 'cluster' }, { id: 'controls' }, { id: 'table' }, { id: 'or' }, { id: 'checks' }, { id: 'design' }, { id: 'cohort', wide: true }],
 };
 const CARD_DEFS = {
-  cluster: { kicker: 'Cluster: 20 men, rare liver tumour', short: 'Cluster', read: `${CASES.exp} of ${CASES.n}`, cap: `Cleaned reactors: ${CASES.exp} of ${CASES.n}` },
-  controls: { kicker: 'Controls: same plant, matched on age', short: 'Controls', read: `${GRP.exp} of ${GRP.n}`, cap: `Cleaned reactors: ${GRP.exp} of ${GRP.n}` },
+  cluster: { kicker: 'Cluster: 20 men, rare liver tumour', short: 'Cluster', read: `${CASES.exp} of ${CASES.n}`, cap: `Cleaned tanks: ${CASES.exp} of ${CASES.n}` },
+  controls: { kicker: 'Controls: same plant, matched on age', short: 'Controls', read: `${GRP.exp} of ${GRP.n}`, cap: `Cleaned tanks: ${GRP.exp} of ${GRP.n}` },
   table: { kicker: 'The table', short: 'TABLE', read: CELLS.map((r) => r.join(', ')).join(', ') },
   or: { kicker: 'Odds ratio', short: 'Odds', read: OR_S },
   checks: { kicker: 'Bias checks', short: 'Checks', read: '4 of 4 ticked' },
@@ -355,7 +355,7 @@ export class CaseBoardScene extends SvgScene {
       html += `<span class="cb-sub" style="left:16px;top:212px">Every check passed. What the study still cannot say is written on the odds-ratio card.</span>`;
     } else if (id === 'cohort') {
       kick('Cohort', 14);
-      html += `<span class="cb-line" style="left:16px;top:40px">Reactor workers: ${esc(`${COH.expCases} of ${fmtNum(COH.expN)}`)}</span>`
+      html += `<span class="cb-line" style="left:16px;top:40px">Tank cleaners: ${esc(`${COH.expCases} of ${fmtNum(COH.expN)}`)}</span>`
         + `<span class="cb-sub" style="left:16px;top:62px">incidence ${esc(INC_EXP)}</span>`
         + `<span class="cb-line" style="left:16px;top:92px">Other workers: ${esc(`${COH.otherCases} of ${fmtNum(COH.otherN)}`)}</span>`
         + `<span class="cb-sub" style="left:16px;top:114px">incidence ${esc(INC_OTHER)}</span>`;
@@ -363,7 +363,7 @@ export class CaseBoardScene extends SvgScene {
       const rb = ratioBars(rect, [{ key: 'exp', v: (COH.expCases / COH.expN) / (COH.otherCases / COH.otherN) }, { key: 'other', v: 1 }], { maxV: 12 });
       for (const b of rb.bars) {
         if (b.h > 0) svg += `<rect x="${b.x.toFixed(1)}" y="${b.y.toFixed(1)}" width="${b.w.toFixed(1)}" height="${b.h.toFixed(1)}" rx="2" class="cb-bar"/>`;
-        html += `<span class="cb-sub" style="left:${(b.x - g.hx + b.w / 2).toFixed(1)}px;top:${rb.baseY - g.hy + 6}px;transform:translateX(-50%)">${b.key === 'exp' ? 'Reactor' : 'Other'}</span>`;
+        html += `<span class="cb-sub" style="left:${(b.x - g.hx + b.w / 2).toFixed(1)}px;top:${rb.baseY - g.hy + 6}px;transform:translateX(-50%)">${b.key === 'exp' ? 'Tank' : 'Other'}</span>`;
       }
       svg += `<line x1="${rect.x}" y1="${rb.baseY.toFixed(1)}" x2="${rect.x + rect.w}" y2="${rb.baseY.toFixed(1)}" class="cb-baseline"/>`
         + `<text x="${rect.x - 6}" y="${(rb.baseY + 4).toFixed(1)}" text-anchor="end" class="cb-svgsub">1.0</text>`;
@@ -396,16 +396,16 @@ export class CaseBoardScene extends SvgScene {
 
   // The 2x2 spec, built for the hero's stage rect (shared by the open card and the underline).
   // The hero (hw 344 incl. the portrait full width) is too narrow for the six header labels the
-  // spec lays out at 14px+ by default: 'Reactor cleaning' alone is 114 px, so the table ran off
+  // spec lays out at 14px+ by default: 'Tank cleaning' alone is 114 px, so the table ran off
   // the card's right edge (cell values dropped by the overlay clipping). Head labels shorten to
-  // the words the beat itself says ('reactor cleaning' appears only in the thumb captions) and
+  // the words the beat itself says ('tank cleaning' appears only in the thumb captions) and
   // the two margins drop to the row total only: column totals (80) repeat the 20 + 60 already on
   // the hero's own readings. Regained space goes to the header column.
   _tableSpec(g) {
     // Column totals are the stub's margins: a+c = 20 (the Cases column), b+d = 60 (the
     // Controls column). Row totals (14+9 = 23, 6+51 = 57) repeat neither the stub's
     // margins nor its numbers and read as cases beyond the 20 on the board.
-    return tableSpec({ rect: { x: g.hx + 14, y: g.hy + 46, w: g.hw - 28, h: 246 }, rows: ['Cleaned reactors', 'Did not clean'], cols: ['Cases', 'Controls'], rowTitle: 'Cleaning', colTitle: 'Group', cells: CELLS, totals: 'cols', headW: 110, rowH: 50 });
+    return tableSpec({ rect: { x: g.hx + 14, y: g.hy + 46, w: g.hw - 28, h: 246 }, rows: ['Cleaned tanks', 'Did not clean'], cols: ['Cases', 'Controls'], rowTitle: 'Cleaning', colTitle: 'Group', cells: CELLS, totals: 'cols', headW: 110, rowH: 50 });
   }
 
   css() {

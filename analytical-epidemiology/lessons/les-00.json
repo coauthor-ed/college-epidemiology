@@ -1,0 +1,27 @@
+{
+  "id": "les-00",
+  "narrationRef": "narration/les-00.narration.json",
+  "lessonId": "les-00",
+  "type": "lesson",
+  "title": {
+    "en": "Prologue: the case room"
+  },
+  "chapterId": "analytical-epidemiology/ch1",
+  "blocks": [
+    {
+      "blockRef": "blocks/L00/blk-l00-s01.json"
+    },
+    {
+      "blockRef": "blocks/L00/blk-l00-s02.json"
+    },
+    {
+      "blockRef": "blocks/L00/blk-l00-s03.json"
+    }
+  ],
+  "flow": {},
+  "authoring": {
+    "status": "human-approved",
+    "flags": [],
+    "reviewedAt": "2026-11-12T13:22:32.917Z"
+  }
+}

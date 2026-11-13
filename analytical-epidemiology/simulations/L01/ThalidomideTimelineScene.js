@@ -8,10 +8,18 @@
  * signature colour marks the jump. No frame loop: the columns grow by a CSS transition.
  *   Beat 0: strip live, nothing open, register empty.  Beat 1: 1958 open.
  *   Beat 2: congress open, the register fills (rare).  Beat 3: suspect open; the register stays as left.
+ * Narrated (spec W1 D15, Q-41): in beat 2 the teacher points and flips the switch in sync. Cue bars rings the
+ * register (the jump); cue common flips the switch to always common with the same transition a tap gives;
+ * cue rare flips it back. The switch stays ringed after a flip, so the hand-over ("now you try") points at it.
+ * Cue flips never count as the learner's: the prompt still asks the learner to try. Replay and scrub re-derive
+ * the picture from the beat time (NarrationCues.js). In beat 2 the task is finished when the learner has
+ * flipped it themselves to always common and back to rare (both pictures seen): then scene-interact-done
+ * (detail.id b3); the narration dwells on "Got it" before going on (spec W1 Q-41).
  */
 import { DomSimulation } from 'simulations/base/DomSimulation.js';
 import { esc } from 'simulations/base/SimUi.js';
 import { SIM_PANEL_CSS, columnsHtml, setColumns, promptHtml, chipsHtml, emHtml, bindPanel } from 'simulations/base/kit/SimPanel.js';
+import { withNarrationCues } from './NarrationCues.js';
 
 const ENTRIES = [
   { id: 'sold', year: '1958', tab: 'A drug goes on sale', title: 'Thalidomide goes on sale in Britain',
@@ -25,6 +33,9 @@ const OPEN_AT = [null, 'sold', 'congress', 'suspect'];
 const YEARS = [1957, 1958, 1959, 1960, 1961];
 const PATTERNS = { rare: [1, 1, 1, 2, 8], common: [8, 8, 8, 8, 8] };   // relative heights, illustrative
 const TOP = 8;
+// Narration focus (spec W1 D29n): n = a data-narr id, '-' = data-narr-hide; inert with narration off.
+const na = (n) => (!n ? '' : n === '-' ? ' data-narr-hide=""' : ` data-narr="${n}"`);
+const hideTag = (html) => html.replace(/^<(\w+)/, '<$1 data-narr-hide=""');
 
 const CSS = SIM_PANEL_CSS + `
 .tl { gap: 10px; }
@@ -52,6 +63,8 @@ const CSS = SIM_PANEL_CSS + `
 .tl-plot { position: relative; }
 .tl-empty { position: absolute; inset: 0 0 26px; display: flex; align-items: center; justify-content: center; padding: 0 24px; text-align: center;
   font-size: var(--sim-text-sm); color: var(--sim-label-muted); border: 1.5px dashed var(--sim-track); }
+.tl-plot, .tl-sw .spn-btns { border-radius: 4px; outline: 2px solid transparent; outline-offset: 4px; transition: outline-color 0.25s ease; }
+.tl-plot.is-cue, .tl-sw .spn-btns.is-cue { outline-color: var(--sim-annot); }
 .tl-read { margin: 0; min-height: 1.45em; font-size: var(--sim-text-md); color: var(--sim-label); }
 .sim-dom-root--portrait .tl-tabs { grid-template-columns: minmax(0, 1fr); gap: 6px; }
 .sim-dom-root--portrait .tl-tab { min-height: 44px; align-items: center; }
@@ -59,7 +72,7 @@ const CSS = SIM_PANEL_CSS + `
 .sim-dom-root--portrait .tl-tab__t { flex-direction: row; align-items: baseline; gap: 8px; }
 `;
 
-export class ThalidomideTimelineScene extends DomSimulation {
+export class ThalidomideTimelineScene extends withNarrationCues(DomSimulation) {
   static SETTING = 'none';
   static LAYOUT = 'fit';
   static WIDTH = 560;
@@ -81,6 +94,9 @@ export class ThalidomideTimelineScene extends DomSimulation {
     this._mode = 'rare';
     this._reg = false;
     this._flipped = false;
+    this._focus = null;    // narration pointer: null | 'bars' | 'switch'
+    this._tried = new Set();   // modes the learner set themselves in beat 2
+    this._ncSent = false;
     await super.setup();
     this.render({ css: CSS, rootClass: 'spn-page', html: '' });
     bindPanel(this.root, { action: (name, v) => this._act(name, v) });
@@ -89,6 +105,9 @@ export class ThalidomideTimelineScene extends DomSimulation {
 
   // DomSimulation calls this after every beat change (stepIndex already set).
   onStep(step) {
+    this._focus = null;
+    this._tried = new Set();
+    this._ncSent = false;
     this._open = OPEN_AT[step] ?? null;
     if (this._open) this._seen.add(this._open);
     let grow = false;
@@ -110,8 +129,53 @@ export class ThalidomideTimelineScene extends DomSimulation {
       this._mode = v;
       this._flipped = true;
       this._paint(false, true);
+      // finished = the learner has made both pictures themselves, ending on rare (the jump back in view)
+      if ((this.stepIndex ?? 0) === 2 && !this._ncSent) {
+        this._tried.add(v);
+        if (v === 'rare' && this._tried.has('common')) { this._ncSent = true; this.interactDone('b3'); }
+      }
     }
   }
+
+  // ---- narration cues (NarrationCues.js) ----
+  static CUES = ['bars', 'common', 'rare'];
+
+  cueBase() { return { mode: this._mode }; }
+
+  cueReset(base) {
+    this._focus = null;
+    if (base && PATTERNS[base.mode] && base.mode !== this._mode && this._reg) { this._mode = base.mode; this._paint(false, true); }
+    this._applyFocus();
+  }
+
+  /** A cue is the teacher's hand: it points (bars) or flips the switch with the same transition a tap gives. */
+  applyCue(id) {
+    if (!this._reg) return;
+    if (id === 'bars') { this._focus = 'bars'; this._applyFocus(); this._showRegister(); return; }
+    const mode = id === 'common' ? 'common' : id === 'rare' ? 'rare' : null;
+    if (!mode) return;
+    this._focus = 'switch';
+    if (mode !== this._mode) { this._mode = mode; this._paint(false, true); }
+    this._applyFocus();
+    this._showRegister();
+  }
+
+  /** A teacher points where the learner can see: on a phone the register may sit below the fold. */
+  _showRegister() {
+    const reg = this.root?.querySelector('.tl-reg');
+    if (!reg || typeof reg.scrollIntoView !== 'function') return;
+    const r = reg.getBoundingClientRect();
+    if (r.top >= 0 && r.bottom <= window.innerHeight) return;
+    const still = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    reg.scrollIntoView({ block: 'nearest', behavior: still ? 'auto' : 'smooth' });
+  }
+
+  _applyFocus() {
+    if (!this.root) return;
+    this.root.querySelector('.tl-plot')?.classList.toggle('is-cue', this._focus === 'bars');
+    this.root.querySelector('.tl-sw .spn-btns')?.classList.toggle('is-cue', this._focus === 'switch');
+  }
+
 
   _bins(zero) {
     const h = this._reg && !zero ? PATTERNS[this._mode] : YEARS.map(() => 0);
@@ -128,36 +192,41 @@ export class ThalidomideTimelineScene extends DomSimulation {
       const r = this.root.querySelector('.tl-read');
       if (r) r.innerHTML = this._readHtml();
       const pr = this.root.querySelector('.spn-prompt');
-      if (pr) pr.outerHTML = this._promptHtml();
+      if (pr) pr.outerHTML = hideTag(this._promptHtml());
+      this._applyFocus();
       return;
     }
     const e = ENTRIES.find((x) => x.id === this._open) ?? null;
-    const prompt = this._promptHtml();
-    const tabs = `<div class="tl-tabs" role="group" aria-label="Dated entries">${ENTRIES.map((x) => `<button type="button" class="spn-act tl-tab" data-sflow-action="entry" data-sflow-value="${x.id}" aria-pressed="${x.id === this._open}">`
+    const prompt = hideTag(this._promptHtml());
+    const step = this.stepIndex ?? 0;
+    const tabs = `<div class="tl-tabs" role="group" aria-label="Dated entries">${ENTRIES.map((x) => `<button type="button" class="spn-act tl-tab" data-sflow-action="entry" data-sflow-value="${x.id}"${na(`tabs ${x.id}`)} aria-pressed="${x.id === this._open}">`
       + `<span class="tl-tab__t"><span class="tl-tab__y">${x.year}</span><span class="tl-tab__n">${esc(x.tab)}</span></span></button>`).join('')}</div>`;
     const entry = e
-      ? `<div class="tl-entry"><p class="tl-entry__t">${esc(e.title)}</p><p class="tl-entry__b">${esc(e.body)}</p>`
+      ? `<div class="tl-entry"${na(e.id)}><p class="tl-entry__t">${esc(e.title)}</p><p class="tl-entry__b">${esc(e.body)}</p>`
         + `<p class="tl-status">Status: <b>${esc(e.status)}</b></p></div>`
-      : '<div class="tl-entry tl-entry--empty"><p class="tl-entry__b" style="color:inherit">No entry open. The file starts in 1958.</p></div>';
+      : `<div class="tl-entry tl-entry--empty"${na('-')}><p class="tl-entry__b" style="color:inherit">No entry open. The file starts in 1958.</p></div>`;
     const sw = this._reg
-      ? `<div class="tl-sw"><span class="spn-label">Before 1961 the defect was</span>${chipsHtml([
+      ? `<div class="tl-sw"${na('switch')}><span class="spn-label">Before 1961 the defect was</span>${chipsHtml([
         { label: 'rare', action: 'mode', value: 'rare', pressed: this._mode === 'rare' },
         { label: 'always common', action: 'mode', value: 'common', pressed: this._mode === 'common' }], { label: 'Before 1961 the defect was' })}</div>`
       : '<span class="spn-label">Births register</span>';
     const empty = this._reg ? '' : '<div class="tl-empty">The register fills when the 1961 congress entry is open.</div>';
-    const reg = `<section class="tl-reg" aria-label="Births register, illustrative pattern"><div class="tl-reghead">${sw}</div>`
-      + `<div class="tl-plot">${columnsHtml({ key: 'reg', bins: this._bins(grow), max: TOP, tone: 'series-8', label: 'Malformed births per year, 1957 to 1961, illustrative pattern' })}${empty}</div>`
-      + `<p class="tl-read" aria-live="polite">${this._readHtml()}</p><p class="spn-cap">Malformed births per year (illustrative pattern, no scale).</p></section>`;
+    // The register is spoken only in beat 2 (index 2); before and after it steps aside.
+    const reg = `<section class="tl-reg"${step === 2 ? '' : na('-')} aria-label="Births register, illustrative pattern"><div class="tl-reghead">${sw}</div>`
+      + `<div class="tl-plot"${na('bars')}>${columnsHtml({ key: 'reg', bins: this._bins(grow), max: TOP, tone: 'series-8', label: 'Malformed births per year, 1957 to 1961, illustrative pattern' })}${empty}</div>`
+      + `<p class="tl-read"${na('-')} aria-live="polite">${this._readHtml()}</p><p class="spn-cap"${na('-')}>Malformed births per year (illustrative pattern, no scale).</p></section>`;
     this.render({ html: `<div class="spn tl">${prompt}${tabs}${entry}${reg}</div>` });
     if (this._reg) {
       if (grow) requestAnimationFrame(() => requestAnimationFrame(() => setColumns(this.root, 'reg', this._bins(), TOP, hot)));
       else setColumns(this.root, 'reg', this._bins(), TOP, hot);
     }
+    this._applyFocus();
   }
 
   _promptHtml() {
     const all = this._seen.size === ENTRIES.length;
     if (this._reg && !this._flipped) return promptHtml('Now try the switch: always common');
+    if (this._reg && (this.stepIndex ?? 0) === 2) return promptHtml('Switch back and forth to compare', { done: true });
     if (!all) return promptHtml('Select each date to open its entry');
     return promptHtml(this._reg ? 'Switch back and forth to compare' : 'All three entries opened', { done: true });
   }

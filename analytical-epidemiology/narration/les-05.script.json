@@ -1,0 +1,189 @@
+{
+  "format": "coauthor-narration-script@1",
+  "voices": [
+    {
+      "id": "andrew",
+      "label": "Andrew",
+      "name": "en-US-AndrewMultilingualNeural",
+      "rate": "-2%",
+      "pitch": "-2Hz"
+    },
+    {
+      "id": "neerja",
+      "label": "Neerja",
+      "name": "en-IN-NeerjaExpressiveNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz"
+    }
+  ],
+  "segments": [
+    {
+      "block": "blk-l05-s01",
+      "step": "b1",
+      "say": "[[focus.doctors+framingham+miners]] The thickest file on the desk holds three studies that ran for years. [[focus.doctors]] British doctors on the Medical Register of the United Kingdom were followed from nineteen fifty-one. [[focus.framingham]] The residents of Framingham, a whole town, were counted year after year for heart disease. [[focus.miners]] Uranium miners were watched for lung cancer, beside men who never went near a mine. [[dayone]] [[focus.clock]] On the first day of each study, nobody in it had the disease being counted. The investigators wrote down who was exposed, and then [[years]] [[focus.all]] they waited."
+    },
+    {
+      "block": "blk-l05-s01",
+      "step": "b2",
+      "say": "[[focus.card]] Your own live case sits on the desk, [[stamp]] [[focus.stamp]] with its stamp. [[focus.or]] The odds ratio of thirteen point two says how strongly tank cleaning and the tumour travel together, and the four bias checks say the number was not manufactured. [[focus.stamp]] What no case-control study can give is incidence: the number of new cases per head over time. [[focus.why]] Its groups were assembled after the fact, and never followed forward. [[focus.rest]] A cohort starts with people who are still well, and follows them, so it can count exactly that. [[focus.or]] The odds ratio says how strong. [[focus.stamp]] Incidence says how often."
+    },
+    {
+      "block": "blk-l05-s01",
+      "step": "b3",
+      "say": "[[focus.rest]] Case-control results were already in. So why follow tens of thousands of healthy people for years, at real cost, waiting for a few hundred to fall ill? Because the waiting produces the one number the other design cannot: [[howoften]] [[show.perhead]] the incidence in each group, and the ratio between them. [[focus.doctors+framingham+miners]] All three studies share the same shape. Each runs forward from its own start, [[focus.noend]] with no end date fixed in advance, [[focus.doctors+framingham+miners]] and the new cases appear one by one as the years pass."
+    },
+    {
+      "block": "blk-l05-s02",
+      "step": "b1",
+      "say": "A cohort is a group of people who share one characteristic or experience within a defined period of time. [[focus.birth]] Everyone born in twenty ten is the birth cohort of twenty ten. [[focus.exposure]] People exposed to one drug, vaccine or infection within a defined period form an exposure cohort. [[focus.marriage]] And men or women married in the same period form a marriage cohort. [[focus.rest]] The word names the sharing, not the size of the group."
+    },
+    {
+      "block": "blk-l05-s02",
+      "step": "b2",
+      "say": "[[focus.rest]] The studies in file five earn the name by three features. The cohorts are identified before the disease under investigation appears in them. The groups are observed over a period of time, to measure how often disease appears. And the study proceeds from cause to effect. Because the design watches events that have not yet happened, [[focus.aside]] the same study travels under other names: prospective study, longitudinal study, incidence study, forward-looking study. Cohort study is the name in widest use, and the one this desk uses."
+    },
+    {
+      "block": "blk-l05-s02",
+      "step": "b3",
+      "say": "[[focus.rest]] The method chapter sets four conditions under which a cohort study is indicated. First, there should already be good evidence of an association between exposure and disease, from clinical observation, descriptive work or case-control studies. Second, the exposure should be rare, but the disease common among the exposed, as in special occupational groups, and people given X-rays. Third, the loss of members during follow-up, which the chapter calls attrition, should be avoidable, because the cohort is stable, cooperative and easy to reach. And fourth, the funds should be ample, because following people for years is not cheap. As the senior investigator puts it: cost is why a cohort comes late in an investigation, not last. You have earned it."
+    },
+    {
+      "block": "blk-l05-s03",
+      "step": "b1",
+      "say": "[[focus.rest]] These numbers are illustrative. A cohort table is built out of people before it is built out of letters. [[dayone]] [[focus.exposed]] One group holds two hundred exposed men, the group the chapter calls the study cohort. [[focus.unexposed]] The other holds four hundred unexposed men, the control cohort. [[show.cap]] Each dot is one man. [[focus.clock]] Nobody in either group has the disease, so on the first day there is nothing to count."
+    },
+    {
+      "block": "blk-l05-s03",
+      "step": "b2",
+      "say": "[[focus.clock]] Both groups are followed forward, under the same conditions, over the same period. [[years]] As the years pass, [[focus.exposed]] twenty of the exposed men become cases, [[focus.unexposed]] and ten of the unexposed men do. [[focus.exposed+unexposed]] The two groups were comparable people at the start, so a difference in what happens to them is exactly what this design exists to measure."
+    },
+    {
+      "block": "blk-l05-s03",
+      "step": "b3",
+      "say": "[[focus.erow+urow]] With the outcomes known, the men sort into the four cells of Table sixteen. [[focus.cell-a]] Cell a holds the twenty exposed cases, and [[focus.cell-b]] b the hundred and eighty exposed men who stayed well. [[focus.cell-c]] Cell c holds the ten unexposed cases, and [[focus.cell-d]] d the three hundred and ninety unexposed men who stayed well. [[show.margins]] [[focus.margins]] The margins, [[focus.mar-ab+erow]] a plus b equals two hundred, and [[focus.mar-cd+urow]] c plus d equals four hundred, are the people followed: the denominators that a case-control table never has."
+    },
+    {
+      "block": "blk-l05-s03",
+      "step": "b4",
+      "say": "[[show.read0]] [[focus.erow+read0]] The exposed row gives a over a plus b: twenty over two hundred, an incidence of a hundred per thousand over the follow-up. [[show.read1]] [[focus.urow+read1]] The unexposed row gives c over c plus d: ten over four hundred, or twenty-five per thousand. [[show.rr]] [[focus.rr]] Divide one by the other, and the relative risk is a hundred over twenty-five, which is four. [[focus.rest]] You met this formula in lesson three; now you have watched it happen. [[focus.read0+read1]] Incidence in each row first, [[focus.rr]] then the ratio of the two incidences. [[show.chips]] [[focus.all]] Tap each row yourself, and post its incidence again.",
+      "await": "interact",
+      "hint": "Tap the Exposed row, then the Unexposed row.",
+      "closed": true
+    },
+    {
+      "block": "q-l05-s02",
+      "step": "prompt",
+      "say": "Another illustrative cohort. Of one thousand two hundred men exposed to a solvent, sixty develop the disease over ten years of follow-up. Of eight hundred unexposed men, sixteen develop it over the same ten years. Compute the relative risk, to two decimal places.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l05-s04",
+      "step": "prompt",
+      "say": "In nineteen seventy-eight, investigators opened the records of one Boston hospital, and pulled the files of seventeen thousand and eighty babies born there between nineteen sixty-nine and nineteen seventy-five. They separated the labours that had used electronic foetal monitoring from those that had not, and compared neonatal deaths, the deaths of newborn babies, in the two groups. Every birth and every death in the study happened years before the investigators began. Which design do you predict this is?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l05-s05",
+      "step": "b1",
+      "say": "[[focus.name]] If you said a retrospective cohort, the file agrees, and the name is worth unpacking, because retrospective here does not mean case-control. [[focus.flag]] The study began in nineteen seventy-eight, [[focus.dir]] yet it ran from cause to effect like any cohort: [[focus.cap]] it took the babies born at one hospital, [[focus.exposure]] split them by monitoring, [[focus.outcome]] and counted deaths. [[focus.rest]] About sixteen thousand live births entered the published analysis, and the neonatal death rate came out one point seven times higher in the unmonitored infants. That one point seven is the crude ratio, computed straight from the counts. The senior investigator adds a note: the paper's own adjusted figure is one point four, with a ninety-five per cent confidence interval from zero point eight five to two point four five, once the babies' own risk at birth is accounted for. A crude ratio can mislead. In lesson two, you watched a crude gap vanish once the groups were split."
+    },
+    {
+      "block": "blk-l05-s05",
+      "step": "b2",
+      "say": "[[focus.chips]] Each named study sits on its own dated axis, [[focus.exposure+outcome]] with the exposure and the outcomes drawn as bands. [[focus.flag]] Slide the investigation-starts flag along the Boston axis [[pros]] to before the births began, [[focus.name]] and the label changes to prospective cohort, because at that start the outcomes have not yet happened. [[retro]] [[focus.flag]] Drag it back to nineteen seventy-eight, [[focus.name]] and the label returns to retrospective, also called historical. [[focus.dir]] The direction of inquiry stays pinned from cause to effect at every position, and that is what separates all of these from a case-control study. [[focus.all]] Now move the flag yourself, and watch the name change.",
+      "await": "interact",
+      "free": true,
+      "hint": "Slide the investigation-starts flag."
+    },
+    {
+      "block": "blk-l05-s05",
+      "step": "b3",
+      "say": "[[focus.flag]] Start the investigation inside the years when outcomes were still accumulating, [[focus.name]] and the label reads a combination of retrospective and prospective. [[focus.cap]] The chapter's example is Court-Brown and Doll. [[focus.flag]] In nineteen fifty-five they assembled a cohort of thirteen thousand three hundred and fifty-two patients [[focus.exposure]] who had received large doses of radiation therapy for ankylosing spondylitis, a disease of the spine, between nineteen thirty-four and nineteen fifty-four. [[focus.outcome]] Deaths from leukaemia or aplastic anaemia already on record were assessed from the files, [[focus.flag]] and the same cohort was then followed on from nineteen fifty-five into the later years. [[focus.rest]] The study found the death rate from these diseases substantially higher in the cohort than in the general population."
+    },
+    {
+      "block": "blk-l05-s05",
+      "step": "b4",
+      "say": "[[focus.cap]] Doll's doctors from nineteen fifty-one, the Framingham town study and the uranium miners [[focus.name]] all carry the same label, for the same reason: [[focus.flag+outcome]] their investigations started while the outcomes lay ahead of them. [[focus.chips]] The Boston babies study started after every outcome was over. Court-Brown started in between. [[focus.flag]] Where the investigation starts decides the name. [[focus.dir]] Where the question runs, from cause to effect, never changes."
+    },
+    {
+      "block": "q-l05-s03",
+      "step": "prompt",
+      "say": "Sort each study into the design that its starting point gives it.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l05-s06",
+      "step": "b1",
+      "say": "The chapter lists the elements of a cohort study in order: selection of study subjects, obtaining data on exposure, selection of comparison groups, follow-up, and analysis. Selection comes first, and it is done in one of two ways. The cohort may come from the general population, when the exposure is fairly common and whole communities can be assembled, as Framingham did. Or it may come from special groups that can be studied readily, such as professional groups, insured persons, or the employees of one industry. These tend to be more alike, and easier to reach."
+    },
+    {
+      "block": "blk-l05-s06",
+      "step": "b2",
+      "say": "Assembling the cohorts is gated by four conditions. The cohorts must be free of the disease under study: if the disease is coronary heart disease, the members are examined first, and anyone with evidence of it is excluded. The two groups should be equally susceptible, which is why males over thirty-five would be an appropriate cohort for a lung cancer study. They should be comparable in all the variables that can influence the frequency of the disease. And the diagnostic and eligibility criteria must be defined beforehand, because recognising the disease when it develops depends on them."
+    },
+    {
+      "block": "blk-l05-s06",
+      "step": "b3",
+      "say": "[[focus.exposure]] The second element is obtaining data on exposure, from records or examination, so that each member lands in the exposed or unexposed group for a stated reason. [[focus.comparison]] The third is the comparison group: the general population the cohort was drawn from, or another cohort thought to have had little or no exposure, but otherwise similar. Both choices belong to the planning page, not to the day the results arrive."
+    },
+    {
+      "block": "blk-l05-s06",
+      "step": "b4",
+      "say": "[[focus.followup]] The groups are then followed, under the same conditions, over a period of time, and the outcome is recorded: onset of disease, disability, or death. This is the element that makes cohorts costly, because in chronic diseases such as cancer, the follow-up may last decades. It is also the element that gives the study its denominators. [[focus.analysis]] At the end, the incidence is worked out in both groups. If the incidence in the exposed, a over a plus b, is clearly higher than in the unexposed, c over c plus d, exposure and disease are associated. A well-designed cohort study is considered the most reliable way of showing such an association. After the next question, you get the plant's personnel records, and assemble one yourself."
+    },
+    {
+      "block": "q-l05-s04",
+      "step": "prompt",
+      "say": "The plant's nineteen seventy personnel records show that three of the tank cleaners already had the liver tumour when the cohort follow-up opens. What do the cohort's rules say about these three men?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l05-s07",
+      "step": "b1",
+      "say": "Here are the plant's personnel files. Sort twelve of them into a study cohort and a control cohort that pass all four entry checks, then press Check.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l05-s08",
+      "step": "b1",
+      "say": "[[focus.rest]] This case is still illustrative. The exercise you just did, scaled up, is the move this whole file has been building towards. [[focus.reactor]] The plant's personnel records yield a study cohort of two thousand men with at least five years of tank cleaning, [[cohorts]] [[focus.other]] and a control cohort of eight thousand other men from the same workforce, [[focus.clock]] all free of the tumour when the follow-up opens. Over twenty years of follow-up, [[cases]] [[show.rcases]] [[focus.rcases]] twelve of the tank cleaners [[show.ocases]] [[focus.ocases]] and four of the other men develop the tumour. [[focus.rcases+ocases]] The records hold only men who entered the plant in those twenty years, so the cohort catches sixteen tumours, not all twenty of your earlier cases: [[focus.rest]] four older hands joined before the records begin."
+    },
+    {
+      "block": "blk-l05-s08",
+      "step": "b2",
+      "say": "[[focus.reactor+other]] Each cohort earns its own incidence. [[show.read0]] [[focus.rcases+read0]] Twelve cases in two thousand men is six per thousand over the follow-up. [[show.read1]] [[focus.ocases+read1]] Four cases in eight thousand men is zero point five per thousand. [[rr]] [[show.rr]] [[focus.rr]] Divide one by the other, and the relative risk lands: six divided by zero point five is twelve. [[focus.rest]] Beside it sits the number from lesson three: the odds ratio of thirteen point two, computed from the ward's twenty cases and sixty controls."
+    },
+    {
+      "block": "blk-l05-s08",
+      "step": "b3",
+      "say": "[[focus.orbar+rrbar]] [[agree]] Set the two ratios side by side, [[focus.base]] both measured from one, the value that would mean no difference. The two numbers differ a little, [[focus.orbar]] because one design counted odds among twenty cases and sixty controls, [[focus.rrbar]] while the other counted incidence in ten thousand followed men. [[show.rare]] [[focus.rare]] A very rare disease keeps the two estimates close. [[focus.orbar+rrbar]] The study that looked backward and the study that ran forward agree: tank cleaning and the tumour travel together."
+    },
+    {
+      "block": "q-l05-s05",
+      "step": "prompt",
+      "say": "Your cohort computes a relative risk of twelve, and the ward's table in file three gave an odds ratio of thirteen point two. Why do the two numbers sit so close together?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l05-s09",
+      "step": "b1",
+      "say": "[[focus.rest]] This is still the illustrative case. [[strip]] [[focus.strip]] The case file now holds every finding the case has earned. [[focus.cases+controls]] The cluster, the controls, the two by two table, [[focus.or+checks]] and the odds ratio with its four bias checks came first. [[focus.rr]] The cohort adds twelve of two thousand against four of eight thousand: a relative risk of twelve, [[focus.or+rr]] beside the odds ratio of thirteen point two. [[focus.rest]] One question is left: what real case was this file drawn from?"
+    },
+    {
+      "block": "blk-l05-s09",
+      "step": "b2",
+      "say": "[[focus.real]] [[real]] Your case was drawn from a real one. [[show.disease]] [[focus.disease]] Angiosarcoma of the liver is a very rare cancer. In the nineteen seventies it appeared in excess among workers exposed to [[show.gas]] [[focus.gas]] vinyl chloride, the gas from which P V C is made; the chapter writes polyvinyl chloride. [[focus.rest]] The first signal was not a cohort. [[show.plant]] [[focus.plant]] In nineteen seventy-four, a plant physician reported a cluster of four men with the tumour, all from the one section where the gas was turned into P V C. [[show.plants]] [[focus.plants]] Retrospective cohort studies of vinyl chloride workers across thirty-three plants confirmed the excess in the same year. [[show.path]] [[focus.path]] Your own path repeated theirs: a cluster, then a comparison, then a cohort."
+    },
+    {
+      "block": "blk-l05-s09",
+      "step": "b3",
+      "say": "[[focus.rest]] [[verdict]] Side by side, the two methods mirror each other. [[focus.cc]] The case-control study starts from the disease, and runs from effect to cause. It measures an odds ratio, quickly and cheaply. [[focus.co]] The cohort starts from the exposure, and runs from cause to effect. It measures incidence and relative risk, slowly and at a cost. [[focus.live]] On your live case they gave thirteen point two and twelve. [[focus.rest]] The chapter's line, that this association was picked up only by a retrospective cohort, skips the first half of the story. The corrected version reads: a cluster raised the question, and a cohort answered it. One problem stays open on the desk, and it belongs to the next chapter: how do you keep two thousand men in view for twenty years?"
+    },
+    {
+      "block": "q-l05-s06",
+      "step": "prompt",
+      "say": "The plant's medical officer asks you one question: how many of our men fall ill with this tumour each year? Which design answers it?",
+      "await": "answer"
+    }
+  ]
+}

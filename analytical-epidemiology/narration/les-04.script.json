@@ -1,0 +1,154 @@
+{
+  "format": "coauthor-narration-script@1",
+  "voices": [
+    {
+      "id": "andrew",
+      "label": "Andrew",
+      "name": "en-US-AndrewMultilingualNeural",
+      "rate": "-2%",
+      "pitch": "-2Hz"
+    },
+    {
+      "id": "neerja",
+      "label": "Neerja",
+      "name": "en-IN-NeerjaExpressiveNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz"
+    }
+  ],
+  "segments": [
+    {
+      "block": "blk-l04-s01",
+      "step": "b1",
+      "say": "File four opens on the patients, not on the drug. [[patients]] [[show.cases+controls]] They are young women, most in their twenties and thirties, admitted with a clot in a deep leg vein, or in the lung. Venous thrombosis and pulmonary embolism are rare at that age, and a clot that reaches the lungs can kill. [[focus.rest]] Between nineteen sixty-five and nineteen sixty-nine, the Committee on Safety of Drugs in Britain received two hundred and forty-nine reports of adverse reactions in women taking oral contraceptives. Someone had to find out whether the pill was the cause."
+    },
+    {
+      "block": "blk-l04-s01",
+      "step": "b2",
+      "say": "In Vessey and Doll's study of nineteen sixty-nine, the investigators compared [[focus.cases]] eighty-four women with clots with [[focus.controls]] a hundred and sixty-eight comparable women without them, matched for age, marital status and parity, that is, the number of children borne. [[focus.cases]] Half the cases, forty-two women, had used oral contraceptives. [[focus.controls]] Of the controls, fourteen per cent had, which is twenty-three women. [[sort]] [[focus.cases+controls]] Sort both groups by pill use, [[show.pill+cells]] and the four cells fill: [[focus.cell-a]] forty-two, [[focus.cell-c]] forty-two, [[focus.cell-b]] twenty-three and [[focus.cell-d]] a hundred and forty-five, [[show.margins]] with margins of [[focus.mar-ac]] eighty-four and [[focus.mar-bd]] a hundred and sixty-eight. [[show.entry+prods]] [[focus.all]] Now build the two cross-products yourself, forty-two times a hundred and forty-five, and forty-two times twenty-three, and press Check.",
+      "await": "interact",
+      "hint": "Enter both products, then press Check.",
+      "closed": true
+    },
+    {
+      "block": "blk-l04-s01",
+      "step": "b3",
+      "say": "[[show.frac]] [[ratio]] [[focus.frac+ad]] Forty-two times a hundred and forty-five is six thousand and ninety, and [[focus.frac+bc]] forty-two times twenty-three is nine hundred and sixty-six. [[focus.frac]] So the ratio is six thousand and ninety over nine hundred and sixty-six: [[show.ratio]] six point three zero. [[show.print]] The investigators printed it as relative risk, six point three to one. But you know from the last lesson that a case-control table computes an odds ratio, whatever name is printed above it. [[focus.cases+controls]] And a ratio built from hospital wards is only as good as the way its two groups were assembled. Could the selection itself have manufactured part of it?"
+    },
+    {
+      "block": "q-l04-s01",
+      "step": "prompt",
+      "say": "The investigators printed relative risk, six point three to one, under Table fifteen. What does the arithmetic of a hospital case-control table actually compute?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l04-s02",
+      "step": "b1",
+      "say": "A P value as small as the ones in the last lesson feels like a certificate of fairness: the gap is too big for chance, so the comparison must be sound. But P measures only one rival, and that rival is chance. [[honest]] [[focus.study]] Take one honest study, [[repeat]] [[focus.study+runs]] and run it a hundred times. The odds ratios scatter on both sides of [[focus.runs+truth]] the truth, some high and some low, [[focus.runs+truth+centre]] centred on the real value."
+    },
+    {
+      "block": "blk-l04-s02",
+      "step": "b2",
+      "say": "Bias is different. It is a systematic error, built into a study by the way its groups were chosen or questioned. [[bias]] [[focus.study]] Add one bias to the same study, [[focus.runs]] and run it a hundred times again. [[focus.runs+shift]] The whole cloud of results moves to one side, and stays there. [[show.note]] Repeating the study does not pull it back, [[pblind]] [[focus.pcount+runs+rings]] and every one of those repeats can still come with a small P value. A P value cannot see bias."
+    },
+    {
+      "block": "blk-l04-s02",
+      "step": "b3",
+      "say": "The six point three came from hospital wards. The next slides examine how its cases and controls reached the study: [[show.door1]] what they remembered, [[show.door2]] who asked them, and [[show.door3]] which door brought them into the hospital at all."
+    },
+    {
+      "block": "blk-l04-s03",
+      "step": "prompt",
+      "say": "Back to your own file, which is illustrative. The twenty men with the tumour are interviewed on the ward, by an interviewer who knows the hypothesis about tank cleaning. The sixty controls answer the same list of questions at home, by post. Which way do you predict the odds ratio is likely to move?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l04-s04",
+      "step": "b1",
+      "say": "If you chose the second answer, you read the ward correctly, because two mechanisms push the same way here. [[wards]] The first is recall bias. [[focus.cases]] A man with a rare tumour has turned his working life over, looking for a cause, so he recalls every tank-cleaning job more completely [[focus.cases+controls]] than a healthy control does. [[focus.rest]] Patients who have had a myocardial infarction remember their habits better than people who have not, for the same reason. The second is interviewer bias. [[focus.how]] An interviewer who knows the hypothesis probes the cases' answers harder than the controls' forms, and records more exposure that way."
+    },
+    {
+      "block": "blk-l04-s04",
+      "step": "b2",
+      "say": "These numbers are illustrative. Take a study in which the exposure truly does nothing. [[focus.cases]] Thirty of sixty cases and [[focus.controls]] thirty of sixty controls report it, [[focus.or]] and the odds ratio is one. [[focus.cases]] Now let the cases' memory and the interviewer's probing [[recall]] add ten percentage points to what the cases report, [[focus.controls]] while nothing on the controls' side moves. [[focus.cases]] Six more case men are recorded as exposed, [[focus.or]] and the ratio climbs to one point five. The lesson is not that particular number: [[focus.how]] the whole rise came from how the two groups were asked. [[show.slider]] [[focus.all]] Try the slider yourself, and watch the ratio follow the extra recall.",
+      "await": "interact",
+      "free": true,
+      "hint": "Move the extra-recall slider."
+    },
+    {
+      "block": "blk-l04-s04",
+      "step": "b3",
+      "say": "Your own file does not have to trust either mechanism. [[show.records]] The counts on its table card, fourteen of twenty and nine of sixty, [[records]] [[focus.cases+or+records]] come from the plant's personnel records, not from what anyone remembers, so recall has nothing to feed on. [[focus.how]] What remains is how the interviews are conducted. The senior's standing rule is that the person asking the questions never learns which men are the cases, and the interview records are compared afterwards, to check that both groups were questioned alike. [[focus.rest]] A P value, you now know, would certify none of this."
+    },
+    {
+      "block": "q-l04-s03",
+      "step": "prompt",
+      "say": "In the live case's study plan, an interviewer who knows the hypothesis questions the twenty cases on the ward, while the sixty controls answer by post. Before the odds ratio is printed, what is the most direct check that the interviewing itself did not treat the two groups differently?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l04-s05",
+      "step": "b1",
+      "say": "Selection bias is the name for what can go wrong before any question is asked: the cases and controls a study takes in may not represent [[focus.town]] the populations they came from. [[focus.rest]] Your live case took its controls from the same workforce, so both groups entered through the same employment door. Hospital-based files, like the pill study, take their cases and controls [[show.door+hosp]] through the hospital's admission door. And people enter hospital [[show.rates]] at very different rates, for very different conditions."
+    },
+    {
+      "block": "blk-l04-s05",
+      "step": "b2",
+      "say": "These numbers are illustrative. [[focus.town]] Take a town of two thousand people, in which the exposure and the disease have no link at all. The share with the disease is the same among the exposed and the unexposed, [[focus.townor]] so the town's odds ratio is one. Now send the town [[door]] [[focus.door]] through a hospital door. [[focus.rates]] The disease makes admission likely, the exposure makes it somewhat more likely, and everyone else comes in only now and then, for other complaints. [[focus.hosp]] Of those who pass the door, fifty-two are exposed with the disease, a hundred and eighty exposed without it, forty unexposed with it, and three hundred and sixty unexposed without it. [[built]] [[focus.hospor]] The hospital's own table reads an odds ratio of two point six. [[focus.town]] Nothing in the town has changed. [[focus.door]] The door built the association."
+    },
+    {
+      "block": "blk-l04-s05",
+      "step": "b3",
+      "say": "[[focus.door]] This door effect has a name: Berkson's bias, after the statistician who described it. [[focus.rates]] When the exposure and the disease each raise the chance of admission, [[focus.hospor]] the hospital's own patients can show an association [[focus.hospor+townor]] that the population behind the hospital does not have. [[focus.rest]] It is worth separating it from confounding. Confounding is a third feature travelling with the exposure, and matching removes it. [[focus.nothird]] Here no third feature is at work: the selection itself created the association, so no matching can undo it. [[focus.hospor]] A hospital file can therefore print a strong ratio that no care in the interviewing would have prevented. [[show.match]] [[focus.all]] Match the patients on age yourself, and see that the ratio does not move.",
+      "await": "interact",
+      "hint": "Press Match on age."
+    },
+    {
+      "block": "q-l04-s04",
+      "step": "prompt",
+      "say": "A hospital-based case-control study finds that two diseases travel together. A survey of the whole town, hospital or not, finds no link between them. Which explanation accounts for both findings?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l04-s07",
+      "step": "b1",
+      "say": "Now try to break a study on purpose. Start from a study whose exposure truly does nothing, and make it print an odds ratio of two or more. Then name the flaw behind each choice that built it, and press Check.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l04-s08",
+      "step": "b1",
+      "say": "The method chapter lists the strengths and limits of the case-control study in Table thirteen, and every line belongs to a file you have already opened. [[focus.des]] All seven strengths belong to the D E S file. The disease was so rare that a cohort would have waited years for its first cases. Eight cases and thirty-two controls gave an answer within months, and at low cost. Several possible causes were examined at once, nobody had to be followed or could be lost, and nothing was done to the women, so the ethical problems were few."
+    },
+    {
+      "block": "blk-l04-s08",
+      "step": "b2",
+      "say": "The six limits sort across the other files. [[show.recall]] The recall question shows one: memory and old records cannot be checked. [[show.door]] The hospital door shows another: a suitable comparison group is hard to choose. [[show.ratio]] Your own odds ratio shows the other four. It gives no incidence. It cannot separate the cause from the factors that travel with it. It is not the design for testing a treatment. And its cases and controls may not represent their populations. One of these limits, no incidence, sits on every case-control file ever run. The next file opens on that limit."
+    },
+    {
+      "block": "q-l04-s05",
+      "step": "prompt",
+      "say": "Sort each card: is it something a case-control study does well, or something it cannot do?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l04-s09",
+      "step": "b1",
+      "say": "These numbers are illustrative. [[focus.file]] The case file now carries the whole investigation: the cluster, the controls, the table, [[focus.or]] and an odds ratio of thirteen point two. [[show.gates]] The newest entry is the bias checks. There are four, and each is ticked for a reason you can point to. [[focus.g1]] The control list came from the plant's own workforce. [[focus.g2]] The counts come from personnel records, rather than memory. [[focus.g3]] The person asking the questions never knew who was a case. [[focus.g4]] And both groups entered the study through the same employment door. [[show.foot]] [[focus.all]] Tick each of the four checks yourself, and see which men each one is about.",
+      "await": "interact",
+      "hint": "Tick all four bias checks.",
+      "closed": true
+    },
+    {
+      "block": "blk-l04-s09",
+      "step": "b2",
+      "say": "[[focus.all4]] Even with every check ticked, [[focus.or]] the odds ratio carries a second marking: [[stamp]] [[show.stamp]] no incidence. [[focus.or]] Thirteen point two says how strongly tank cleaning and the tumour travel together among the eighty men studied. [[focus.stamp]] It cannot say how many of all the plant's tank cleaners fall ill each year, because no group was ever followed forward. [[focus.rest]] Now a note from the senior investigator. [[records]] [[show.records]] The factory's personnel records go back twenty years, with the job and department of every man who entered the plant. So what if you start from the workers, rather than from the patients?"
+    },
+    {
+      "block": "q-l04-s06",
+      "step": "prompt",
+      "say": "On the live case, all four bias checks pass, and the odds ratio stands at thirteen point two. Which question about tank cleaning does this study still have no way to answer?",
+      "await": "answer"
+    }
+  ]
+}

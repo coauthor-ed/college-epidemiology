@@ -1,185 +1,296 @@
 /**
  * CaseControlFrameScene - analytical-epidemiology L02 s02 "start from the disease, look back for the
- * exposure". People before cells: a school picnic (illustrative), 20 people who fell ill and 60 who
- * stayed well, chosen by the investigator.
- *   Beat 0: two pools of dots, 20 cases (signature colour) and 60 controls (grey); no table yet.
- *   Beat 1: both groups are asked about the paneer salad; the pools empty and the people land in the
- *           four cells of a ruled 2x2 table (16, 12 / 4, 48), counts only, no letters.
- *   Beat 2: the letters a-d join the counts and the total row becomes the margins a+c = 20, b+d = 60.
- *   Beat 3: chips under the table select a cell or a margin; its people stay lit, the rest dim, and a
- *           reading line names what the selection holds.
- *   Beat 4: as beat 3, plus the take-away line.
- * No rate, no total of 80, no odds ratio: the group sizes are the investigator's choice.
- * Built on the editorial panel parts (kit/SimPanel.js): rule table, chips, prompt, take-away; the dots
- * follow the approved L03 OddsRatioBuildScene mount-2 pattern (pools fade out, cells fill in).
+ * exposure", on the DES study (Herbst 1971): 8 women with the cancer, controls chosen by the investigator
+ * from girls born in the same hospital within days. One dot = one person: blue = case, grey = control.
+ * Each row is one woman with her controls to her right, picked from the pool on the right.
+ *   Beat 0 cases:  8 blue dots, an empty "controls: ?" area, the pool waiting; an arrow back in time.
+ *   Beat 1 chosen: stepper "controls for each case 1 2 3 4"; controls fly from the pool into the rows;
+ *                  "ill in this study" 8 of 16 = 50, 8 of 24 = 33, 8 of 32 = 25, 8 of 40 = 20 per cent.
+ *                  Rest: 4 each, 32 controls (what Boston chose). Cues: controls -> 1 each, chosen -> 4.
+ *   Beat 2 frame:  the 40 people line up under an EMPTY 2 x 2 (exposure not asked yet); then the letters
+ *                  a b c d settle in the cells and the margins a + c = 8, b + d = 32, small, last.
+ *   Beat 3 steps:  the four-step strip; the first two lit, "next: one at a time"; a tap on a step lights
+ *                  the people it is about (1: the cases, 2: the controls, 3 and 4: all 40, the rest dimmed)
+ *                  and the line above the steps names them. A second tap on the same step clears it.
+ * Narration focus ids (beat 2 table): cells (all four), cell-a/b/c/d, row-e / row-u (row heads),
+ * col-ac / col-bd (a column's two cells), margins, mar-ac / mar-bd, letters, ask, cases, controls.
+ * Completion: beat 1 (controls stepper) and beat 3 (step tap) send scene-interact-done on each tap;
+ * both beats are exploration (Done/Skip), so the signal never moves the narration on.
+ * Exposure is not shown anywhere here (the DES answer is kept for s07), so every dot is a plain disc.
  */
-import { DomSimulation } from 'simulations/base/DomSimulation.js';
-import { withBeats } from 'simulations/base/DomBeats.js';
-import { SIM_PANEL_CSS, ruleTableHtml, chipsHtml, promptHtml, takeawayHtml, bindPanel } from 'simulations/base/kit/SimPanel.js';
-import { reducedMotion } from 'simulations/base/kit/SimAnim.js';
-import { mulberry32 } from 'simulations/base/kit/SimLook.js';
+import { SvgScene } from 'simulations/base/kit/SimSvg.js';
+import { SIM_CROWD_CSS, crowdLive, legendHtml, scatterLayout } from 'simulations/base/kit/SimCrowd.js';
+import { withNarrationCues } from '../L01/NarrationCues.js';
 
-const N = { a: 16, b: 12, c: 4, d: 48 };            // exposed cases, exposed controls, unexposed cases, unexposed controls
-const SORT_LAG = 0.012;                              // s between people in the sort (80 people: about 1 s)
-const MAP = [0, 1, 2, 3, 4].map((i) => [{ idx: i, dwellMs: null }]);
+const CASES = Array.from({ length: 8 }, (_, i) => ({ id: `k${i}`, ill: true, row: i }));
+const CTRL = Array.from({ length: 32 }, (_, i) => ({ id: `c${i}`, ill: false, row: Math.floor(i / 4), j: i % 4 }));
+const SPARE = Array.from({ length: 8 }, (_, i) => ({ id: `p${i}`, ill: false, spare: true }));
+const POOL = [...CTRL, ...SPARE];
+const MAP = [0, 1, 2, 3].map((i) => [{ idx: i, dwellMs: null }]);
+const PCT = { 1: 50, 2: 33, 3: 25, 4: 20 };
+// Narration focus (spec W1 D29n): data-narr ids on the parts; inert with narration off.
+const hideTag = (html) => html.replace(/^<(\w+)/, '<$1 data-narr-hide=""');
+const STEPS = ['Choose the cases', 'Choose the controls', 'Measure exposure the same way in both', 'Compare the two groups'];
+// A tapped step names its people (beat 3): which dots it is about. 0 = cases, 1 = controls, 2-3 = both.
+const ABOUT = ['step 1 is about the 8 cases', 'step 2 is about the 32 controls', 'step 3: all 40, asked the same way', 'step 4: the 8 cases against the 32'];
 
-// 80 people in a seeded order, so the sort runs the same way every time.
-const PEOPLE = (() => {
-  const out = [];
-  for (const [cell, n, isCase] of [['a', N.a, true], ['b', N.b, false], ['c', N.c, true], ['d', N.d, false]]) {
-    for (let i = 0; i < n; i++) out.push({ cell, isCase });
-  }
-  const rnd = mulberry32(11);
-  for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; }
-  return out.map((p, i) => ({ ...p, i }));
-})();
-
-// What a selection holds: the cells it lights and the reading line.
-const PICKS = {
-  a: { cells: ['a'], text: 'a = 16: fell ill and ate the salad.' },
-  b: { cells: ['b'], text: 'b = 12: stayed well and ate the salad.' },
-  c: { cells: ['c'], text: 'c = 4: fell ill and did not eat it.' },
-  d: { cells: ['d'], text: 'd = 48: stayed well and did not eat it.' },
-  ac: { cells: ['a', 'c'], text: 'a + c = 16 + 4 = 20: every case, the group the investigator started from.' },
-  bd: { cells: ['b', 'd'], text: 'b + d = 12 + 48 = 60: every control, three for each case, by choice.' },
-};
-const POS = { a: [0, 0], b: [0, 1], c: [1, 0], d: [1, 1] };
-
-const CSS = SIM_PANEL_CSS + `
-.ccf { gap: var(--sim-space-3); }
-.ccf .spn-table td { vertical-align: top; }
-.ccf-cell { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-.ccf-n { font-variant-numeric: lining-nums tabular-nums; }
-.ccf-n i { font-style: normal; font-weight: 700; color: var(--sim-annot); margin-right: 0.3em; }
-.ccf-dots { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; max-width: 196px; min-height: 10px; }
-.ccf-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sim-series-8); transition: opacity 0.25s ease; }
-.ccf-dot--case { background: var(--sim-annot); }
-.ccf-dim .ccf-dot { opacity: 0.18; }
-.ccf-in { animation: ccf-in 0.35s ease-out both; animation-delay: calc(var(--i) * ${SORT_LAG}s); }
-.ccf-out { animation: ccf-out 0.3s ease-in both; animation-delay: calc(var(--i) * ${SORT_LAG}s); }
-@keyframes ccf-in { from { opacity: 0; transform: scale(0.2); } }
-@keyframes ccf-out { to { opacity: 0.12; transform: scale(0.6); } }
-.ccf-pools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--sim-space-5); padding: var(--sim-space-3) 0; border-top: 1px solid var(--sim-label); border-bottom: 1px solid var(--sim-label); }
-.ccf-pool { display: flex; flex-direction: column; gap: var(--sim-space-2); }
-.ccf-pool .ccf-dots { justify-content: flex-start; max-width: none; gap: 6px; }
-.ccf-pool .ccf-dot { width: 13px; height: 13px; }
-.ccf-pool b { font-family: var(--sim-font-numeral, var(--sim-font-display)); font-weight: 400; font-size: 40px; line-height: 1; color: var(--sim-label); }
-.ccf-pool--case b { color: var(--sim-annot); }
-.ccf-key { display: flex; flex-wrap: wrap; gap: 4px var(--sim-space-4); margin: 0; font-size: var(--sim-text-sm); color: var(--sim-label-muted); }
-.ccf-key i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--sim-series-8); }
-.ccf-key i.ccf-dot--case { background: var(--sim-annot); }
-.ccf-read { margin: 0; min-height: 2.9em; padding-top: var(--sim-space-2); border-top: 1px solid var(--sim-label); font-size: var(--sim-text-md); line-height: 1.45; }
-.ccf-read b { font-weight: 700; }
-.ccf-read--wait { color: var(--sim-label-muted); }
-.ccf-read .spn-prompt { margin: 0; }
-.ccf .spn-btns { gap: var(--sim-space-2); }
-.ccf .spn-act { min-width: 64px; justify-content: flex-start; font-variant-numeric: tabular-nums; }
-.sim-dom-root--portrait .ccf-dots { max-width: 104px; gap: 3px; }
-.sim-dom-root--portrait .ccf-dot { width: 9px; height: 9px; }
-.sim-dom-root--portrait .ccf-pools { grid-template-columns: minmax(0, 1fr); gap: var(--sim-space-3); }
-.sim-dom-root--portrait .ccf .spn-table th, .sim-dom-root--portrait .ccf .spn-table td { padding: 8px 8px; }
-@media (prefers-reduced-motion: reduce) { .ccf-in, .ccf-out { animation: none; } }
-`;
-
-export class CaseControlFrameScene extends withBeats(DomSimulation) {
-  static WIDTH = 540;
-  static HEIGHT = 540;
-  static PORTRAIT_WIDTH = 360;
-  static PORTRAIT_HEIGHT = 650;
-  static LAYOUT = 'fit';
+export class CaseControlFrameScene extends withNarrationCues(SvgScene) {
+  static WIDTH = 680;
+  static HEIGHT = 560;
+  static PORTRAIT_WIDTH = 380;
+  static PORTRAIT_HEIGHT = 640;
+  static MIN_SCALE = 0.85;
   static SETTING = 'none';
   static BEAT_STEP_MAP = MAP;
   static CONTROLS = [];
-  static ARIA_LABEL = 'A case-control frame, illustrative: a school picnic. Twenty people who fell ill and sixty who stayed well are shown as dots. Asked whether they ate the paneer salad, they sort into the four cells of a two by two table: a, 16 ill and exposed; b, 12 well and exposed; c, 4 ill and unexposed; d, 48 well and unexposed. The margins are a plus c, 20, the cases, and b plus d, 60, the controls. Chips under the table select a cell or a margin and light the people it holds.';
+  static CUES = ['cases', 'controls', 'chosen', 'frame', 'steps'];
+  static ARIA_LABEL = 'A case-control study of the DES cancer, one dot per person. The 8 women with the cancer are the cases, in blue; the study looks back in time from them. Controls, in grey, are picked from girls born in the same hospital within days. A stepper sets the controls for each case: with 1 each, 8 of 16 people in the study are ill, 50 per cent; with 2, 8 of 24, 33 per cent; with 3, 8 of 32, 25 per cent; with 4, 8 of 40, 20 per cent. That share is your choice, not a rate of disease. Boston chose 4 for each case, 32 controls. Both groups are then asked the same question and fall into an empty 2 by 2 table: exposed cases a, exposed controls b, unexposed cases c, unexposed controls d; the margins a plus c, 8, and b plus d, 32, are the two groups chosen. Four steps: choose the cases, choose the controls, measure exposure the same way in both, compare.';
+
+  enter(step) {
+    this.cfK = step === 0 ? 0 : 4;
+    this.cfPick = null;
+  }
+
+  geo(st) {
+    const P = st.portrait, M = P ? 12 : 16;
+    const g = { P, M, W: st.W, rowY: P ? 128 : 134, rowStep: P ? 27 : 34, r: P ? 10 : 11.5 };
+    g.caseX = P ? 36 : 64;
+    g.ctrlX = (j) => (P ? 94 + j * 32 : 158 + j * 38);
+    g.pool = P ? { x: 228, y: g.rowY - 14, w: st.W - M - 228, h: 7 * g.rowStep + 28 } : { x: 330, y: g.rowY - 14, w: st.W - M - 330, h: 100 };
+    g.rowsEnd = g.rowY + 7 * g.rowStep + g.r;
+    return g;
+  }
+
+  stageHeight(st) { return st.portrait ? 548 : 476; }
+
+  // The rows picture (beats 0, 1, 3): row i = case i at the left, her k controls to her right.
+  rowsLayout(g, k, withPool) {
+    const pos = new Map(), boxOf = new Map();
+    for (const p of CASES) { pos.set(p.id, { x: g.caseX, y: g.rowY + p.row * g.rowStep }); boxOf.set(p.id, 'cases'); }
+    const pr = g.P ? { x: g.pool.x, y: g.pool.y + 76, w: g.pool.w, h: g.pool.h - 76 } : g.pool;
+    const scatter = withPool ? scatterLayout(POOL, pr, { seed: 7 }) : null;
+    for (const p of POOL) {
+      if (!p.spare && p.j < k) { pos.set(p.id, { x: g.ctrlX(p.j), y: g.rowY + p.row * g.rowStep }); boxOf.set(p.id, 'ctrl'); }
+      else if (scatter) { pos.set(p.id, scatter.pos.get(p.id)); boxOf.set(p.id, 'pool'); }
+    }
+    return { r: g.r, step: g.rowStep, pos, boxOf, boxes: [], rules: [] };
+  }
+
+  // The frame picture (beat 2): table on top, cases under "cases", controls under "controls".
+  frameGeo(g) {
+    const P = g.P;
+    const t = P ? { head: 96, c1: 104, c1w: 94, c2: 206, c2w: g.W - g.M - 206, top: 64, ch: 62 } : { head: 130, c1: 140, c1w: 184, c2: 336, c2w: g.W - g.M - 336, top: 64, ch: 70 };
+    t.dotY = t.top + 30 + 2 * t.ch + (P ? 86 : 52); // portrait: the ask line wraps to three lines above the dots
+    return t;
+  }
+
+  frameLayout(g) {
+    const t = this.frameGeo(g), P = g.P, step = P ? 30 : 36, pos = new Map(), boxOf = new Map();
+    const place = (list, cols, x0, w, key) => list.forEach((p, i) => {
+      const c = i % cols, rr = Math.floor(i / cols), x = x0 + (w - (cols - 1) * step) / 2;
+      pos.set(p.id, { x: x + c * step, y: t.dotY + rr * step }); boxOf.set(p.id, key);
+    });
+    place(CASES, P ? 3 : 4, t.c1, t.c1w, 'cases');
+    place(CTRL, P ? 5 : 8, t.c2, t.c2w, 'ctrl');
+    t.dotEnd = t.dotY + (P ? 6 : 3) * step + g.r;
+    return { r: g.r, step, pos, boxOf, boxes: [], rules: [] };
+  }
+
+  paint(st) {
+    const g = this.geo(st), s = this.stepIndex ?? 0, k = this.cfK ?? 0;
+    let svg = this.timeSvg(g, s), over = '';
+    if (s === 2) {
+      this.lay = this.frameLayout(g);
+      over += this.frameHtml(g);
+    } else {
+      this.lay = this.rowsLayout(g, s === 3 ? 4 : k, s < 3);
+      over += this.rowLabels(g, s, k);
+      if (s < 3) over += this.poolLabel(g, s);
+      if (s === 1) over += this.readoutHtml(g, k);
+      if (s === 3) over += this.stepsHtml(g);
+      if (s === 0) svg += `<rect class="cf-empty" data-narr="controls" x="${g.ctrlX(0) - g.r - 6}" y="${g.rowY - g.r - 6}" width="${g.ctrlX(3) - g.ctrlX(0) + 2 * g.r + 12}" height="${g.rowsEnd - g.rowY + g.r + 12}" rx="6"/>`;
+      svg += `<line class="cf-rule" x1="${g.caseX + g.r + 12}" y1="${g.rowY - 18}" x2="${g.caseX + g.r + 12}" y2="${g.rowsEnd + 6}"/>`;
+    }
+    const head = hideTag(legendHtml({ show: ['ill', 'well'], text: { ill: 'case: has the cancer', well: 'control: does not' } }));
+    return { svg, over, head };
+  }
+
+  timeSvg(g, s) {
+    const y = 26, x1 = g.M + 4, x2 = g.W - g.M - 4, on = s === 0 ? ' cf-time--on' : '';
+    return `<g class="cf-time${on}"${s === 2 ? ' data-narr-hide=""' : ' data-narr="time"'}><line x1="${x2}" y1="${y}" x2="${x1 + 10}" y2="${y}"/><path d="M${x1} ${y} l14 -7 v14 z"/>`
+      + `<text x="${x1}" y="${y - 12}">past: the exposure</text><text x="${x2}" y="${y - 12}" text-anchor="end">now: the disease</text>`
+      + `<text class="cf-look" x="${(x1 + x2) / 2}" y="${y + 22}" text-anchor="middle">look back</text></g>`;
+  }
+
+  rowLabels(g, s, k) {
+    const P = g.P, top = P ? 50 : 52, lit = this.cfPick;
+    const caseW = P ? 74 : 106, ctrlX = g.ctrlX(0) - g.r, ctrlW = P ? 124 : 150;
+    const dimC = lit === 1 ? ' cf-lab--dim' : '', dimK = lit === 0 ? ' cf-lab--dim' : '';
+    const nCtl = s === 3 ? 32 : k * 8;
+    const ctl = s === 0 ? 'controls: ?' : `controls: ${nCtl}`;
+    const sub = s === 0 ? 'not yet chosen' : `${s === 3 ? 4 : k} for each case`;
+    if (P) {
+      return `<div class="cf-lab cf-lab--case cf-lab--line${dimC}" data-narr="cases" style="left:${g.M}px;top:58px;width:${g.W - 2 * g.M}px"><b>cases: 8 <span>women with the cancer</span></b></div>`
+        + `<div class="cf-lab cf-lab--line${dimK}" data-narr="controls" style="left:${g.M}px;top:84px;width:${g.W - 2 * g.M}px"><b>${ctl} <span>${sub}</span></b></div>`;
+    }
+    return `<div class="cf-lab cf-lab--case${dimC}" data-narr="cases" style="left:${g.M}px;top:${top}px;width:${caseW}px"><b>cases: 8</b><span>women with the cancer</span></div>`
+      + `<div class="cf-lab${dimK}" data-narr="controls" style="left:${ctrlX}px;top:${top}px;width:${ctrlW}px"><b>${ctl}</b><span>${sub}</span></div>`;
+  }
+
+  poolLabel(g, s) {
+    const P = g.P;
+    return `<div class="cf-lab cf-lab--pool${s === 0 ? '' : ' cf-lab--soft'}" data-narr="pool" style="left:${g.pool.x}px;top:${P ? g.pool.y : 52}px;width:${g.pool.w}px"><b>pool</b><span>${P ? 'same hospital, born within days' : 'girls born in the same hospital within days'}</span></div>`;
+  }
+
+  readoutHtml(g, k) {
+    const P = g.P, x = P ? g.M : g.pool.x, y = P ? g.rowsEnd + 10 : g.pool.y + g.pool.h + 12, w = P ? g.W - 2 * g.M : g.pool.w;
+    const tot = 8 + 8 * k;
+    let btns = '';
+    for (let n = 1; n <= 4; n++) btns += `<button type="button" class="cf-k${n === k ? ' cf-k--on' : ''}" data-k="${n}" aria-pressed="${n === k}">${n}</button>`;
+    return `<div class="cf-read" style="left:${x}px;top:${y}px;width:${w}px">`
+      + '<span class="cf-kick" data-narr="share">ill in this study</span>'
+      + `<span class="cf-big" data-narr="share"><span class="cf-num">${k ? `8<small>of</small>${tot}` : '8<small>of</small>8'}</span><span class="cf-pct">= ${k ? PCT[k] : 100} per cent</span></span>`
+      + '<span class="cf-cap" data-narr="choice">your choice, not a rate of disease</span>'
+      + `<span class="cf-step" data-narr="stepper"><span class="cf-steplab">controls for each case</span><span class="cf-ks" role="group" aria-label="controls for each case">${btns}</span></span></div>`;
+  }
+
+  frameHtml(g) {
+    const t = this.frameGeo(g), P = g.P, r0 = t.top + 30, rows = ['exposed', 'not exposed'], L = [['a', 'b'], ['c', 'd']];
+    let h = `<div class="cf-th" data-narr="cases" style="left:${t.c1}px;top:${t.top}px;width:${t.c1w}px">cases</div><div class="cf-th" data-narr="controls" style="left:${t.c2}px;top:${t.top}px;width:${t.c2w}px">controls</div>`;
+    rows.forEach((name, i) => {
+      const y = r0 + i * t.ch;
+      h += `<div class="cf-rh" data-narr="cells row-${i ? 'u' : 'e'}" style="left:${g.M}px;top:${y}px;width:${t.head - g.M - 6}px;height:${t.ch}px">${name}</div>`;
+      [t.c1, t.c2].forEach((x, j) => {
+        const w = j ? t.c2w : t.c1w;
+        h += `<div class="cf-cell" data-narr="cells cell-${L[i][j]} col-${j ? 'bd' : 'ac'}" style="left:${x}px;top:${y}px;width:${w}px;height:${t.ch}px"><i class="cf-let" data-narr="letters" style="--d:${1.5 + (2 * i + j) * 0.25}s">${L[i][j]}</i><span class="cf-q">?</span></div>`;
+      });
+    });
+    h += `<div class="cf-ask" data-narr="ask" style="left:${t.c1}px;top:${r0 + 2 * t.ch + 6}px;width:${t.c2 + t.c2w - t.c1}px">exposure: not asked yet, the same question for both groups</div>`;
+    const my = t.dotY + (P ? 6 : 3) * (P ? 30 : 36) + g.r + 14;
+    h += `<div class="cf-mar" data-narr="margins mar-ac" style="left:${t.c1}px;top:${my}px;width:${t.c1w}px"><i>a</i> + <i>c</i> = 8</div>`;
+    h += `<div class="cf-mar" data-narr="margins mar-bd" style="left:${t.c2}px;top:${my}px;width:${t.c2w}px"><i>b</i> + <i>d</i> = 32</div>`;
+    return h;
+  }
+
+  stepsHtml(g) {
+    const P = g.P, x = P ? g.M : g.pool.x, y = P ? g.rowsEnd + 10 : g.rowY - 14, w = P ? g.W - 2 * g.M : g.pool.w;
+    let h = `<div class="cf-steps${P ? ' cf-steps--grid' : ''}" style="left:${x}px;top:${y}px;width:${w}px"><span class="cf-next${this.cfPick != null ? ' cf-next--about' : ''}" data-narr="next">${this.cfPick != null ? ABOUT[this.cfPick] : 'next: one at a time'}</span>`;
+    STEPS.forEach((txt, i) => {
+      const on = this.cfPick === i;
+      h += `<button type="button" class="cf-card${i < 2 ? ' cf-card--next' : ''}${on ? ' cf-card--on' : ''}" data-st="${i}" data-narr="step${i + 1}" aria-pressed="${on}"><span class="cf-no">${i + 1}</span><span>${txt}</span></button>`;
+    });
+    return h + '</div>';
+  }
+
+  animate() {
+    if (!this.lay) return;
+    const s = this.stepIndex ?? 0, pick = this.cfPick;
+    const people = [...CASES, ...POOL].filter((p) => this.lay.pos.has(p.id)).map((p) => {
+      const inPool = this.lay.boxOf.get(p.id) === 'pool';
+      let dim = inPool && s !== 0 ? true : inPool ? false : false;
+      if (s === 0 && !p.ill) dim = true;
+      let lit = s === 0 && p.ill;
+      if (s === 3 && pick != null) {
+        const mine = pick === 0 ? p.ill : pick === 1 ? !p.ill : true;
+        dim = !mine; lit = mine;
+      }
+      return { ...p, dim, lit };
+    });
+    crowdLive(this.live, 'cf', people, this.lay, { order: s === 1 ? 'x' : 'row' });
+    for (const p of people) {
+      const e = this.live.get(`cf|${p.id}`), n = p.ill ? 'cases' : this.lay.boxOf.get(p.id) === 'pool' ? 'pool' : 'controls';
+      if (e && e.getAttribute('data-narr') !== n) e.setAttribute('data-narr', n);
+    }
+  }
 
   async setup() {
-    this.sel = null;
-    this.sorting = false;
-    this.prev = null;
     await super.setup();
-    this.render({ css: CSS, rootClass: 'spn-page', html: '' });
-    bindPanel(this.root, { action: (name, v) => this.act(name, v) });
-    this.paint();
+    this.cfListen = (e) => this.onClick(e);
+    this.root.addEventListener('click', this.cfListen);
   }
 
-  onStep(step) {
-    this.sorting = step === 1 && (this.prev == null || this.prev === 0) && !reducedMotion();
-    if (step < 3) this.sel = null;
-    this.prev = step;
-    this.paint();
-    if (this.sorting) {
-      clearTimeout(this._sortT);
-      this._sortT = setTimeout(() => { this.sorting = false; if (this.stepIndex === 1) this.paint(); }, (0.4 + SORT_LAG * PEOPLE.length) * 1000 + 100);
-    }
+  onClick(e) {
+    const b = e.target?.closest?.('[data-k],[data-st]');
+    if (!b) return;
+    if (b.dataset.k && this.stepIndex === 1) { this.cfK = Number(b.dataset.k); this.interactDone('controls'); }
+    else if (b.dataset.st && this.stepIndex === 3) { const i = Number(b.dataset.st); this.cfPick = this.cfPick === i ? null : i; this.interactDone('steps'); }
+    else return;
+    this.repaint();
   }
 
-  act(name, v) {
-    if (name !== 'pick' || (this.stepIndex ?? 0) < 3 || !PICKS[v]) return;
-    this.sel = this.sel === v ? null : v;
-    this.paint();
+  applyCue(id) {
+    if (this.stepIndex === 1 && (id === 'controls' || id === 'chosen')) { this.cfK = id === 'controls' ? 1 : 4; this.repaint(); }
   }
 
-  dotsHtml(list, cls) {
-    return `<span class="ccf-dots" aria-hidden="true">${list.map((p) => `<i class="ccf-dot${p.isCase ? ' ccf-dot--case' : ''}${cls ? ` ${cls}` : ''}" style="--i:${p.i}"></i>`).join('')}</span>`;
+  cueBase() { return { k: this.cfK, pick: this.cfPick }; }
+
+  cueReset(b) {
+    this.cfK = b?.k ?? this.cfK;
+    this.cfPick = b?.pick ?? null;
+    this.repaint();
   }
 
-  pools(cls) {
-    return '<div class="ccf-pools">'
-      + `<div class="ccf-pool ccf-pool--case"><span class="spn-label">Fell ill: the cases</span><b>20</b>${this.dotsHtml(PEOPLE.filter((p) => p.isCase), cls)}</div>`
-      + `<div class="ccf-pool"><span class="spn-label">Stayed well: chosen as controls</span><b>60</b>${this.dotsHtml(PEOPLE.filter((p) => !p.isCase), cls)}</div>`
-      + '</div>';
+  testState() { return { beat: this.stepIndex, perCase: this.cfK, controls: this.stepIndex === 0 ? 0 : 8 * (this.stepIndex === 1 ? this.cfK : 4), pick: this.cfPick }; }
+
+  destroy() {
+    this.root?.removeEventListener('click', this.cfListen);
+    super.destroy();
   }
 
-  paint() {
-    if (!this.root) return;
-    const s = this.stepIndex ?? 0;
-    const key = '<p class="ccf-key"><span><i class="ccf-dot--case"></i>a person who fell ill</span><span><i></i>a person who stayed well</span></p>';
-    if (s === 0) {
-      this.render({ html: `<div class="spn ccf">${this.pools('')}${key}<p class="ccf-read ccf-read--wait">Nobody has been asked about the food yet.</p></div>` });
-      return;
-    }
-    const lit = this.sel ? PICKS[this.sel].cells : null;
-    const cell = (k) => {
-      const tag = s >= 2 ? `<i>${k}</i>` : '';
-      const dim = lit && !lit.includes(k) ? ' ccf-dim' : '';
-      return { v: '', html: `<span class="ccf-cell${dim}"><span class="ccf-n">${tag}${N[k]}</span>${this.dotsHtml(PEOPLE.filter((p) => p.cell === k), this.sorting ? 'ccf-in' : '')}</span>` };
-    };
-    const hi = lit && lit.length === 1 ? [POS[lit[0]]] : [];
-    const band = this.sel === 'ac' ? { col: 0 } : this.sel === 'bd' ? { col: 1 } : {};
-    const table = ruleTableHtml({
-      corner: 'Exposure',
-      cols: [{ label: 'Cases', sub: 'fell ill' }, { label: 'Controls', sub: 'stayed well' }],
-      rows: [{ label: 'Ate the paneer salad', cells: [cell('a'), cell('b')] }, { label: 'Did not eat it', cells: [cell('c'), cell('d')] }],
-      total: { label: s >= 2 ? 'Margins' : 'Total', cells: s >= 2 ? ['a + c = 20', 'b + d = 60'] : [20, 60] },
-      hi, band,
-      label: 'Picnic case-control table, illustrative: cells a 16, b 12, c 4, d 48; margins 20 and 60',
-    });
-    let top = '';
-    let foot = '';
-    if (s === 1) {
-      top = this.sorting ? this.pools('ccf-out') : '';
-      foot = `${key}<p class="ccf-read">The same question for both groups sorts the 80 people into four cells.</p>`;
-    } else if (s === 2) {
-      foot = `${key}<p class="ccf-read">The letters name counts you can already see. The margins are the two group totals.</p>`;
-    } else {
-      const chips = chipsHtml([
-        { label: 'a', action: 'pick', value: 'a', pressed: this.sel === 'a' },
-        { label: 'b', action: 'pick', value: 'b', pressed: this.sel === 'b' },
-        { label: 'c', action: 'pick', value: 'c', pressed: this.sel === 'c' },
-        { label: 'd', action: 'pick', value: 'd', pressed: this.sel === 'd' },
-        { label: 'a + c', action: 'pick', value: 'ac', pressed: this.sel === 'ac' },
-        { label: 'b + d', action: 'pick', value: 'bd', pressed: this.sel === 'bd' },
-      ], { label: 'Cells and margins' });
-      // The read slot carries the instruction until something is selected, then what the selection holds.
-      const read = this.sel
-        ? `<p class="ccf-read" aria-live="polite"><b>${PICKS[this.sel].text}</b> Select it again to clear.</p>`
-        : `<div class="ccf-read" aria-live="polite">${promptHtml('Select a cell or a margin to light the people it holds.', { key: 'prompt' })}</div>`;
-      foot = chips + read + (s >= 4 ? takeawayHtml('The two groups are chosen; only the exposure is measured.', '20 and 60 say nothing about how common the illness was.') : '');
-    }
-    this.render({ html: `<div class="spn ccf">${top}${table}${foot}</div>` });
-  }
-
-  testState() {
-    return { beat: this.stepIndex, sel: this.sel, sorting: this.sorting, cells: { ...N } };
+  css() {
+    return SIM_CROWD_CSS + `
+.svs-head { justify-content: flex-start; }
+.cf-time line { stroke: var(--sim-label-muted); stroke-width: 1.5; }
+.cf-time path { fill: var(--sim-label-muted); }
+.cf-time text { font: 500 16px var(--sim-font); fill: var(--sim-label-muted); }
+.cf-time .cf-look { font-weight: 700; }
+.cf-time--on line { stroke: var(--sim-annot); stroke-width: 2.5; }
+.cf-time--on path, .cf-time--on .cf-look { fill: var(--sim-annot); }
+.cf-empty { fill: none; stroke: var(--sim-label-muted); stroke-width: 1.5; stroke-dasharray: 6 6; }
+.cf-rule { stroke: var(--sim-label); stroke-width: 1; opacity: 0.25; }
+.cf-lab { position: absolute; display: flex; flex-direction: column; gap: 2px; font: 500 var(--sim-text-md)/1.2 var(--sim-font); color: var(--sim-label-muted); transition: opacity 0.3s ease; }
+.cf-lab b { font: 700 var(--sim-text-lg)/1.2 var(--sim-font); color: var(--sim-label); white-space: nowrap; }
+.cf-lab--case b { color: var(--sim-annot); }
+.cf-lab--line b span { font-weight: 500; color: var(--sim-label-muted); }
+.cf-lab--dim, .cf-lab--soft { opacity: 0.45; }
+.cf-read { position: absolute; display: flex; flex-direction: column; gap: 4px; }
+.cf-kick { font: 700 var(--sim-text-md)/1.2 var(--sim-font); color: var(--sim-label); letter-spacing: 0.02em; }
+.cf-big { display: flex; align-items: baseline; flex-wrap: nowrap; gap: 4px 12px; }
+.cf-num { font: 400 60px/1 var(--sim-font-numeral, var(--sim-font)); font-variant-numeric: lining-nums tabular-nums; color: var(--sim-annot); white-space: nowrap; }
+.cf-num small { font-size: 24px; margin: 0 8px; color: var(--sim-label-muted); }
+.cf-pct { font: 400 26px/1 var(--sim-font-numeral, var(--sim-font)); color: var(--sim-label); white-space: nowrap; }
+.cf-cap { font: 500 var(--sim-text-md)/1.3 var(--sim-font); color: var(--sim-label-muted); font-style: italic; }
+.cf-step { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 4px; }
+.cf-steplab { font: 600 var(--sim-text-md)/1.2 var(--sim-font); color: var(--sim-label); }
+.cf-ks { display: flex; gap: 6px; }
+.cf-k { pointer-events: auto; width: 48px; height: 48px; border-radius: var(--sim-radius-sm); border: 1.5px solid var(--sim-label); background: var(--sim-bg-surface); color: var(--sim-label); font: 700 var(--sim-text-xl)/1 var(--sim-font); cursor: pointer; }
+.cf-k--on { background: var(--sim-annot); border-color: var(--sim-annot); color: var(--sim-bg-surface); }
+.cf-k:focus-visible, .cf-card:focus-visible { outline: 2px solid var(--sim-annot); outline-offset: 2px; }
+.cf-th { position: absolute; text-align: center; font: 700 var(--sim-text-lg)/30px var(--sim-font); color: var(--sim-label); }
+.cf-th:first-child { color: var(--sim-annot); }
+.cf-rh { position: absolute; display: flex; align-items: center; justify-content: flex-end; text-align: right; font: 600 var(--sim-text-md)/1.2 var(--sim-font); color: var(--sim-label); }
+.cf-cell { position: absolute; box-sizing: border-box; border: 1px solid color-mix(in oklab, var(--sim-label) 40%, transparent); margin: -0.5px; display: flex; align-items: center; justify-content: center; }
+.cf-q { font: 400 34px/1 var(--sim-font-numeral, var(--sim-font)); color: var(--sim-label-muted); }
+.cf-let { position: absolute; left: 10px; top: 6px; font: italic 700 var(--sim-text-xl)/1 var(--sim-font); color: var(--sim-annot); animation: cf-in 0.45s ease-out both; animation-delay: var(--d, 0s); }
+.cf-ask { position: absolute; text-align: center; font: 500 var(--sim-text-md)/1.3 var(--sim-font); color: var(--sim-label-muted); font-style: italic; }
+.cf-mar { position: absolute; text-align: center; font: 600 var(--sim-text-lg)/1.2 var(--sim-font); color: var(--sim-label); border-top: 1px solid var(--sim-label); padding-top: 6px; animation: cf-in 0.45s ease-out both; animation-delay: 2.6s; }
+.cf-mar i { color: var(--sim-annot); }
+.cf-steps { position: absolute; display: flex; flex-direction: column; gap: 8px; }
+.cf-steps--grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.cf-steps--grid .cf-next { grid-column: 1 / -1; }
+.cf-next { font: 700 var(--sim-text-md)/1.2 var(--sim-font); color: var(--sim-annot); }
+.cf-next--about { padding: 4px 10px; border-radius: var(--sim-radius-sm); background: var(--sim-annot-tint); color: var(--sim-label); align-self: flex-start; }
+.cf-card { pointer-events: auto; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 12px; box-sizing: border-box; text-align: left; border: 1px solid color-mix(in oklab, var(--sim-label) 30%, transparent); border-radius: var(--sim-radius-sm); background: var(--sim-bg-surface); color: var(--sim-label-muted); font: 500 var(--sim-text-md)/1.25 var(--sim-font); cursor: pointer; }
+.cf-card--next { color: var(--sim-label); border: 1.5px solid var(--sim-label); }
+.cf-card--next .cf-no { background: var(--sim-annot); color: var(--sim-bg-surface); border-color: var(--sim-annot); }
+.cf-card--on { border-left: 5px solid var(--sim-annot); background: var(--sim-annot-tint); }
+.cf-no { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--sim-label-muted); font: 700 var(--sim-text-md)/1 var(--sim-font); }
+@keyframes cf-in { from { opacity: 0; transform: translateY(6px); } }
+.sim-dom-root--portrait .cf-lab, .sim-dom-root--portrait .cf-cap, .sim-dom-root--portrait .cf-ask, .sim-dom-root--portrait .cf-card, .sim-dom-root--portrait .cf-rh, .sim-dom-root--portrait .cf-kick, .sim-dom-root--portrait .cf-steplab, .sim-dom-root--portrait .cf-next { font-size: 17px; }
+.sim-dom-root--portrait .cf-time text { font-size: 17px; }
+.sim-dom-root--portrait .cf-card { padding: 6px 8px; gap: 8px; min-height: 64px; }
+.sim-dom-root--portrait .cf-num { font-size: 56px; }
+@media (prefers-reduced-motion: reduce) { .cf-let, .cf-mar { animation: none; } }
+`;
   }
 }

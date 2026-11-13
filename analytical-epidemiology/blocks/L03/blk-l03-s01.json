@@ -22,6 +22,23 @@
   ],
   "correctOptionId": "c",
   "deferVerdict": true,
+  "narrationCover": {
+    "prompt": {
+      "src": "media/05-table-paper.jpg",
+      "alt": "A sheet of squared paper with an empty two by two table drawn on it, a pencil and a calculator.",
+      "frames": [
+        {},
+        {
+          "x": 0.12,
+          "y": 0.16,
+          "w": 0.55,
+          "h": 0.66,
+          "t": 200,
+          "ms": 20000
+        }
+      ]
+    }
+  },
   "authoring": {
     "status": "human-approved",
     "flags": [],

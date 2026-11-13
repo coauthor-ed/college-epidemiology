@@ -1,0 +1,195 @@
+{
+  "format": "coauthor-narration-script@1",
+  "voices": [
+    {
+      "id": "andrew",
+      "label": "Andrew",
+      "name": "en-US-AndrewMultilingualNeural",
+      "rate": "-2%",
+      "pitch": "-2Hz"
+    },
+    {
+      "id": "neerja",
+      "label": "Neerja",
+      "name": "en-IN-NeerjaExpressiveNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz"
+    }
+  ],
+  "segments": [
+    {
+      "block": "blk-l02-s01",
+      "step": "b1",
+      "say": "[[show.strip]] Your second file comes from Boston. [[women-in]] [[show.women]] Between nineteen sixty-six and nineteen sixty-nine, doctors there saw [[show.eight]] eight young women, [[show.oldest]] the oldest of them only twenty-two, [[show.cancer]] with adenocarcinoma of the vagina, a cancer of the lining of the vagina. [[show.hospital]] Seven of the eight were treated at one hospital. [[focus.women]] On the ward, each woman was one patient. [[focus.none]] Taken together, they were a pattern that nobody could explain, because this cancer belongs to a quite different stage of life."
+    },
+    {
+      "block": "blk-l02-s01",
+      "step": "b2",
+      "say": "[[show.curve]] [[curve-draw]] The usual pattern of this cancer [[show.flat]] stays close to zero before forty, and [[show.steep]] climbs steeply after fifty. [[focus.curve]] Now place the eight women on that curve. [[drop]] [[show.women]] All eight sit at the far left, between fifteen and twenty-two, [[focus.women+flat]] in the flat part where new cases should almost never appear. [[focus.steep]] A cancer of later life had appeared eight times in teenagers and young women, [[show.strip]] in one city, in three years."
+    },
+    {
+      "block": "blk-l02-s01",
+      "step": "b3",
+      "say": "[[show.forward]] The obvious study would follow healthy young women forward, and count who develops the cancer. [[follow]] Follow ten thousand of them for twenty years, [[show.result]] and you may see one case, perhaps none. The answer would take a lifetime. [[show.women]] But the eight women already exist, [[show.record]] and their mothers' pregnancies are on record. So the investigation [[back]] [[show.back]] turns round, and runs backwards from the eight, asking what was different about their past. When the outcome is rare, [[focus.women]] you start from the people who already have it. [[focus.none]] That leaves a question: whose past should you compare theirs with?"
+    },
+    {
+      "block": "blk-l02-s02",
+      "step": "b1",
+      "say": "[[show.cases]] These eight women are the cases: people who have the disease. A design that starts from them and [[show.time]] looks back in time for a cause is called a case-control study. It needs a second group, studied at the same time: [[show.controls+pool]] the controls, people who do not have the disease. [[focus.cases+controls]] Then every finding about the cases has something to be set against."
+    },
+    {
+      "block": "blk-l02-s02",
+      "step": "b2",
+      "say": "[[focus.controls]] How many controls should you take? That is your decision. [[controls]] With one control for each woman, [[show.share]] the study holds sixteen people, and half of them are ill. [[chosen]] With four for each woman, it holds forty, and only one in five is ill. The disease has not changed at all; [[show.choice]] only your choice has. [[focus.controls+controls]] The Boston investigators chose four controls for each case, thirty-two in all: [[show.pool]] girls born in the same hospital at about the same time. [[focus.share]] So the number of people in a case-control study tells you how many were studied, never how common the disease is. [[show.stepper]] Now set the number of controls yourself, [[focus.all]] and watch the share who are ill.",
+      "await": "interact",
+      "hint": "Try 1, 2, 3 and 4 controls for each case."
+    },
+    {
+      "block": "blk-l02-s02",
+      "step": "b3",
+      "say": "[[focus.cases+controls]] Both groups are then asked [[show.ask]] the same question about the past, in the same way. [[show.cells]] Each person falls into one of four cells: [[focus.cell-a+row-e]] exposed cases, [[focus.cell-b+row-e]] exposed controls, [[focus.cell-c+row-u]] unexposed cases and [[focus.cell-d+row-u]] unexposed controls. [[show.letters]] These cells are called a, b, c and d. [[show.margins]] The margins, [[focus.col-ac+mar-ac+cases]] a plus c [[focus.col-bd+mar-bd+controls]] and b plus d, are simply the two groups you chose. [[focus.letters]] The letters are only short names for counts of people, [[focus.controls+cases]] so read the people first, [[focus.letters]] and the letters after."
+    },
+    {
+      "block": "blk-l02-s02",
+      "step": "b4",
+      "say": "[[focus.cases+controls]] Three things define this design. [[show.time]] Exposure and disease have both already happened. The inquiry runs back from effect to cause. [[focus.controls]] And a comparison group is required. Every case-control study then takes four steps: [[show.step1]] choose the cases, [[show.step2]] choose the controls, [[show.step3]] measure exposure in both groups in the same way, [[show.step4]] and compare. [[focus.step1+step2]] The first two steps decide whether the comparison will be fair, [[show.next]] so we take them one at a time, starting with the cases. [[focus.all]] Tap any step, and see which people it is about.",
+      "await": "interact",
+      "hint": "Tap each step, and see its people light up."
+    },
+    {
+      "block": "blk-l02-s03",
+      "step": "b1",
+      "say": "Back to the live case, and its twenty men with a rare liver tumour. [[show.door]] Before a single patient is let in, [[show.card]] you write down what counts as a case: [[define]] [[show.men]] the diagnostic criteria, here a tumour [[show.away]] confirmed by histology, and the stage. [[focus.card]] The definition then stays fixed while the study runs. If it drifts halfway through, you can no longer tell a real difference from [[focus.men+away]] a change in who was allowed in."
+    },
+    {
+      "block": "blk-l02-s03",
+      "step": "b2",
+      "say": "[[show.years]] Next, which patients? Over twelve years a clinic diagnoses many patients, but some die soon after diagnosis and never come back. [[show.sample+today]] The patients still attending today are the ones who survived long enough to be found, [[focus.today]] and survival can itself depend on the exposure. [[window]] [[show.window+sample]] Take instead the patients newly diagnosed within a fixed period, here the last five years, [[show.newly]] and the series comes much closer to [[show.all+newly]] everyone who developed the disease. [[show.toggle]] Now switch between the two views yourself, [[focus.all]] and compare who gets counted.",
+      "await": "interact",
+      "hint": "Switch between the two clinic views."
+    },
+    {
+      "block": "blk-l02-s03",
+      "step": "b3",
+      "say": "[[show.city]] Then, from where? [[show.hospA+series]] One hospital's series [[show.missed]] misses every patient who went somewhere else. [[focus.city]] A population registry reaches everyone in a defined area, but a registry may not exist for a rare tumour. [[source]] [[show.hospB]] Taking cases from two city hospitals, as this study does, [[focus.series]] comes closer to the whole city than one surgeon's list. [[focus.none]] Whatever source you use, state it plainly, because the controls must come from the same place. Cases from one place and controls from another can differ for reasons that have nothing to do with exposure. That is the problem the next step has to solve."
+    },
+    {
+      "block": "q-l02-s02",
+      "step": "prompt",
+      "say": "A surgeon offers your case-control study all the patients with a rare cancer who still attend his clinic, some of them diagnosed twelve years ago. Why is a series of newly diagnosed patients usually better?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l02-s04",
+      "step": "prompt",
+      "say": "A new study now. You want to know whether smoking is linked to myocardial infarction, a heart attack. Your cases are men admitted with a heart attack. For the controls, you take men admitted to the same hospital with bladder cancer, because they are easy to find, and they are not heart patients. What do you predict happens to the link between smoking and heart attack in this study?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l02-s05",
+      "step": "b1",
+      "say": "[[focus.bars]] The answer is that the link may be hidden. [[show.why]] Bladder cancer is itself linked to smoking, [[focus.controls]] so these controls were chosen from a group that already smokes more than ordinary men. Controls must be free of the disease under study, and [[focus.cases]] as like the cases as possible in everything else. [[focus.cases+controls]] The only difference allowed between the two groups is the disease itself."
+    },
+    {
+      "block": "blk-l02-s05",
+      "step": "b2",
+      "say": "[[focus.controls]] Controls can come from four places, and each one brings its own risk. [[show.src1]] Hospital patients are easy to reach, but their own illnesses may share the exposure. [[show.src2]] Relatives are willing, but they share the cases' genes. [[show.src3]] Neighbours share the cases' streets, water and air. [[show.src4]] The general population, a random sample from a defined area, is the cleanest source, and the slowest to assemble."
+    },
+    {
+      "block": "blk-l02-s05",
+      "step": "b3",
+      "say": "These numbers are illustrative. Take a study of smoking and heart attack in which [[show.cases]] sixty of a hundred cases smoke. [[show.controls]] With controls from the general population, forty of a hundred smoke, [[show.gap]] and the two groups differ by twenty percentage points. Now [[refill]] [[focus.controls]] draw the controls from men with bladder cancer instead: sixty of a hundred of them smoke. [[focus.cases]] Nothing about the cases has changed, [[focus.gap]] yet the gap has closed to nothing, and a real link has disappeared from the study. [[show.toggle]] Switch the source back and forth yourself, [[focus.all]] and watch the gap.",
+      "await": "interact",
+      "hint": "Switch the control source and watch the gap."
+    },
+    {
+      "block": "blk-l02-s05",
+      "step": "b4",
+      "say": "[[show.stepper]] One control for each case is enough when cases are plentiful. When the cases are few, as with a rare tumour, take two, three or even [[number]] four controls for each case. [[show.eff]] The larger comparison group steadies a small study, [[show.gain]] though the gain after four is small. [[focus.controls]] Controls from more than one source also guard against the bias that any single source brings. [[focus.none]] But the source is only the first decision. The two groups must also be alike in things like age and sex, and that step is called matching."
+    },
+    {
+      "block": "q-l02-s03",
+      "step": "prompt",
+      "say": "Here are some short descriptions of control groups. Sort each one into the source of controls it belongs to.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l02-s06",
+      "step": "b1",
+      "say": "These numbers are made up to show one idea. [[focus.legend]] First, how to read the picture. Each dot is one person. [[focus.legend-colour]] A blue dot has oesophageal cancer, so that person is a case. A grey dot has no cancer, so that person is a control. [[focus.legend-fill]] A filled dot drinks alcohol, and a hollow dot does not drink. [[focus.legend-smoke]] A small spot on the corner of a dot means that person smokes. [[focus.cases]] Now the study. Sixty of the hundred cases drink. [[focus.controls]] But only forty of the hundred and twelve controls drink. [[focus.drink]] That is sixty per cent against thirty-six per cent, so it looks as if drinking causes this cancer."
+    },
+    {
+      "block": "blk-l02-s06",
+      "step": "b2",
+      "say": "[[focus.smoke]] Now count the corner spots. Fifty-five of the hundred cases smoke, while only twenty-two of the hundred and twelve controls smoke. Smoking is itself a cause of oesophageal cancer, and people who drink also smoke more often. So the difference in drinking could come from smoking. To check this, [[split]] [[focus.smokers+nonsmokers]] we split each group into smokers and non-smokers, and compare drinking inside each part. [[focus.smokers-cases+smokers-controls]] Among smokers, fifty of fifty-five cases drink, and twenty of twenty-two controls drink. Both are ninety-one per cent. [[focus.nonsmokers-cases+nonsmokers-controls]] Among non-smokers, ten of forty-five cases drink, and twenty of ninety controls drink. Both are twenty-two per cent. [[focus.shares]] So when we compare smokers with smokers, and non-smokers with non-smokers, drinking is just as common in the cases as in the controls. The difference came from smoking, not from alcohol. [[focus.all]] Now use the button yourself: put the groups back together, split them again, and then press Done.",
+      "await": "interact",
+      "hint": "Split and rejoin the groups, then press Done."
+    },
+    {
+      "block": "blk-l02-s06",
+      "step": "b3",
+      "say": "Smoking here is called a confounding factor, or confounder. [[focus.smoke]] It goes together with drinking, it causes the cancer by itself, and it is more common among the cases than among the controls. We can deal with it when we choose the controls, and this is called matching. [[focus.explain]] For each case, we pick a control who has the same smoking habit. [[match]] [[focus.controls]] The controls change: more smokers come in, and some non-smokers leave. [[focus.ctitle]] So the controls are now picked to match the cases on smoking. [[focus.smoke]] Fifty-five of the hundred controls smoke, the same as the cases. [[focus.drink]] And now sixty of the hundred drink in both groups, against thirty-six per cent before matching. [[focus.note]] Smoking can no longer explain a difference in drinking, and no difference is left. This is a good use of matching. [[focus.rest]] Age is matched in the same way, for example in studies of the contraceptive pill and breast cancer, because the women taking the pill were younger. Matching is done in two ways. In group matching, each smoking group or age group makes up the same share of the cases and of the controls. In pair matching, each case gets its own control of the same age and sex."
+    },
+    {
+      "block": "blk-l02-s06",
+      "step": "b4",
+      "say": "Now a mistake to avoid. [[focus.explain]] Suppose that, instead, for each case we pick a control who drinks the same way. [[overmatch]] [[focus.controls]] The controls change again. [[focus.drank-cases+drank-controls]] Now every case who drinks has a control who drinks, [[focus.nodrink-cases+nodrink-controls]] and every case who does not drink has a control who does not. [[focus.drink]] So cases and controls drink exactly alike, sixty of the hundred each, because we chose them that way. [[focus.note]] Even if alcohol did cause this cancer, this study would still show sixty against sixty, so it can no longer tell whether drinking matters. Never match on the thing you are testing. [[focus.rest]] A related mistake is called overmatching: matching on too many things, or on something that drinking itself changes. Then suitable controls are hard to find, and a real difference is pulled down towards nothing. So match only on things like smoking, which could confuse the comparison. [[focus.all]] Now switch between the two kinds of matching with the button, and then press Done.",
+      "await": "interact",
+      "hint": "Try both kinds of matching, then press Done."
+    },
+    {
+      "block": "q-l02-s04",
+      "step": "prompt",
+      "say": "In a case-control study of alcohol and oesophageal cancer, drinkers are more often smokers than non-drinkers, and smoking is itself a risk factor for this cancer. What is the best way to deal with smoking?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l02-s07",
+      "step": "b1",
+      "say": "[[show.cases]] Back to the eight women in Boston. For each of them, [[show.controls]] the investigators found four girls born in the same hospital within days of her, who had not developed the cancer: thirty-two controls. The mothers' birth records describe their pregnancies, [[show.age+smoking+xray+des]] and four facts about each pregnancy became the suspects in a lineup. [[focus.cases+controls]] Each suspect is checked in the cases and the controls in exactly the same way."
+    },
+    {
+      "block": "blk-l02-s07",
+      "step": "b2",
+      "say": "[[focus.age+smoking+xray]] Three of the suspects first. [[age]] [[focus.age]] The mothers of the cases were twenty-six point one years old on average, against twenty-nine point three for the controls. [[smoking]] [[focus.smoking+dots]] Seven of the eight case mothers smoked, against twenty-one of the thirty-two control mothers. [[xray]] [[focus.xray+dots]] And one against four had X-rays during pregnancy. [[focus.xray+smoking+age]] The study marks all three differences as not significant, written N S: gaps this size could easily come from chance. [[focus.none]] The next lessons explain how such a judgement is made."
+    },
+    {
+      "block": "blk-l02-s07",
+      "step": "b3",
+      "say": "[[focus.des]] The last suspect is [[des]] oestrogen. [[show.descase+dots]] Seven of the eight case mothers had been given diethylstilbestrol, or D E S, in early pregnancy, and [[show.desctrl+descase+dots]] none of the thirty-two control mothers had. [[table]] A gap that large is very unlikely to come from chance: [[show.pvalue]] the study gives it a P value below one in a hundred thousand. [[focus.rest]] A note from the senior investigator: D E S was prescribed by doctors to prevent miscarriage, and nothing in this file is a criticism of the mothers. [[show.table]] A comparison is only as fair as its controls, and these controls were fair enough to reveal the cause."
+    },
+    {
+      "block": "q-l02-s05",
+      "step": "prompt",
+      "say": "In the Boston study, eight cases were compared with thirty-two controls, matched on place and time of birth. The mothers' age, their smoking and X-rays in pregnancy did not separate the two groups. Seven of the eight cases' mothers had taken D E S, and none of the control mothers had. What is the fairest reading?",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l02-s09",
+      "step": "b1",
+      "say": "Now you choose the controls for the live case. Set the rules for choosing sixty fair controls from the plant's own workforce, then press Check.",
+      "await": "answer"
+    },
+    {
+      "block": "blk-l02-s10",
+      "step": "b1",
+      "say": "These numbers are illustrative: the plant, the city and every count are invented for this course. [[show.controls]] Your rules picked sixty men from the same plant, free of the tumour and matched to the patients on age. [[walk-in]] [[show.patients]] All eighty men, the twenty patients and the sixty controls, [[focus.none]] are now asked the same question, in the same way: did you ever clean the tanks?"
+    },
+    {
+      "block": "blk-l02-s10",
+      "step": "b2",
+      "say": "[[focus.patients]] [[ask]] Fourteen of the twenty patients had cleaned the tanks, and six had not. [[focus.controls]] Of the sixty controls, nine had cleaned them, and fifty-one had not. [[cells]] [[show.cells]] Those four counts are the cells of the table: [[show.letters]] [[focus.a]] a is fourteen, [[focus.b]] b is nine, [[focus.c]] c is six, and [[focus.d]] d is fifty-one. [[show.margins]] The margins, [[focus.mar-ac+a+c]] twenty and [[focus.mar-bd+b+d]] sixty, are the two groups you chose. [[focus.none]] Read each cell against its own group, never on its own. [[focus.a+b]] Fourteen is not more than nine [[focus.margins]] until you know that one is out of twenty, and the other out of sixty."
+    },
+    {
+      "block": "blk-l02-s10",
+      "step": "b3",
+      "say": "[[show.bars]] [[gap]] The exposure is far commoner among the patients than among the men like them who stayed well. That gap is what the file has been working towards. But a gap between two shares is not yet a number that can be reported, or set beside another study. [[show.table]] The table says there is a difference. [[show.strip]] It does not yet say how large. [[focus.none]] The next lesson turns these four counts into that one number."
+    },
+    {
+      "block": "q-l02-s06",
+      "step": "prompt",
+      "say": "Still the illustrative case. Of the twenty patients, fourteen had cleaned the tanks; of the sixty controls, nine had. By how many percentage points do the two shares differ? Give your answer to one decimal place.",
+      "await": "answer"
+    }
+  ]
+}

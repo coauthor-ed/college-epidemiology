@@ -13,14 +13,6 @@ Your case was drawn from a real one. Angiosarcoma of the liver is a very rare ca
 <!-- STEP -->
 ## The verdict, and the one question left open
 
-The table sets the two methods side by side.
-
-| | Case-control study | Cohort study |
-|---|---|---|
-| Starts from | the disease | the exposure |
-| Direction of inquiry | effect to cause | cause to effect |
-| Measures | odds ratio | incidence and relative risk |
-| Cost and time | quick and cheap | long and costly |
-| Live case (illustrative) | OR 13.2 | RR 12.0 |
+Side by side, the two methods mirror each other. The case-control study starts from the disease and runs from effect to cause; it measures an odds ratio, quickly and cheaply. The cohort starts from the exposure and runs from cause to effect; it measures incidence and relative risk, slowly and at a cost. On your live case they gave 13.2 and 12.0.
 
 The chapter's line that this association was "picked up only by a retrospective cohort" skips the first half of the story. The corrected version reads: **a cluster raised the question, and a cohort answered it.** One problem stays open on the desk, and it is the next chapter's: how do you keep two thousand men in view for twenty years?

@@ -4,7 +4,59 @@
   "markdownRef": "blocks/L04/blk-l04-s08.md",
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
+  },
+  "figure": {
+    "layout": "panels",
+    "caption": "Table 13 sorted by the file that showed each line: seven strengths from one file, six limits from three others.",
+    "caseLabel": "Count",
+    "position": "flow",
+    "items": [
+      {
+        "id": "des",
+        "title": "The DES file",
+        "text": "Rare disease, few subjects, speed, low cost, several causes at once, no follow-up, few ethical problems.",
+        "case": "7 strengths"
+      },
+      {
+        "id": "recall",
+        "title": "The recall question",
+        "text": "Memory and old records whose accuracy cannot be checked.",
+        "case": "1 limit",
+        "step": 2
+      },
+      {
+        "id": "door",
+        "title": "The hospital door",
+        "text": "Choosing a suitable comparison group is hard.",
+        "case": "1 limit",
+        "step": 2
+      },
+      {
+        "id": "ratio",
+        "title": "Your odds ratio",
+        "text": "No incidence; cause not separated from what travels with it; not for treatments; representativeness uncertain.",
+        "case": "4 limits",
+        "step": 2
+      }
+    ],
+    "focus": [
+      {
+        "step": 1,
+        "on": [
+          "des"
+        ]
+      },
+      {
+        "step": 2,
+        "on": [
+          "recall",
+          "door",
+          "ratio"
+        ]
+      }
+    ]
   }
 }

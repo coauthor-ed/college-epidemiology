@@ -6,6 +6,7 @@
   "title": {
     "en": "A hunch is not yet a claim"
   },
+  "chapterId": "analytical-epidemiology/ch1",
   "blocks": [
     {
       "blockRef": "blocks/L01/blk-l01-s01.json"
@@ -53,7 +54,8 @@
   "flow": {},
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

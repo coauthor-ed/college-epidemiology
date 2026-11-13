@@ -2,12 +2,32 @@
   "id": "blk-l01-s06",
   "type": "content-block@1",
   "markdownRef": "blocks/L01/blk-l01-s06.md",
-  "fold": {
-    "after": 5
+  "simulation": {
+    "src": "simulations/L01/LenzBackScene.js",
+    "position": "right"
+  },
+  "narrationCover": {
+    "b1": {
+      "src": "media/02-ward-1960.jpg",
+      "alt": "A hospital ward office around 1960: a wooden desk with files, filing cabinets, and a long corridor of beds.",
+      "frames": [
+        {},
+        {
+          "x": 0.42,
+          "y": 0.08,
+          "w": 0.56,
+          "h": 0.56,
+          "t": 200,
+          "ms": 3500
+        }
+      ],
+      "until": "show.cases"
+    }
   },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

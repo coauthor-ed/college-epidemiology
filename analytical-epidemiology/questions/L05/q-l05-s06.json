@@ -39,7 +39,7 @@
   ],
   "correctOptionId": "b",
   "explanation": {
-    "en": "A rate of new illness per year is an incidence, and incidence needs a counted group of people still well, followed over time: 12 cases among 2,000 reactor men over twenty years gives 6.0 per 1,000 over the follow-up. A case-control study assembles its groups after the outcomes are known and has no such followed group, so it can rank the exposure's strength but cannot produce a rate. The 13.2 is a ratio of odds with no time in it, and reading it per year would be inventing a denominator."
+    "en": "A rate of new illness per year is an incidence, and incidence needs a counted group of people still well, followed over time: 12 cases among 2,000 tank cleaners over twenty years gives 6.0 per 1,000 over the follow-up. A case-control study assembles its groups after the outcomes are known and has no such followed group, so it can rank the exposure's strength but cannot produce a rate. The 13.2 is a ratio of odds with no time in it, and reading it per year would be inventing a denominator."
   },
   "hints": [
     {

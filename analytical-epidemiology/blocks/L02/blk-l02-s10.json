@@ -2,9 +2,32 @@
   "id": "blk-l02-s10",
   "type": "content-block@1",
   "markdownRef": "blocks/L02/blk-l02-s10.md",
+  "simulation": {
+    "src": "simulations/L02/TableFillScene.js",
+    "position": "right"
+  },
+  "narrationCover": {
+    "b1": {
+      "src": "media/04-plastics-plant.jpg",
+      "alt": "Inside a plastics plant: large steel tanks, and a worker climbing down into one of them to clean it.",
+      "frames": [
+        {},
+        {
+          "x": 0.25,
+          "y": 0.15,
+          "w": 0.7,
+          "h": 0.7,
+          "t": 200,
+          "ms": 6000
+        }
+      ],
+      "until": "show.controls"
+    }
+  },
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

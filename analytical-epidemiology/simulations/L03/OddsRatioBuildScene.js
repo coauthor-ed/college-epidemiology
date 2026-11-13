@@ -11,7 +11,7 @@
  *     8.1 and named the odds ratio; "Show worked arithmetic" opens 891 / 110. Beat 3: the three
  *     conditions before it reads as a relative risk; the working stays.
  *   Mount 2 (blk-l03-s09, 3 beats, stages 20..22) - live case (illustrative): a 14, b 9, c 6,
- *     d 51, margins 20 and 60. Beat 0: 80 dots (20 cases, 60 controls) leave two pools and fill
+ *     d 51, margins 20 and 60. Beat 0: 80 dots (one dot = one man; blue = case, grey = control, FILLED = cleaned the tanks, HOLLOW = did not; 20 cases, 60 controls) leave two pools and fill
  *     the cells one by one. Beat 1: the learner enters the cross-products a x d = 714 and
  *     b x c = 54 and checks them. Beat 2: the ratio counts up to 13.2 over 714 / 54.
  * The odds rows show the slides' rounded values; the ratio is derived exactly (891/110, 714/54).
@@ -22,6 +22,9 @@ import { withBeats } from 'simulations/base/DomBeats.js';
 import { SIM_PANEL_CSS, ruleTableHtml, readoutHtml, setReadout, entryHtml, takeawayHtml, factRowsHtml, bindPanel, calcStepsHtml, countValue, revealHtml, promptHtml } from 'simulations/base/kit/SimPanel.js';
 import { reducedMotion } from 'simulations/base/kit/SimAnim.js';
 import { mulberry32 } from 'simulations/base/kit/SimLook.js';
+import { withNarrationCues } from '../L01/NarrationCues.js';
+import { na, tagFirst, tagEach } from './NarrTags.js';
+import { narrOn } from '../L05/NarrDots.js';
 
 const T1 = { a: 33, b: 55, c: 2, d: 27 };   // Doll and Hill, BMJ 1950, Table V
 const T2 = { a: 14, b: 9, c: 6, d: 51 };    // live case (illustrative)
@@ -70,9 +73,10 @@ const CSS = SIM_PANEL_CSS + `
 .or-rr dt { color: var(--sim-label-muted); }
 .or-rr dd { color: var(--sim-label-muted); font-style: italic; white-space: normal; text-align: right; }
 .or-cell { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-.or-dots { display: flex; flex-wrap: wrap; gap: 3px; justify-content: flex-end; max-width: 184px; min-height: 9px; }
-.or-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--sim-series-8); }
-.or-dot--case { background: var(--sim-annot); }
+.or-dots { display: flex; flex-wrap: wrap; gap: 3px; justify-content: flex-end; max-width: 196px; min-height: 12px; }
+.or-dot { --c: var(--sim-label-muted); box-sizing: border-box; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+.or-dot--case { --c: var(--sim-annot); }
+.or-dot--no { background: transparent; box-shadow: inset 0 0 0 2.5px var(--c); }
 .or-in { animation: or-in 0.35s ease-out both; animation-delay: calc(var(--i) * ${SORT_LAG}s); }
 .or-out { animation: or-out 0.3s ease-in both; animation-delay: calc(var(--i) * ${SORT_LAG}s); }
 @keyframes or-in { from { opacity: 0; transform: scale(0.2); } }
@@ -80,13 +84,17 @@ const CSS = SIM_PANEL_CSS + `
 .or-pools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--sim-space-4); }
 .or-pool { display: flex; flex-direction: column; gap: 6px; }
 .or-pool .or-dots { justify-content: flex-start; max-width: none; }
-.or-key { display: flex; gap: var(--sim-space-4); font-size: var(--sim-text-sm); color: var(--sim-label-muted); }
-.or-key i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; background: var(--sim-series-8); }
-.or-key i.or-dot--case { background: var(--sim-annot); }
+.or-key { display: flex; flex-wrap: wrap; gap: 4px var(--sim-space-4); font-size: var(--sim-text-sm); color: var(--sim-label-muted); }
+.or-key i { display: inline-block; vertical-align: -1px; margin-right: 6px; }
+.or-key i.or-dot--ink { --c: var(--sim-label); }
 @media (prefers-reduced-motion: reduce) { .or-in, .or-out { animation: none; } }
+/* Narrated: a lit column, diagonal or margin row of the table is a tint over its cells, not an outline per cell
+   (a box per cell reads as broken pieces). Narration off: no attribute, no match. */
+#sim-canvas-host[data-narr-focus] .or :is(td, th)[data-narr] { outline: none !important; }
+${['cases', 'controls', 'cells', 'ad', 'bc', 'margins'].map((i) => `[data-narr-on~="${i}"] .or :is(td, th)[data-narr~="${i}"]`).join(',\n')} { background: var(--sim-annot-tint) !important; }
 `;
 
-export class OddsRatioBuildScene extends withBeats(DomSimulation) {
+export class OddsRatioBuildScene extends withNarrationCues(withBeats(DomSimulation)) {
   static WIDTH = 600;
   static HEIGHT = 560;
   static PORTRAIT_WIDTH = 360;
@@ -96,6 +104,13 @@ export class OddsRatioBuildScene extends withBeats(DomSimulation) {
   static BEAT_MAPS = { 4: MAP1, 3: MAP2 };
   static BEAT_STEP_MAP = MAP1;
   static CONTROLS = [];
+  // Narration focus (spec W1 D29n). Both mounts: cell-a..cell-d (one count cell), ad / bc (the diagonals);
+  // mount 2 also mar-ac / mar-bd (one column total). Mount 1 ids: rr, table, cases/controls (head, cells, total), steps with
+  // odds-cases/odds-controls/or inside, take; the prompt line (repeats the narration) hidden, and steps not yet
+  // spoken hidden (all on beat 0, the two unbuilt ones on beat 1). Mount 2 ids: table, pools, cells (+ ad / bc,
+  // the diagonals), margins, entry, or2; key and wait line hidden. Narrated, the sort waits for show.cells (the
+  // pools hold still until the narration reaches the cells), and show.or2 counts the ratio up at its word.
+  static CUES = ['show.cells', 'show.or2'];
   static ARIA_LABEL = 'Two 2 by 2 count tables. Mount one, Doll and Hill 1950: 33 smokers and 2 non-smokers among 35 lung cancer cases, 55 smokers and 27 non-smokers among 82 controls. Selecting each column head builds its odds of smoking as a numbered step, 16.5 and 2.04; the third step sets the cross-product 33 times 27 over 55 times 2 and counts up to an odds ratio of 8.1. Mount two, illustrative: 80 dots sort into cells 14, 9, 6 and 51 with margins 20 and 60; cross-products 714 and 54 give an odds ratio of 13.2.';
 
   async setup() {
@@ -118,12 +133,30 @@ export class OddsRatioBuildScene extends withBeats(DomSimulation) {
     this._checked = false; this._selffill = false;
     this._bad1 = false; this._bad2 = false;
     this._v1 = ''; this._v2 = ''; this._hint = '';
-    this._sorting = false; this._ratioFresh = false;
+    this._sorting = false; this._ratioFresh = false; this._sortWait = false;
   }
+
+  /** Narration focus contract (content-block): only the narrated flag is kept; the engine dims and holds the tagged parts. */
+  narrationFocus(f) {
+    narrOn(this, f);
+    const n = !!f?.narrated;
+    if (n === !!this._narr) return;
+    this._narr = n;
+    if (n && this.stepIndex === 20 && !this._nc?.applied?.has('show.cells')) { this._sortWait = true; this._sorting = false; this.paint(); }
+  }
+
+  applyCue(id) {
+    const s = this.stepIndex;
+    if (id === 'show.cells' && s === 20 && this._sortWait) { this._sortWait = false; this._sorting = !reducedMotion(); this.paint(); }
+    else if (id === 'show.or2' && s === 22 && this._checked) { this._ratioFresh = true; this.landRatio('or2', OR2, (v) => v.toFixed(1)); }
+  }
+
+  cueBase() { return null; }
+  cueReset() { if (this.stepIndex === 20 && this._narr) { this._sortWait = true; this._sorting = false; this.paint(); } }
 
   onStep(step) {
     if (step === 10 || step === 0) this._reset();
-    else if (step === 20) { this._reset(); this._sorting = !reducedMotion(); }
+    else if (step === 20) { this._reset(); this._sorting = !reducedMotion(); if (this._narr) { this._sortWait = true; this._sorting = false; } }
     else if (step === 22 && !this._checked) { this._checked = true; this._selffill = true; this._ratioFresh = true; }
     else this._sorting = false;
     this.paint();
@@ -179,6 +212,7 @@ export class OddsRatioBuildScene extends withBeats(DomSimulation) {
       sel: s >= 11 ? sel : [],
       label: 'Doll and Hill, BMJ 1950, Table V: smoking by cases and controls',
     });
+    const tableT = tagFirst(tagEach(tagEach(table, 'th', ['', 'cases', 'controls']), 'td', ['cases cell-a ad', 'controls cell-b bc', 'cases cell-c bc', 'controls cell-d ad', 'cases', 'controls']), 'table');
     const fresh = this._fresh;
     this._fresh = 0;
     const st = (i, built) => (!built ? 'todo' : focus === i ? 'now' : 'done');
@@ -193,43 +227,47 @@ export class OddsRatioBuildScene extends withBeats(DomSimulation) {
       { label: 'Compare', parts: c2 ? ['OR', { n: `33${X2}27`, d: `55${X2}2` }, { v: OR1.toFixed(1), key: 'or' }] : ['OR', { n: 'odds, cases', d: 'odds, controls' }],
         gloss: 'This number is the odds ratio: cases over controls, as a cross-product.', state: st(2, c2), fresh: fresh >= 2, moreHtml: worked },
     ], { label: 'Building the odds ratio' });
+    const stepIds = s === 10 ? [] : s === 11 && !c2 ? ['odds-cases', '-', '-'] : ['odds-cases', 'odds-controls', 'or'];
+    const stepsT = tagFirst(tagEach(steps, 'li', stepIds), s === 10 ? '-' : 'steps');
     let prompt = '';
     if (s >= 11 && !(s === 13 && c2)) {
-      prompt = !c1 ? promptHtml('Select the Cases column')
-        : !c2 ? promptHtml('Now select the Controls column')
-          : promptHtml('Both odds built. Select a column to see its step again.', { done: true });
+      prompt = !c1 ? tagFirst(promptHtml('Select the Cases column'), '-')
+        : !c2 ? tagFirst(promptHtml('Now select the Controls column'), '-')
+          : tagFirst(promptHtml('Both odds built. Select a column to see its step again.', { done: true }), '-');
     }
-    const take = s === 13 ? takeawayHtml('It reads as a relative risk only if', 'the disease is rare, the cases are representative, and the controls are representative.') : '';
-    const rr = s === 10 ? `<div class="or-rr">${factRowsHtml([{ label: 'Relative risk', value: 'needs a group followed forward' }])}</div>` : '';
+    const take = s === 13 ? tagFirst(takeawayHtml('It reads as a relative risk only if', 'the disease is rare, the cases are representative, and the controls are representative.'), 'take') : '';
+    const rr = s === 10 ? `<div class="or-rr"${na('rr')}>${factRowsHtml([{ label: 'Relative risk', value: 'needs a group followed forward' }])}</div>` : '';
     // One slot above the table says what this beat is about: the missing relative risk, the move, or the take-away.
     const head = s === 10 ? rr : s === 13 && c2 ? take : prompt;
-    this.render({ html: `<div class="spn or or-m1">${head}${table}${steps}${s === 13 && !c2 ? take : ''}</div>` });
+    this.render({ html: `<div class="spn or or-m1">${head}${tableT}${stepsT}${s === 13 && !c2 ? take : ''}</div>` });
     if (c2 && this._ratioFresh) { this._ratioFresh = false; countValue(this.root, 'or', OR1, { from: 0, fmt: (v) => v.toFixed(1), dur: 0.6 }); }
   }
 
   dotsHtml(list, cls) {
-    return `<span class="or-dots" aria-hidden="true">${list.map((p) => `<i class="or-dot${p.isCase ? ' or-dot--case' : ''}${cls ? ` ${cls}` : ''}" style="--i:${p.i}"></i>`).join('')}</span>`;
+    return `<span class="or-dots" aria-hidden="true">${list.map((p) => `<i class="or-dot${p.isCase ? ' or-dot--case' : ''}${p.cell === 'c' || p.cell === 'd' ? ' or-dot--no' : ''}${cls ? ` ${cls}` : ''}" style="--i:${p.i}"></i>`).join('')}</span>`;
   }
 
   paintM2() {
     const s = this.stepIndex, sorting = this._sorting;
     const cell = (k) => ({ v: '', html: `<span class="or-cell"><span>${T2[k]}<sup>${k}</sup></span>${this.dotsHtml(PEOPLE.filter((p) => p.cell === k), sorting ? 'or-in' : '')}</span>` });
-    const pools = sorting
-      ? `<div class="or-pools"><div class="or-pool"><span class="spn-label">20 with the tumour</span>${this.dotsHtml(PEOPLE.filter((p) => p.isCase), 'or-out')}</div>`
-        + `<div class="or-pool"><span class="spn-label">60 controls</span>${this.dotsHtml(PEOPLE.filter((p) => !p.isCase), 'or-out')}</div></div>`
+    const out = sorting ? 'or-out' : '';
+    const pools = sorting || this._sortWait
+      ? `<div class="or-pools"${na('pools')}><div class="or-pool"><span class="spn-label">20 with the tumour</span>${this.dotsHtml(PEOPLE.filter((p) => p.isCase), out)}</div>`
+        + `<div class="or-pool"><span class="spn-label">60 controls</span>${this.dotsHtml(PEOPLE.filter((p) => !p.isCase), out)}</div></div>`
       : '';
     const table = ruleTableHtml({
       caption: 'Live case, illustrative counts',
       cols: [{ label: 'Cases' }, { label: 'Controls' }],
-      rows: [{ label: 'Cleaned reactors', cells: [cell('a'), cell('b')] }, { label: 'Did not clean', cells: [cell('c'), cell('d')] }],
+      rows: [{ label: 'Cleaned tanks', cells: [cell('a'), cell('b')] }, { label: 'Did not clean', cells: [cell('c'), cell('d')] }],
       total: { label: 'Total', cells: [T2.a + T2.c, T2.b + T2.d] },
-      label: 'Reactor cleaning by cases and controls, illustrative',
+      label: 'Tank cleaning by cases and controls, illustrative',
     });
-    const key = `<p class="or-key"><span><i class="or-dot--case"></i>a man with the tumour</span><span><i></i>a control</span></p>`;
+    const tableT = tagFirst(tagEach(table, 'td', ['cells ad cell-a', 'cells bc cell-b', 'cells bc cell-c', 'cells ad cell-d', 'margins mar-ac', 'margins mar-bd']), 'table');
+    const key = `<p class="or-key"><span><i class="or-dot or-dot--case"></i>a man with the tumour</span><span><i class="or-dot"></i>a control</span><span><i class="or-dot or-dot--ink"></i>filled: cleaned the tanks</span><span><i class="or-dot or-dot--ink or-dot--no"></i>hollow: did not</span></p>`;
     let work = '';
     if (s >= 21) {
       const st = (bad) => (this._checked ? 'ok' : bad ? 'bad' : null);
-      const entry = entryHtml({
+      const entry = tagFirst(entryHtml({
         action: 'check', cta: this._checked ? false : 'Check',
         fields: [
           { name: 'p1', label: `a ${X} d =`, value: this._checked ? String(T2.a * T2.d) : this._v1, locked: this._checked, state: st(this._bad1), aria: 'Product of a and d' },
@@ -237,13 +275,13 @@ export class OddsRatioBuildScene extends withBeats(DomSimulation) {
         ],
         state: this._checked ? 'ok' : this._hint ? 'bad' : null,
         feedback: this._checked ? (this._selffill ? 'The cross-products: 714 and 54.' : 'Both cross-products check out.') : this._hint || 'Work out both on paper first.',
-      });
+      }), 'entry');
       const read = this._checked
-        ? readoutHtml({ key: 'or2', label: 'Odds ratio', value: OR2.toFixed(1), formula: `714 / 54 = ${OR2.toFixed(1)}` })
-        : '<p class="or-wait">The larger product goes on top.</p>';
+        ? tagFirst(readoutHtml({ key: 'or2', label: 'Odds ratio', value: OR2.toFixed(1), formula: `714 / 54 = ${OR2.toFixed(1)}` }), 'or2')
+        : '<p class="or-wait" data-narr-hide="">The larger product goes on top.</p>';
       work = `<div class="spn-split">${entry}${read}</div>`;
     }
-    this.render({ html: `<div class="spn or">${pools}${table}${key}${work}</div>` });
+    this.render({ html: `<div class="spn or">${pools}${tableT}${tagFirst(key, '-')}${work}</div>` });
     if (this._checked) this.landRatio('or2', OR2, (v) => v.toFixed(1));
   }
 

@@ -1,10 +1,12 @@
 {
   "id": "les-04",
+  "narrationRef": "narration/les-04.narration.json",
   "lessonId": "les-04",
   "type": "lesson",
   "title": {
     "en": "A big ratio can be manufactured"
   },
+  "chapterId": "analytical-epidemiology/ch1",
   "blocks": [
     {
       "blockRef": "blocks/L04/blk-l04-s01.json"
@@ -14,9 +16,6 @@
     },
     {
       "blockRef": "blocks/L04/blk-l04-s02.json"
-    },
-    {
-      "blockRef": "questions/L04/q-l04-s02.json"
     },
     {
       "blockRef": "blocks/L04/blk-l04-s03.json"
@@ -32,9 +31,6 @@
     },
     {
       "blockRef": "questions/L04/q-l04-s04.json"
-    },
-    {
-      "blockRef": "blocks/L04/blk-l04-s06.json"
     },
     {
       "blockRef": "blocks/L04/blk-l04-s07.json"
@@ -55,7 +51,8 @@
   "flow": {},
   "authoring": {
     "status": "human-approved",
+    "reviewedBy": "owner (auto-approve)",
     "flags": [],
-    "reviewedAt": "2026-11-06T08:58:18.596Z"
+    "reviewedAt": "2026-11-11"
   }
 }

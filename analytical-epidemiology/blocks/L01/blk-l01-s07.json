@@ -6,6 +6,48 @@
     "src": "simulations/L01/HypothesisBuilderScene-plant.js",
     "position": "right"
   },
+  "narrationCover": {
+    "b1": {
+      "src": "media/04-plastics-plant.jpg",
+      "alt": "Inside a plastics plant: large steel tanks, and a worker climbing down into one of them to clean it.",
+      "frames": [
+        {},
+        {
+          "x": 0.04,
+          "y": 0.06,
+          "w": 0.9,
+          "h": 0.9,
+          "t": 200,
+          "ms": 14000
+        },
+        {
+          "x": 0,
+          "y": 0.18,
+          "w": 0.72,
+          "h": 0.72,
+          "t": 15700,
+          "ms": 2500
+        },
+        {
+          "x": 0.4,
+          "y": 0.22,
+          "w": 0.5,
+          "h": 0.6,
+          "t": 18900,
+          "ms": 1800
+        },
+        {
+          "x": 0.02,
+          "y": 0.04,
+          "w": 0.94,
+          "h": 0.94,
+          "t": 22100,
+          "ms": 2500
+        }
+      ],
+      "until": "show.claim+rows"
+    }
+  },
   "authoring": {
     "status": "human-approved",
     "flags": [],

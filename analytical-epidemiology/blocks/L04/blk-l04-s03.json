@@ -13,7 +13,7 @@
     },
     {
       "id": "c",
-      "text": "It moves down: the controls overstate their reactor work"
+      "text": "It moves down: the controls overstate their tank cleaning"
     },
     {
       "id": "d",
@@ -22,6 +22,23 @@
   ],
   "correctOptionId": "b",
   "deferVerdict": true,
+  "narrationCover": {
+    "prompt": {
+      "src": "media/04-plastics-plant.jpg",
+      "alt": "Inside a plastics plant: large steel tanks, and a worker climbing down into one of them to clean it.",
+      "frames": [
+        {},
+        {
+          "x": 0.4,
+          "y": 0.22,
+          "w": 0.5,
+          "h": 0.6,
+          "t": 200,
+          "ms": 12000
+        }
+      ]
+    }
+  },
   "authoring": {
     "status": "human-approved",
     "flags": [],

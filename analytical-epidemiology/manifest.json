@@ -7,10 +7,14 @@
   "grade": "UG",
   "simSetting": "casefile",
   "accent": "blue",
+  "narration": {
+    "preferredMode": "narrated"
+  },
   "modules": [
     "modules/analytical-epidemiology.json"
   ],
   "lessons": [
+    "lessons/les-00.json",
     "lessons/les-01.json",
     "lessons/les-02.json",
     "lessons/les-03.json",
@@ -21,6 +25,65 @@
   "banks": [],
   "generatedAt": "2026-11-05T08:20:08.494Z",
   "glossary": "glossary.json",
+  "blurb": {
+    "en": "Case-control and cohort studies, odds and risk ratios, bias, worked step by step."
+  },
+  "highlights": [
+    {
+      "en": "Start from a real case file and turn a hunch into a testable claim"
+    },
+    {
+      "en": "Work the 2x2 table yourself: odds ratio, risk ratio, and what each one means"
+    },
+    {
+      "en": "See how selection and recall bias can produce a large ratio"
+    },
+    {
+      "en": "The first lesson is narrated, with a choice of two voices"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "showcase/shot-1.jpg",
+      "caption": {
+        "en": "Open the case file one date at a time"
+      }
+    },
+    {
+      "src": "showcase/shot-2.jpg",
+      "caption": {
+        "en": "Start from the disease and look back"
+      }
+    },
+    {
+      "src": "showcase/shot-3.jpg",
+      "caption": {
+        "en": "Read the 2x2 table"
+      }
+    },
+    {
+      "src": "showcase/shot-4.jpg",
+      "caption": {
+        "en": "Controls must be like the cases"
+      }
+    },
+    {
+      "src": "showcase/shot-5.jpg",
+      "caption": {
+        "en": "Five parts of a testable claim"
+      }
+    }
+  ],
+  "cover": "showcase/cover.jpg",
+  "screencast": {
+    "src": "showcase/clip.webm",
+    "poster": "showcase/clip-poster.jpg"
+  },
+  "description": {
+    "en": "Five lessons on how studies find the causes of disease. You start from a real case file, form a testable claim, choose a fair comparison group, read odds and risk ratios from a table, and see how bias can make a large ratio appear when there is no real link."
+  },
+  "estHours": 2,
+  "sizeMB": 54,
   "schemaVersion": 1,
   "audience": "college",
   "subjects": [
@@ -35,10 +98,50 @@
   },
   "license": "CC-BY-4.0",
   "version": "1.0.0",
-  "updatedAt": "2026-11-09",
+  "updatedAt": "2026-11-13",
   "features": {
     "story": false,
     "games": true,
     "practice": true
+  },
+  "digest": {
+    "v": 1,
+    "modules": [
+      {
+        "id": "analytical-epidemiology",
+        "title": "Analytical Epidemiology",
+        "lessons": [
+          {
+            "ref": "lessons/les-00.json",
+            "title": "Prologue: the case room"
+          },
+          {
+            "ref": "lessons/les-01.json",
+            "title": "A hunch is not yet a claim"
+          },
+          {
+            "ref": "lessons/les-02.json",
+            "title": "A comparison is only as fair as its controls"
+          },
+          {
+            "ref": "lessons/les-03.json",
+            "title": "A case-control table gives odds, not risk"
+          },
+          {
+            "ref": "lessons/les-04.json",
+            "title": "A big ratio can be manufactured"
+          },
+          {
+            "ref": "lessons/les-05.json",
+            "title": "Follow them forward and measure the risk"
+          }
+        ]
+      }
+    ],
+    "lessonCount": 6,
+    "narrated": true,
+    "chapterIds": [
+      "analytical-epidemiology/ch1"
+    ]
   }
 }

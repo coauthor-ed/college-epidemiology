@@ -3,12 +3,14 @@
     {
       "id": "exposure-rate",
       "term": "exposure rate",
-      "match": ["exposure rates"],
+      "match": [
+        "exposure rates"
+      ],
       "plain": {
         "en": "the share of a group that had the exposure"
       },
       "means": {
-        "en": "In a case-control table, the share exposed among the cases, a/(a+c), or among the controls, b/(b+d). Each rate divides by its own column total."
+        "en": "In a case-control table, the share exposed among the cases, a/(a+c), or among the controls, b/(b+d). Each rate divides by its own column total. For example, if 14 of 20 cases smoked, the exposure rate in the cases is 70 per cent. The number of controls the investigator chooses does not change it."
       },
       "lesson": 3,
       "group": "concept"
@@ -16,7 +18,11 @@
     {
       "id": "statistical-significance",
       "term": "statistically significant",
-      "match": ["statistical significance", "not significant", "significance"],
+      "match": [
+        "statistical significance",
+        "not significant",
+        "significance"
+      ],
       "plain": {
         "en": "unlikely to be chance"
       },
@@ -29,12 +35,32 @@
     {
       "id": "p-value",
       "term": "P value",
-      "match": ["P values"],
+      "match": [
+        "P values",
+        "P-value",
+        "p-value"
+      ],
       "plain": {
         "en": "the chance of a gap this big by luck"
       },
       "means": {
-        "en": "The chance of seeing a gap at least as large as the one observed if exposure and disease had no link. It measures chance only, never bias and never causation."
+        "en": "The chance of seeing a gap at least as large as the one observed if exposure and disease had no link. A shuffle test shows it: deal the same people into the two groups at random many times, and count how often chance alone gives a gap this big. If 3 of 100 shuffles do, the P value is about 0.03. It measures chance only, never bias and never causation."
+      },
+      "lesson": 3,
+      "group": "concept"
+    },
+    {
+      "id": "shuffle-test",
+      "term": "shuffle test",
+      "match": [
+        "shuffle tests",
+        "permutation test"
+      ],
+      "plain": {
+        "en": "dealing the same people into the groups at random, to see what chance alone gives"
+      },
+      "means": {
+        "en": "A way to find a P value. Keep every person and their exposure, deal them at random into groups of the same sizes as the real ones, and work out the gap again. Repeat many times: the share of shuffles with a gap at least as big as the real one is the P value. Also called a permutation test."
       },
       "lesson": 3,
       "group": "concept"
@@ -42,7 +68,9 @@
     {
       "id": "odds-ratio",
       "term": "odds ratio",
-      "match": ["odds ratios"],
+      "match": [
+        "odds ratios"
+      ],
       "plain": {
         "en": "a ratio of two odds"
       },
@@ -55,7 +83,10 @@
     {
       "id": "relative-risk",
       "term": "relative risk",
-      "match": ["risk ratio", "relative risks"],
+      "match": [
+        "risk ratio",
+        "relative risks"
+      ],
       "plain": {
         "en": "risk in the exposed divided by risk in the unexposed"
       },
@@ -68,12 +99,32 @@
     {
       "id": "confounding",
       "term": "confounding",
-      "match": ["confounder", "confounders", "confounded"],
+      "match": [
+        "confounder",
+        "confounders",
+        "confounded"
+      ],
       "plain": {
-        "en": "a third feature travelling with the exposure"
+        "en": "a third factor linked to both the exposure and the disease"
       },
       "means": {
-        "en": "A feature that is linked to both the exposure and the disease and can create the whole apparent effect, as age does in many studies. Matching cases and controls on it removes the distortion."
+        "en": "A factor, such as smoking in a study of alcohol and oesophageal cancer, that is linked to the exposure, is itself a cause of the disease, and is more common in one group than the other. It can create the whole apparent effect. Matching cases and controls on it removes the distortion."
+      },
+      "lesson": 2,
+      "group": "concept"
+    },
+    {
+      "id": "matching",
+      "term": "matching",
+      "match": [
+        "matched on",
+        "match controls"
+      ],
+      "plain": {
+        "en": "picking controls to be like the cases on one factor"
+      },
+      "means": {
+        "en": "Choosing the controls so that a factor such as smoking or age is spread the same way among the controls as among the cases, so that factor can no longer explain a difference. Group matching evens out the share in each group; pair matching gives each case its own similar control. Never match on the exposure being tested."
       },
       "lesson": 2,
       "group": "concept"
@@ -81,7 +132,9 @@
     {
       "id": "incidence",
       "term": "incidence",
-      "match": ["incidences"],
+      "match": [
+        "incidences"
+      ],
       "plain": {
         "en": "new cases over a set time among people at risk"
       },
@@ -94,7 +147,9 @@
     {
       "id": "bias",
       "term": "bias",
-      "match": ["biases"],
+      "match": [
+        "biases"
+      ],
       "plain": {
         "en": "a systematic error built into the study"
       },
@@ -146,7 +201,9 @@
     {
       "id": "berkson-bias",
       "term": "Berkson's bias",
-      "match": ["Berkson bias"],
+      "match": [
+        "Berkson bias"
+      ],
       "plain": {
         "en": "the hospital door manufactures an association"
       },
@@ -159,7 +216,9 @@
     {
       "id": "cohort",
       "term": "cohort",
-      "match": ["cohorts"],
+      "match": [
+        "cohorts"
+      ],
       "plain": {
         "en": "a group that shares one experience in one period"
       },
@@ -172,7 +231,12 @@
     {
       "id": "prospective-cohort-study",
       "term": "prospective cohort study",
-      "match": ["prospective study", "prospective cohort", "prospective studies", "current cohort study"],
+      "match": [
+        "prospective study",
+        "prospective cohort",
+        "prospective studies",
+        "current cohort study"
+      ],
       "plain": {
         "en": "a study that starts before the outcomes have happened"
       },
@@ -185,7 +249,11 @@
     {
       "id": "retrospective-cohort-study",
       "term": "retrospective cohort study",
-      "match": ["retrospective cohort", "historical cohort study", "retrospective cohort studies"],
+      "match": [
+        "retrospective cohort",
+        "historical cohort study",
+        "retrospective cohort studies"
+      ],
       "plain": {
         "en": "a study that starts after the outcomes are already on record"
       },
@@ -198,7 +266,9 @@
     {
       "id": "attrition",
       "term": "attrition",
-      "match": ["attrition of study population"],
+      "match": [
+        "attrition of study population"
+      ],
       "plain": {
         "en": "people slipping out of a study while it runs"
       },
@@ -223,7 +293,9 @@
     {
       "id": "myocardial-infarction",
       "term": "myocardial infarction",
-      "match": ["myocardial infarctions"],
+      "match": [
+        "myocardial infarctions"
+      ],
       "plain": {
         "en": "a heart attack"
       },
@@ -236,7 +308,10 @@
     {
       "id": "neonatal-death",
       "term": "neonatal death",
-      "match": ["neonatal deaths", "neonatal death rate"],
+      "match": [
+        "neonatal deaths",
+        "neonatal death rate"
+      ],
       "plain": {
         "en": "the death of a newborn baby"
       },
@@ -244,6 +319,166 @@
         "en": "The death of a baby in the weeks around the birth. It was the outcome counted in the Boston foetal-monitoring study, and it follows each birth within days or weeks."
       },
       "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "adenocarcinoma",
+      "term": "adenocarcinoma",
+      "match": [
+        "adenocarcinomas"
+      ],
+      "plain": {
+        "en": "a cancer of gland-forming lining cells"
+      },
+      "means": {
+        "en": "A cancer that starts in the cells of a lining that make secretions. In the Boston cluster it appeared in the lining of the vagina, in women far younger than usual."
+      },
+      "lesson": 2,
+      "group": "concept"
+    },
+    {
+      "id": "diethylstilbestrol",
+      "term": "diethylstilbestrol",
+      "match": [
+        "DES"
+      ],
+      "plain": {
+        "en": "a synthetic oestrogen, DES"
+      },
+      "means": {
+        "en": "A man-made oestrogen once given in early pregnancy to prevent miscarriage. The Boston case-control study linked it to vaginal cancer in the daughters 10 to 20 years later."
+      },
+      "lesson": 2,
+      "group": "concept"
+    },
+    {
+      "id": "histology",
+      "term": "histology",
+      "match": [
+        "histological"
+      ],
+      "plain": {
+        "en": "looking at tissue under a microscope"
+      },
+      "means": {
+        "en": "The study of tissue under a microscope. A case confirmed by histology has had a sample of the tumour examined, so the diagnosis does not rest on symptoms alone."
+      },
+      "lesson": 2,
+      "group": "concept"
+    },
+    {
+      "id": "overmatching",
+      "term": "overmatching",
+      "match": [
+        "overmatch",
+        "overmatched"
+      ],
+      "plain": {
+        "en": "matching on too much"
+      },
+      "means": {
+        "en": "Matching cases and controls on too many things, or on something the exposure itself changes, so that suitable controls are hard to find and the real difference is pulled toward nothing."
+      },
+      "lesson": 2,
+      "group": "concept"
+    },
+    {
+      "id": "venous-thrombosis",
+      "term": "venous thrombosis",
+      "match": [
+        "deep vein thrombosis"
+      ],
+      "plain": {
+        "en": "a blood clot in a vein, often deep in the leg"
+      },
+      "means": {
+        "en": "A clot that forms inside a vein and blocks it. In young women it is rare; a piece that breaks off can travel to the lungs."
+      },
+      "lesson": 4,
+      "group": "concept"
+    },
+    {
+      "id": "pulmonary-embolism",
+      "term": "pulmonary embolism",
+      "match": [
+        "pulmonary embolisms"
+      ],
+      "plain": {
+        "en": "a clot that has travelled to the lungs"
+      },
+      "means": {
+        "en": "A clot, usually from a leg vein, that lodges in an artery of the lung. It can kill."
+      },
+      "lesson": 4,
+      "group": "concept"
+    },
+    {
+      "id": "angiosarcoma",
+      "term": "angiosarcoma",
+      "match": [
+        "angiosarcomas",
+        "angiosarcoma of the liver"
+      ],
+      "plain": {
+        "en": "a rare cancer of blood-vessel lining"
+      },
+      "means": {
+        "en": "A cancer of the cells that line blood vessels. Angiosarcoma of the liver is very rare, so a cluster of cases in one workplace stands out."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "vinyl-chloride",
+      "term": "vinyl chloride",
+      "match": [],
+      "plain": {
+        "en": "the gas PVC plastic is made from"
+      },
+      "means": {
+        "en": "An industrial gas turned into PVC plastic. Men who cleaned the tanks breathed high doses of it."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "leukaemia",
+      "term": "leukaemia",
+      "match": [
+        "leukemia"
+      ],
+      "plain": {
+        "en": "a cancer of the blood-forming cells"
+      },
+      "means": {
+        "en": "A cancer of the cells in the bone marrow that make blood cells. Radiation is one of its known causes."
+      },
+      "lesson": 5,
+      "group": "concept"
+    },
+    {
+      "id": "epidemiology",
+      "term": "epidemiology",
+      "plain": {
+        "en": "the study of disease in groups of people"
+      },
+      "means": {
+        "en": "The study of how often a disease occurs in groups of people and what causes it. Its studies compare groups, not single patients."
+      },
+      "group": "concept"
+    },
+    {
+      "id": "case-control-study",
+      "term": "case-control study",
+      "match": [
+        "case-control studies"
+      ],
+      "plain": {
+        "en": "a study that starts from the sick and looks back"
+      },
+      "means": {
+        "en": "A study that starts from people who have the disease (cases) and similar people who do not (controls), and compares how often each group had the exposure in the past."
+      },
       "group": "concept"
     }
   ]
